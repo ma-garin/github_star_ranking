@@ -58,4 +58,10 @@ def test_write_feed(tmp_path, monkeypatch):
     monkeypatch.setattr(collect, "ROOT", tmp_path); monkeypatch.setattr(collect, "DOCS_DATA", data)
     collect.write_feed()
     item = ET.parse(tmp_path / "docs" / "feed.xml").find("channel/item")
-    assert item.find("title").text.endswith("2026-10-31") and "o/r&x +5/週" in item.find("description").text
+    assert item.find("title").text.endswith("2026-10-31") and "o/r&x　+5/週" in item.find("description").text
+
+
+def test_ranking_lines_two_rows_per_repo():
+    rows = [{**repo("o/r", 10), "url": "https://g/o/r", "delta": 1234, "rank": 1, "description": "A tool", "summary_ja": "ツール"}]
+    assert collect.ranking_lines(rows, links=True) == ["1. <https://g/o/r|o/r>　+1,234/週", "　 ツール"]
+    assert collect.ranking_lines([{**rows[0], "summary_ja": ""}], links=False)[1] == "　 A tool"
