@@ -1,0 +1,50 @@
+import datetime as dt
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+import collect  # noqa: E402
+
+TODAY = dt.date(2026, 10, 31)
+
+
+def repo(name, stars, created="2020-01-01T00:00:00Z"):
+    return {"full_name": name, "stars": stars, "created_at": created, "description": "", "language": "", "url": ""}
+
+
+def test_snapshot_diff_wins_over_trending():
+    assert collect.compute_delta("a/b", 150, "2020-01-01T00:00:00Z", TODAY, 7, {"a/b": 100}, {"a/b": 999}) == (50, "snapshot")
+
+
+def test_trending_fallback_when_no_history():
+    assert collect.compute_delta("a/b", 150, "2020-01-01T00:00:00Z", TODAY, 7, None, {"a/b": 80}) == (80, "trending")
+
+
+def test_new_repo_counts_all_stars():
+    assert collect.compute_delta("a/b", 150, "2026-10-28T00:00:00Z", TODAY, 7, {}, {}) == (150, "new")
+
+
+def test_old_repo_without_data_is_excluded():
+    assert collect.compute_delta("a/b", 150, "2020-01-01T00:00:00Z", TODAY, 7, {}, {}) is None
+
+
+def test_rank_orders_limits_and_drops_non_positive():
+    repos = [repo(f"o/r{i}", 1000 + i * 10) for i in range(40)] + [repo("o/flat", 500)]
+    past = {f"o/r{i}": 1000 for i in range(40)} | {"o/flat": 500}
+    rows = collect.rank(repos, TODAY, 7, past, {}, 30)
+    assert len(rows) == 30
+    assert rows[0]["full_name"] == "o/r39" and rows[0]["rank"] == 1 and rows[0]["delta"] == 390
+    assert all(r["full_name"] != "o/flat" for r in rows)
+
+
+def test_parse_trending():
+    html = '''<article class="Box-row"><h2 class="h3"><a href="/foo/bar" class="Link">x</a></h2>
+    <span class="d-inline-block float-sm-right">1,234 stars this week</span></article>
+    <article class="Box-row"><h2><a href="/baz/qux">y</a></h2><span>56 stars today</span></article>'''
+    assert collect.parse_trending(html) == {"foo/bar": 1234, "baz/qux": 56}
+
+
+def test_markdown_has_both_sections():
+    rows = [{**repo("o/r", 10), "delta": 5, "basis": "trending", "rank": 1, "summary_ja": "要約"}]
+    md = collect.render_markdown(TODAY, rows, rows)
+    assert "週間 Top1" in md and "前日比 Top1" in md and "5†" in md and "要約" in md
