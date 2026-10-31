@@ -48,3 +48,14 @@ def test_markdown_has_both_sections():
     rows = [{**repo("o/r", 10), "delta": 5, "basis": "trending", "rank": 1, "summary_ja": "要約"}]
     md = collect.render_markdown(TODAY, rows, rows)
     assert "週間 Top1" in md and "前日比 Top1" in md and "5†" in md and "要約" in md
+
+
+def test_write_feed(tmp_path, monkeypatch):
+    import json, xml.etree.ElementTree as ET
+    data = tmp_path / "docs" / "data"; data.mkdir(parents=True)
+    rows = [{**repo("o/r&x", 10), "delta": 5, "basis": "snapshot", "rank": 1}]
+    (data / "2026-10-31.json").write_text(json.dumps({"date": "2026-10-31", "generated_at": "2026-10-31T06:50:00+09:00", "weekly": rows}))
+    monkeypatch.setattr(collect, "ROOT", tmp_path); monkeypatch.setattr(collect, "DOCS_DATA", data)
+    collect.write_feed()
+    item = ET.parse(tmp_path / "docs" / "feed.xml").find("channel/item")
+    assert item.find("title").text.endswith("2026-10-31") and "o/r&x +5/週" in item.find("description").text
