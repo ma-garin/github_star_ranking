@@ -180,7 +180,18 @@ def load_snapshot(day: dt.date) -> dict[str, int] | None:
     return snap
 
 
-# ---------------------------------------------------------------- 要約（任意）
+# ---------------------------------------------------------------- 日本語化
+def translate_ja(text: str) -> str:
+    """Google翻訳の公開エンドポイントで英語→日本語。失敗時は空文字。"""
+    qs = urllib.parse.urlencode({"client": "gtx", "sl": "auto", "tl": "ja", "dt": "t", "q": text[:500]})
+    try:
+        data = json.loads(_get(f"https://translate.googleapis.com/translate_a/single?{qs}", api=False))
+        return "".join(seg[0] for seg in data[0] if seg and seg[0]).strip()
+    except Exception as e:  # noqa: BLE001
+        print(f"[warn] translate: {e}", file=sys.stderr)
+        return ""
+
+
 def summarize(rows: list[dict]) -> None:
     cache: dict[str, str] = load_json(SUMMARY_FILE, {})
     key = os.environ.get("ANTHROPIC_API_KEY")
@@ -200,6 +211,13 @@ def summarize(rows: list[dict]) -> None:
             save_json(SUMMARY_FILE, cache)
         except Exception as e:  # noqa: BLE001 — 要約失敗でもランキングは出す
             print(f"[warn] summarize: {e}", file=sys.stderr)
+    todo = [r for r in rows if r["full_name"] not in cache and r["description"]]
+    if todo:
+        with ThreadPoolExecutor(max_workers=4) as ex:
+            for r, ja in zip(todo, ex.map(lambda x: translate_ja(x["description"]), todo)):
+                if ja:
+                    cache[r["full_name"]] = ja
+        save_json(SUMMARY_FILE, cache)
     for r in rows:
         r["summary_ja"] = cache.get(r["full_name"], "")
 
@@ -223,13 +241,24 @@ def render_markdown(day: dt.date, weekly: list[dict], daily: list[dict]) -> str:
             "† Trending の表示値（スナップショット履歴不足時の補完）　★ 期間内に新規作成\n")
 
 
+def ranking_lines(rows: list[dict], *, links: bool) -> list[str]:
+    """1件2行（番号・名前・+週 / 概要）。links=True で Slack mrkdwn リンク。"""
+    out = []
+    for r in rows:
+        name = f"<{r['url']}|{r['full_name']}>" if links else r["full_name"]
+        out.append(f"{r['rank']}. {name}　+{r['delta']:,}/週")
+        desc = (r.get("summary_ja") or r["description"]).replace("\n", " ").strip()
+        if desc:
+            out.append(f"　 {desc[:80]}")
+    return out
+
+
 def post_slack(day: dt.date, weekly: list[dict]) -> None:
     hook = os.environ.get("SLACK_WEBHOOK_URL")
     if not hook:
         return
     lines = [f"*GitHub 週間スター獲得 Top{len(weekly)}*（{day.isoformat()}）"]
-    for r in weekly:
-        lines.append(f"{r['rank']}. <{r['url']}|{r['full_name']}>  +{r['delta']:,}/週 ・累計 {r['stars']:,}")
+    lines += ranking_lines(weekly, links=True)
     pages = os.environ.get("PAGES_URL")
     if pages:
         lines.append(f"<{pages}|ダッシュボード>")
@@ -254,7 +283,7 @@ def write_feed(days: int = 14) -> None:
         d = load_json(p, None)
         if not d:
             continue
-        lines = [f"{r['rank']}. {r['full_name']} +{r['delta']:,}/週（累計 {r['stars']:,}）" for r in d["weekly"]]
+        lines = ranking_lines(d["weekly"], links=False)
         report = f"https://github.com/ma-garin/github_star_ranking/blob/main/reports/{d['date']}.md"
         items.append(
             f"<item><title>{_x('GitHub週間スター獲得Top30 ' + d['date'])}</title>"
