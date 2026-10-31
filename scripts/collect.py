@@ -239,6 +239,35 @@ def post_slack(day: dt.date, weekly: list[dict]) -> None:
         print(f"[warn] slack: {e}", file=sys.stderr)
 
 
+
+# ---------------------------------------------------------------- RSS（Slack RSSアプリ購読用）
+FEED_URL = "https://raw.githubusercontent.com/ma-garin/github_star_ranking/main/docs/feed.xml"
+
+
+def _x(s: str) -> str:
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
+def write_feed(days: int = 14) -> None:
+    items = []
+    for p in sorted(DOCS_DATA.glob("????-??-??.json"), reverse=True)[:days]:
+        d = load_json(p, None)
+        if not d:
+            continue
+        lines = [f"{r['rank']}. {r['full_name']} +{r['delta']:,}/週（累計 {r['stars']:,}）" for r in d["weekly"]]
+        report = f"https://github.com/ma-garin/github_star_ranking/blob/main/reports/{d['date']}.md"
+        items.append(
+            f"<item><title>{_x('GitHub週間スター獲得Top30 ' + d['date'])}</title>"
+            f"<link>{report}</link><guid isPermaLink=\"false\">star-ranking-{d['date']}</guid>"
+            f"<pubDate>{dt.datetime.fromisoformat(d['generated_at']).strftime('%a, %d %b %Y %H:%M:%S %z')}</pubDate>"
+            f"<description>{_x(chr(10).join(lines))}</description></item>")
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>'
+           "<title>GitHub Star Ranking</title>"
+           "<link>https://github.com/ma-garin/github_star_ranking</link>"
+           "<description>GitHubスター獲得ランキング（週間Top30）</description>"
+           + "".join(items) + "</channel></rss>\n")
+    (ROOT / "docs" / "feed.xml").write_text(xml)
+
 # ---------------------------------------------------------------- main
 def main() -> int:
     today = dt.datetime.now(JST).date()
@@ -279,6 +308,7 @@ def main() -> int:
     dates = sorted({p.stem for p in DOCS_DATA.glob("????-??-??.json")}, reverse=True)
     save_json(DOCS_DATA / "index.json", dates)
 
+    write_feed()
     post_slack(today, weekly)
     print(f"pool={len(repos)} weekly={len(weekly)} daily={len(daily)}")
     return 0
