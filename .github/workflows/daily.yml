@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "47 21 * * *"   # 毎朝 06:47 JST
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/**", ".github/workflows/**"]
   pull_request:
     paths: ["scripts/**", "tests/**", ".github/workflows/**"]
 
