@@ -98,3 +98,21 @@ test("今すぐ集計: 未連携なら連携シート、連携済みなら実行
   expect(dispatched).toBe(true);
   expect(errors).toEqual([]);
 });
+
+test("ウォッチ: 登録→変化カード表示→ウォッチで絞り込み・言語で絞り込み", async ({ page }) => {
+  const errors = await ready(page);
+  const name = await page.locator("#rows .rrow").first().getAttribute("data-n");
+  await page.locator("#rows .rrow").first().click();
+  await page.click("#wbtn");
+  await expect(page.locator("#wbtn")).toHaveAttribute("aria-pressed", "true");
+  await page.click("#sheet .x");
+  await expect(page.locator("#wcard .wcard")).toBeVisible();
+  await page.click('#fchips [data-f="watch"]');
+  await expect(page.locator("#rows .rrow")).toHaveCount(1);
+  expect(await page.locator("#rows .rrow").first().getAttribute("data-n")).toBe(name);
+  const lang = await page.locator("#fchips .fc").nth(2).getAttribute("data-f");
+  await page.locator("#fchips .fc").nth(2).click();
+  for (const t of await page.locator("#rows .nm small").allTextContents()) expect(lang === "その他" || t.includes(lang)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});

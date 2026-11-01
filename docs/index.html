@@ -329,6 +329,13 @@ header h1{font:400 22px/28px var(--ff)}
 .btnf{height:40px;padding:0 24px;border:0;border-radius:999px;background:var(--md-primary);color:var(--md-on-primary);font:500 14px/20px var(--ff);cursor:pointer}
 .btnt{height:40px;padding:0 12px;border:0;border-radius:999px;background:none;color:var(--md-primary);font:500 14px/20px var(--ff);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
 @media (min-width:600px){#runbar{top:calc(env(safe-area-inset-top,0px) + 104px)}}
+/* 個人化 */
+.fchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:-4px 0 4px;padding-bottom:2px}.fchips .chip{flex:none;margin:4px 0}
+.wcard{margin:8px 0 12px}.wcard .list li{cursor:pointer}.wcard .list li>span{color:var(--md-on-surface-variant)}
+.wstar{width:16px;height:16px;color:var(--g1);margin-right:4px;vertical-align:-2px}
+.wbtn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px 0 12px;border:1px solid var(--md-outline);border-radius:999px;background:none;color:var(--md-primary);font:500 14px/20px var(--ff);cursor:pointer;flex:none;margin-top:4px}
+.wbtn .ic{width:18px;height:18px}.wbtn[aria-pressed=true]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);border-color:transparent}.wbtn[aria-pressed=true] .ic{fill:currentColor}
+.shead{gap:8px}.shead>div{flex:1;min-width:0}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-rank" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></symbol>
@@ -345,6 +352,8 @@ header h1{font:400 22px/28px var(--ff)}
 <symbol id="i-mark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
 <symbol id="i-markf" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z" fill="currentColor"/></symbol>
 <symbol id="i-run" viewBox="0 0 24 24"><path d="M13 3L5 13h6l-1 8 8-10h-6l1-8z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+<symbol id="i-starf" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" fill="currentColor"/></symbol>
 <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 </defs></svg>
 <header>
@@ -358,7 +367,7 @@ header h1{font:400 22px/28px var(--ff)}
 <main>
   <section id="v-rank">
     <div class="seg"><button class="chip" data-k="weekly" aria-pressed="true">週間 Top30</button><button class="chip" data-k="daily" aria-pressed="false">前日比 Top30</button><input class="q" id="q" type="search" placeholder="絞り込み" aria-label="絞り込み"></div>
-    <ul class="rlist" id="rows"></ul>
+    <div class="fchips" id="fchips" role="group" aria-label="表示の絞り込み"></div><div id="wcard"></div><ul class="rlist" id="rows"></ul>
   </section>
   <section id="v-trend" hidden>
     <div class="card"><h2>順位の推移（Top10）</h2><div class="sub">直近8日・線をタップで詳細</div><div id="bump"></div></div>
@@ -429,14 +438,34 @@ function mv(cur,prev){
 }
 function streak(n,i){let c=0;for(let j=i;j>=0;j--){if((D.ranks[DAYS[j]]||[]).some(r=>r.full_name===n))c++;else break}return c}
 function renderRank(){
-  const q=($("#q").value||"").trim().toLowerCase();
-  const rows=listAt(di).filter(r=>!q||(r.full_name+" "+(r.summary_ja||"")).toLowerCase().includes(q)), pv=rankMap(di-1);
+  const q=($("#q").value||"").trim().toLowerCase(), all=listAt(di);
+  renderChips(all);renderWatch();
+  const rows=all.filter(r=>(!q||(r.full_name+" "+(r.summary_ja||"")).toLowerCase().includes(q))&&(FIL==="all"||(FIL==="watch"?WATCH[r.full_name]:(r.language||"その他")===FIL))), pv=rankMap(di-1);
   $("#rows").innerHTML=rows.map(r=>{const [o,n]=r.full_name.split("/");
     return `<li class="rrow r${r.rank}" data-n="${esc(r.full_name)}"><div class="no"><b>${r.rank}</b>${mv(r.rank,pv[r.full_name])}</div>
-    <div class="nm"><b>${esc(n)}</b><small>${esc(o)}${r.language?" · "+esc(r.language):""} · 累計 ${k(r.stars)}</small></div>
+    <div class="nm"><b>${WATCH[r.full_name]?'<svg class="ic wstar" aria-label="ウォッチ中"><use href="#i-starf"/></svg>':""}${esc(n)}</b><small>${esc(o)}${r.language?" · "+esc(r.language):""} · 累計 ${k(r.stars)}</small></div>
     <div class="wk"><b>+${fmt(r.delta)}${r.basis==="trending"?"†":r.basis==="new"?"★":""}<small style="color:var(--mut);font-weight:400;font-size:11px">/${mode==="weekly"?"週":"日"}</small></b>${gains(starsOf(r.full_name,di)).filter(x=>x!=null).length>=2?spark(gains(starsOf(r.full_name,di)).slice(-13)):""}</div>
-    <div class="ds">${esc(r.summary_ja||"日本語の概要を準備中です")}</div></li>`}).join("")||`<li class="empty2">${q?"該当するリポジトリはありません":"この日のデータはありません"}</li>`;
+    <div class="ds">${esc(r.summary_ja||"日本語の概要を準備中です")}</div></li>`}).join("")||`<li class="empty2">${FIL==="watch"&&!Object.keys(WATCH).length?"まだウォッチしていません。リポジトリを開いて「ウォッチ」を押すと、ここに集まります":q||FIL!=="all"?"該当するリポジトリはありません":"この日のデータはありません"}</li>`;
 }
+
+// ===== 個人化: 絞り込みチップ（すべて/ウォッチ/言語）とウォッチ中の変化 =====
+function renderChips(all){
+  const cnt={};all.forEach(r=>{const l=r.language||"その他";cnt[l]=(cnt[l]||0)+1});
+  const langs=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,6).map(x=>x[0]);
+  if(FIL!=="all"&&FIL!=="watch"&&!langs.includes(FIL))FIL="all";
+  const c=(k,label)=>`<button class="chip fc" data-f="${esc(k)}" aria-pressed="${FIL===k}">${label}</button>`;
+  $("#fchips").innerHTML=c("all","すべて")+c("watch",`ウォッチ ${Object.keys(WATCH).length||""}`)+langs.map(l=>c(l,esc(l))).join("");
+  $("#fchips").querySelectorAll(".fc").forEach(b=>b.onclick=()=>{FIL=b.dataset.f;renderRank()});
+}
+function renderWatch(){
+  const ns=Object.keys(WATCH);if(!ns.length){$("#wcard").innerHTML="";return}
+  const now=rankMap(di), pv=rankMap(di-1);
+  const items=ns.map(n=>{const s=starsOf(n,di).filter(x=>x!=null), g=s.length>=2?s[s.length-1]-s[s.length-2]:null;
+    const r=now[n], p=pv[n];const chg=r&&p?p-r:null;
+    return {n,r,chg,g,score:(r?100-r:0)+(chg?Math.abs(chg)*3:0)}}).sort((a,b)=>b.score-a.score);
+  $("#wcard").innerHTML=`<div class="card wcard"><h2>ウォッチ中の変化</h2><div class="sub">${jdate(DAYS[di])}・${mode==="weekly"?"週間":"前日比"}の順位</div><ul class="list">${items.map(x=>`<li data-n="${esc(x.n)}"><b>${esc(x.n.split("/")[1])}</b><span>${x.r?`${x.r}位`:"圏外"}${x.chg?` <span class="mv ${x.chg>0?"up":"dn"}">${x.chg>0?"↑":"↓"}${Math.abs(x.chg)}</span>`:""}${x.g!=null?` ・ +${fmt(x.g)}/日`:""}</span></li>`).join("")}</ul></div>`;
+}
+function toggleWatch(n){WATCH[n]?delete WATCH[n]:WATCH[n]=1;save("watch",WATCH);toast(WATCH[n]?"ウォッチに追加しました":"ウォッチを外しました");renderRank()}
 function renderTrend(){
   const from=Math.max(0,di-7), idx=[];for(let i=from;i<=di;i++)idx.push(i);
   const top=(D.ranks[DAYS[di]]||[]).slice(0,10).map(r=>r.full_name);
@@ -473,7 +502,7 @@ function lineChart(arr,{w,h,bars,labels}){
 function openSheet(n){
   const r=listAt(di).find(x=>x.full_name===n)||(D.ranks[DAYS[di]]||[]).find(x=>x.full_name===n);if(!r)return;
   const w=Math.min(600,window.innerWidth)-32, st=starsOf(n,di), lab=DAYS.slice(0,di+1);
-  $("#sheetin").innerHTML=`<div class="shead"><div><small style="color:var(--mut)">${esc(r.language||"")}</small><h3>${esc(n)}</h3></div><button class="x" aria-label="閉じる" onclick="closeSheet()">×</button></div>
+  $("#sheetin").innerHTML=`<div class="shead"><div><small style="color:var(--mut)">${esc(r.language||"")}</small><h3>${esc(n)}</h3></div><button class="wbtn" id="wbtn" aria-pressed="${!!WATCH[n]}" onclick="toggleWatch('${esc(n)}');this.setAttribute('aria-pressed',!!WATCH['${esc(n)}']);this.lastChild.textContent=WATCH['${esc(n)}']?'ウォッチ中':'ウォッチ'"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>${WATCH[n]?"ウォッチ中":"ウォッチ"}</button><button class="x" aria-label="閉じる" onclick="closeSheet()">×</button></div>
    <p style="margin:6px 0">${esc(r.summary_ja||"日本語の概要を準備中です")}</p>
    <div class="stats"><div><small>順位</small><b>${r.rank}位</b></div><div><small>+${mode==="weekly"?"週":"日"}</small><b>${fmt(r.delta)}</b></div><div><small>累計</small><b>${k(r.stars)}</b></div><div><small>連続</small><b>${streak(n,di)}日</b></div></div>
    <div class="card"><h2>累計スター</h2><div class="sub">${lab.length}日</div>${lineChart(st,{w:w-30,h:150,labels:lab})}</div>
@@ -500,7 +529,7 @@ const CATC={"◎":"#e8590c","○":"#1c7ed6","□":"#7048e8","△":"#868e96","▲
 let ND=[], ni=0, nf="all", cur=null;
 const st=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-let READ=st("read",{}), FAV=st("fav",{});
+let READ=st("read",{}), FAV=st("fav",{}), WATCH=st("watch",{}), FIL="all";
 const nid=(d,n)=>d.date+"#"+n.no;
 const md=s=>{const [,m,d]=s.split("-");return `${+m}/${+d}`};
 const firstSentence=s=>{const i=s.indexOf("。");return i>0?s.slice(0,i+1):s};
@@ -622,6 +651,7 @@ async function checkUpdate(){
     else $("#upd").textContent=latest?`最新版です（#${BUILD??latest}）`:"版を判定できませんでした";
   }catch(e){$("#upd").textContent="通信できませんでした。接続を確認してください"}}
 const CHANGELOG=[
+  ["2026-11-01","ウォッチリスト（★）と、ウォッチ・言語での絞り込みを追加。ランキングの上に「ウォッチ中の変化」を表示。集計を1日4回に"],
   ["2026-11-01","「今すぐ集計」を追加。ボタン1回で集計し、終わると自動で反映（初回のみ GitHub でログイン）。デザインを Material Design 3 準拠に刷新"],
  ["11月1日","家計簿アプリと同じ配布方式（固定署名・画面同梱・最新版の確認）。家計簿アプリと同じ配色と設定画面"],
  ["11月1日","設定画面、ライト／ダーク切替、概要の完全日本語化、読み込み中・エラー・オフライン表示、引っ張って更新"],

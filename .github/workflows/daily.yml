@@ -2,7 +2,8 @@ name: daily-star-ranking
 
 on:
   schedule:
-    - cron: "47 21 * * *"   # 毎朝 06:47 JST
+    - cron: "47 21 * * *"   # 毎朝 06:47 JST（Slack 通知はこの回だけ）
+    - cron: "47 3,9,14 * * *" # 12:47 / 18:47 / 23:47 JST
   workflow_dispatch:
   push:
     branches: [main]
@@ -38,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           # Slack 通知は毎朝の定期実行だけ。アプリからの手動集計（workflow_dispatch）では送らない
-          SLACK_WEBHOOK_URL: ${{ github.event_name == 'schedule' && secrets.SLACK_WEBHOOK_URL || '' }}
+          SLACK_WEBHOOK_URL: ${{ github.event.schedule == '47 21 * * *' && secrets.SLACK_WEBHOOK_URL || '' }}
           PAGES_URL: https://ma-garin.github.io/github_star_ranking/
         run: python scripts/collect.py
       - name: Commit
