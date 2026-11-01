@@ -697,12 +697,14 @@ async function watchRun(){
 const GH_APP_CLIENT="Iv23liB37gXspuaoV5Td";
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 // アプリ版はネイティブ HTTP（CapacitorHttp）を直接呼ぶ。fetch の差し替え経由だとフォーム本文の扱いが不安定なため JSON で送る
+// 本文が送られない環境があるため（実機で client_id 欠落 → 404 を確認）、引数は URL のクエリで送る。GitHub はクエリでも受け付ける
 async function ghPost(url,body){
+  const u=url+"?"+new URLSearchParams(body).toString();
   const H=window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.CapacitorHttp;
-  if(H){const r=await H.request({url,method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},data:body});
-    const d=typeof r.data==="string"?(()=>{try{return JSON.parse(r.data)}catch(e){return {error:"bad_response",status:r.status,raw:String(r.data).slice(0,80)}}})():r.data;
+  if(H){const r=await H.request({url:u,method:"POST",headers:{Accept:"application/json"}});
+    const d=typeof r.data==="string"?(()=>{try{return JSON.parse(r.data)}catch(e){return {error:"bad_response",status:r.status}}})():(r.data||{});
     if(r.status>=400&&!d.error)d.error="http_"+r.status;return d}
-  const r=await fetch(url,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},body:JSON.stringify(body)});return r.json()}
+  const r=await fetch(u,{method:"POST",headers:{Accept:"application/json"}});return r.json()}
 let LOGIN=null;
 function openToken(){
   const has=!!tok();
