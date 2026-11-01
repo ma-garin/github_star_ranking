@@ -11,7 +11,7 @@
 
 <style>
 /* 層: 上部固定ヘッダ（日付ステッパー）→ 本文（表/グラフ/カード）→ 下部固定タブ。ボトムシートで詳細 */
-:root{--bg:#eceff1;--card:#ffffff;--line:#e0e0e0;--fg:#263238;--mut:#546e7a;--acc:#37474f;--pink:#ad1457;--up:#2e7d32;--down:#c62828;--g1:#b8860b;--g2:#78909c;--g3:#a0623a;--chip:#37474f;--chipfg:#fff;--grid:#e6eaec;--hdr:#37474f;--hdrfg:#ffffff;--hdrmut:#cfd8dc}
+:root{--bg:#eceff1;--card:#ffffff;--line:#e0e0e0;--fg:#263238;--mut:#546e7a;--acc:#37474f;--pink:#ad1457;--up:#1b5e20;--down:#b71c1c;--g1:#b8860b;--g2:#78909c;--g3:#a0623a;--chip:#37474f;--chipfg:#fff;--grid:#e6eaec;--hdr:#37474f;--hdrfg:#ffffff;--hdrmut:#cfd8dc}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12171a;--card:#1b2226;--line:#333c42;--fg:#e2e7ea;--mut:#9dabb3;--acc:#8fa5b0;--pink:#f48fb1;--up:#81c784;--down:#ef9a9a;--g1:#f5c451;--g2:#b0bec5;--g3:#d99a6c;--chip:#8fa5b0;--chipfg:#12171a;--grid:#242c31;--hdr:#1b2226;--hdrfg:#e2e7ea;--hdrmut:#9dabb3;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#12171a;--card:#1b2226;--line:#333c42;--fg:#e2e7ea;--mut:#9dabb3;--acc:#8fa5b0;--pink:#f48fb1;--up:#81c784;--down:#ef9a9a;--g1:#f5c451;--g2:#b0bec5;--g3:#d99a6c;--chip:#8fa5b0;--chipfg:#12171a;--grid:#242c31;--hdr:#1b2226;--hdrfg:#e2e7ea;--hdrmut:#9dabb3;color-scheme:dark}
 *{box-sizing:border-box}
@@ -111,8 +111,8 @@ article dt{color:var(--mut);white-space:nowrap}article dd{margin:0}
 .dstrip{display:flex;gap:6px;overflow-x:auto;margin:0 0 14px;padding-bottom:2px;scrollbar-width:none}
 .dstrip button{flex:none;min-width:56px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 8px;color:var(--mut);font:inherit;font-size:11px;cursor:pointer;text-align:center}
 .dstrip button b{display:block;font-size:17px;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1.2}
-.dstrip button[aria-pressed=true]{background:var(--chip);border-color:var(--chip);color:var(--chipfg)}
-.dstrip button[aria-pressed=true] b{color:var(--chipfg)}
+.dstrip button[aria-selected=true]{background:var(--chip);border-color:var(--chip);color:var(--chipfg)}
+.dstrip button[aria-selected=true] b{color:var(--chipfg)}
 .dstrip i{display:block;font-style:normal;font-size:10px;margin-top:1px}
 .lead{font-size:12px;color:var(--mut);margin:0 0 6px;letter-spacing:.08em}
 .hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;cursor:pointer;position:relative;overflow:hidden}
@@ -340,7 +340,7 @@ const order=its=>[...its].sort((a,b)=>(b.mine-a.mine)||((b.try==="◯")-(a.try==
 function tags(n){return (n.mine?'<span class="tag mine">自分ごと</span>':"")+(n.try==="◯"?'<span class="tag try">試す価値あり</span>':"")+(n.single?'<span class="tag sg">単独報道</span>':"")}
 function renderNews(){
   const d=ND[ni];
-  $("#dstrip").innerHTML=ND.map((x,i)=>`<button role="tab" data-ni="${i}" aria-pressed="${i===ni}"><span>${md(x.date)}（${x.weekday}）</span><b>${x.items.length}</b><i>件</i></button>`).join("");
+  $("#dstrip").innerHTML=ND.map((x,i)=>`<button role="tab" data-ni="${i}" aria-selected="${i===ni}"><span>${md(x.date)}（${x.weekday}）</span><b>${x.items.length}</b><i>件</i></button>`).join("");
   const ord=order(d.items), top=ord[0];
   $("#nhero").innerHTML=top?`<div class="lead">今日の要点</div><div class="hero" data-open="${top.no}" style="--cc:${CATC[top.category]}">
     <div class="kick"><span class="co2">${esc(top.company)}</span><span class="catl" style="--cc:${CATC[top.category]}">${esc(CAT[top.category])}</span>${tags(top)}</div>

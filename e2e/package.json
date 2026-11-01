@@ -1,0 +1,2 @@
+{ "name": "ai-daily-e2e", "private": true, "type": "commonjs",
+  "devDependencies": { "@playwright/test": "1.48.2", "@axe-core/playwright": "4.10.2" } }
