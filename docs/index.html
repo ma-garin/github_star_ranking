@@ -216,7 +216,8 @@ nav button[aria-selected=true]{color:var(--fg)}nav button[aria-selected=true] b{
         <div class="srow"><div>既読と保存をリセット<small id="rinfo">—</small></div><button class="sbtn" id="resetRead">リセット</button></div>
       </div></div>
       <div class="sgroup"><h2>このアプリについて</h2><div class="sbox">
-        <div class="srow"><div>AI Daily<small>GitHubスター獲得ランキングとAIニュース</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
+        <div class="srow"><div>AI Daily<small id="ver">—</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
+        <div class="srow"><div>最新版の確認<small id="upd">アプリ版のみ。押したときだけ確認します</small></div><button class="chip" id="checkUpd" style="min-height:44px">確認する</button></div>
       </div></div>
     </div>
   </section>
@@ -395,8 +396,10 @@ function setView(v){view=v;document.querySelectorAll("nav button").forEach(b=>b.
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
 $("#prev").onclick=()=>{di--;render()};$("#next").onclick=()=>{di++;render()};
 window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
+const IS_APP=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+const DATA_BASE=IS_APP?"https://ma-garin.github.io/github_star_ranking/":"";
 async function loadData(){
-  try{const r=await fetch("data/app.json",{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();try{localStorage.setItem("app-cache",JSON.stringify(j))}catch(e){}return j}
+  try{const r=await fetch(DATA_BASE+"data/app.json",{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();try{localStorage.setItem("app-cache",JSON.stringify(j))}catch(e){}return j}
   catch(e){try{const c=localStorage.getItem("app-cache");if(c)return JSON.parse(c)}catch(_){}return null}
 }
 function showLoading(){$("#rows").innerHTML=Array.from({length:6},()=>`<li class="rrow sk"><div class="no"><b>&nbsp;</b></div><div class="nm"><i></i><i class="s"></i></div><div class="wk"><i></i></div><div class="ds"><i></i></div></li>`).join("");$("#meta").textContent="読み込み中…"}
@@ -437,10 +440,21 @@ async function scheduleNotify(){if(!isApp())return "app";
     const p=await LN.requestPermissions();if(p.display!=="granted")return "denied";
     const [h,m]=SET.nTime.split(":").map(Number);
     await LN.schedule({notifications:[{id:1,title:"AI Daily",body:"今日のAIニュースとGitHubランキングが届いています",schedule:{on:{hour:h,minute:m},repeats:true,allowWhileIdle:true}}]});return "ok"}catch(e){console.log("notify",e);return "err"}}
+let BUILD=null;
+async function loadBuild(){if(!IS_APP)return;try{BUILD=(await (await fetch("build.json",{cache:"no-store"})).json()).build}catch(e){}}
+async function checkUpdate(){
+  $("#upd").textContent="確認中…";
+  try{const r=await fetch("https://api.github.com/repos/ma-garin/github_star_ranking/releases/latest",{headers:{Accept:"application/vnd.github+json"}});
+    if(!r.ok)throw 0;const j=await r.json();const m=/^android-(\d+)$/.exec(j.tag_name||"");const latest=m?+m[1]:null;
+    if(latest&&BUILD&&latest>BUILD){$("#upd").innerHTML=`新しい版 #${latest} があります。<a class="gh" style="margin:0" href="https://github.com/ma-garin/github_star_ranking/releases/latest/download/ai-daily.apk">ダウンロード</a>（上書きインストールできます）`}
+    else $("#upd").textContent=latest?`最新版です（#${BUILD??latest}）`:"版を判定できませんでした";
+  }catch(e){$("#upd").textContent="通信できませんでした。接続を確認してください"}}
 function renderSet(){
   document.querySelectorAll("[data-set]").forEach(g=>g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",SET[g.dataset.set]===b.dataset.val)));
   $("#nOn").checked=SET.nOn;$("#nTime").value=SET.nTime;$("#nTime").disabled=!SET.nOn;
   $("#ninfo").textContent=isApp()?(SET.nOn?`毎朝 ${SET.nTime} に通知します`:"通知しません"):"Androidアプリでのみ有効（このブラウザでは通知されません）";
+  $("#ver").textContent=IS_APP?(BUILD?`アプリ版 #${BUILD}`:"アプリ版"):"Web版（ブラウザ）";
+  $("#checkUpd").disabled=!IS_APP;
   $("#dinfo").textContent=D?`ランキング ${D.dates.at(-1)} ・ ニュース ${ND.length?ND.at(-1).date+" "+(ND.at(-1).updated||""):"なし"}`:"—";
   let r=0,f=0;try{r=Object.keys(JSON.parse(localStorage.getItem("read")||"{}")).length;f=Object.keys(JSON.parse(localStorage.getItem("fav")||"{}")).length}catch(e){}
   $("#rinfo").textContent=`既読 ${r}件・保存 ${f}件`;
@@ -454,6 +468,7 @@ document.addEventListener("click",async e=>{
 });
 $("#nOn").onchange=async()=>{SET.nOn=$("#nOn").checked;saveSet();const r=await scheduleNotify();renderSet();toast(r==="denied"?"端末の設定で通知が許可されていません":SET.nOn?"通知をオンにしました":"通知をオフにしました")};
 $("#nTime").onchange=async()=>{if(!$("#nTime").value)return;SET.nTime=$("#nTime").value;saveSet();await scheduleNotify();renderSet();toast(`通知を ${SET.nTime} に変更しました`)};
+$("#checkUpd").onclick=checkUpdate;loadBuild();
 $("#reload2").onclick=()=>{$("#reload").click();setTimeout(renderSet,800)};
 $("#resetRead").onclick=()=>{try{localStorage.removeItem("read");localStorage.removeItem("fav")}catch(e){}READ={};FAV={};renderSet();toast("既読と保存をリセットしました")};
 applyTheme(SET.theme);scheduleNotify();
