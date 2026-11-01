@@ -25,6 +25,7 @@
  "cloudflare/security-audit-skill": "独立して検証され、機械可読な結果を伴う多段階セキュリティ監査のためのコーディング エージェント スキル",
  "debpalash/VoiceStudio": "VoiceStudio は、オープンソースで完全にローカルな イレブンラボの代替製品であり、646 言語で音声クローン、音声デザイン、ビデオ ダビング、ディクテーション、文字起こし、オーディオブックの作成を行うことができます。",
  "deepseek-ai/deepseek-harness": "DeepSeek ハーネス: すべてはプラグインです。",
+ "deepseek-ai/dsh-superagent-prototype": "より自律的なエージェント システムに向けて",
  "google/elephant-goldfish-model": "AI エージェントを使用してソフトウェアを設計およびレビューするためのオープンソース スキル",
  "heydamir/unslop": "バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル",
  "heygen-com/hyperframes": "HTMLを書きます。ビデオをレンダリングします。エージェント向けに構築されています。",
