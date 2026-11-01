@@ -75,12 +75,12 @@ for (const theme of ["light", "dark"]) {
   });
 }
 
-test("今すぐ集計: トークン未登録なら登録シート、登録済みなら実行→反映", async ({ page }) => {
+test("今すぐ集計: 未連携なら連携シート、連携済みなら実行→反映", async ({ page }) => {
   const errors = await ready(page);
   await page.click("#runNow");
-  await expect(page.locator("#tokIn")).toBeVisible();
-  await page.fill("#tokIn", "github_pat_test");
-  await page.click("#tokSave");
+  await expect(page.locator("#loginBox")).toBeVisible();
+  await page.click("#sheet .x");
+  await page.evaluate(() => localStorage.setItem("gh_token", "ghu_test"));
   let dispatched = false;
   await page.route("https://api.github.com/**", async route => {
     const u = route.request().url();
