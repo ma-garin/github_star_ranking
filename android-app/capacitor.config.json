@@ -2,6 +2,15 @@
   "appId": "io.github.magarin.aidaily",
   "appName": "AI Daily",
   "webDir": "www",
-  "server": { "androidScheme": "https" },
-  "plugins": { "LocalNotifications": { "iconColor": "#F5A524" } }
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "iconColor": "#F5A524"
+    },
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
 }

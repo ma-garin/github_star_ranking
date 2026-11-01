@@ -323,6 +323,8 @@ header h1{font:400 22px/28px var(--ff)}
 @media (prefers-reduced-motion:reduce){.lp i{animation:none;width:100%;opacity:.6}}
 .tokf{display:grid;gap:12px;margin-top:8px}.tokf ol{margin:0;padding-left:20px;font:400 14px/22px var(--ff)}
 .tokf input{height:48px;border:1px solid var(--md-outline);border-radius:4px;background:none;color:var(--md-on-surface);padding:0 12px;font:400 16px/24px var(--ff)}
+.tsteps{display:grid;gap:12px}.tsteps li b{display:block;font:500 15px/22px var(--ff)}.tsteps li span{display:block;font:400 14px/22px var(--ff);color:var(--md-on-surface-variant)}.tsteps code{font-family:ui-monospace,monospace;background:var(--md-surface-container-high);padding:0 4px;border-radius:4px}
+.ucode{font:500 32px/40px ui-monospace,monospace;letter-spacing:.12em;text-align:center;padding:16px;border-radius:12px;background:var(--md-surface-container-high)}
 .tokf .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .btnf{height:40px;padding:0 24px;border:0;border-radius:999px;background:var(--md-primary);color:var(--md-on-primary);font:500 14px/20px var(--ff);cursor:pointer}
 .btnt{height:40px;padding:0 12px;border:0;border-radius:999px;background:none;color:var(--md-primary);font:500 14px/20px var(--ff);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
@@ -384,7 +386,7 @@ header h1{font:400 22px/28px var(--ff)}
         <div class="srow"><div>毎朝の通知<small id="ninfo">Androidアプリでのみ有効</small></div><label class="sw"><input type="checkbox" id="nOn" aria-label="毎朝の通知"><span></span></label></div>
         <div class="srow"><div>通知の時刻<small>ランキング06:47・ニュース07:45更新のあと</small></div><input type="time" id="nTime" aria-label="通知の時刻"></div>
       </div></div><div class="spage" data-page="data" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">データ管理</h2><div class="sbox">
-        <div class="srow"><div>今すぐ集計<small>GitHub でランキングを集計し直します（2〜3分）。Slack には通知しません</small></div><button class="chip" id="runNow2">実行</button></div><div class="srow"><div>GitHub トークン<small id="tinfo">—</small></div><button class="chip" id="tokBtn">登録</button></div><div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新"><svg class="ic" aria-hidden="true"><use href="#i-reload"/></svg></button></div>
+        <div class="srow"><div>今すぐ集計<small>GitHub でランキングを集計し直します（2〜3分）。Slack には通知しません</small></div><button class="chip" id="runNow2">実行</button></div><div class="srow"><div>GitHub 連携<small id="tinfo">—</small></div><button class="chip" id="tokBtn">連携</button></div><div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新"><svg class="ic" aria-hidden="true"><use href="#i-reload"/></svg></button></div>
         <div class="srow"><div>既読と保存をリセット<small id="rinfo">—</small></div><button class="sbtn" id="resetRead">リセット</button></div>
       </div></div><div class="spage" data-page="about" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">アプリ情報</h2><div class="sbox">
         <div class="srow"><div>AI Daily<small id="ver">—</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
@@ -598,7 +600,7 @@ let SET=(()=>{try{return {...SDEF,...JSON.parse(localStorage.getItem("settings")
 try{const t=localStorage.getItem("theme");if(t&&!localStorage.getItem("settings"))SET.theme=t}catch(e){}
 const saveSet=()=>{try{localStorage.setItem("settings",JSON.stringify(SET))}catch(e){}};
 const isApp=()=>{const C=window.Capacitor;return !!(C&&C.isNativePlatform&&C.isNativePlatform())};
-function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),1800)}
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),m.length>20?4000:1800)}
 function applyTheme(t){if(t==="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t;
   // Android アプリではステータスバーの色を画面に合わせる
   try{if(isApp()){const SB=window.Capacitor.Plugins.StatusBar;if(SB){const bg=getComputedStyle(document.body).backgroundColor;const m=bg.match(/\d+/g)||[255,255,255];const hex="#"+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,"0")).join("");
@@ -620,7 +622,7 @@ async function checkUpdate(){
     else $("#upd").textContent=latest?`最新版です（#${BUILD??latest}）`:"版を判定できませんでした";
   }catch(e){$("#upd").textContent="通信できませんでした。接続を確認してください"}}
 const CHANGELOG=[
-  ["2026-11-01","「今すぐ集計」を追加。ボタン1回で集計し、終わると自動で反映（初回のみ GitHub トークンを登録）。デザインを Material Design 3 準拠に刷新"],
+  ["2026-11-01","「今すぐ集計」を追加。ボタン1回で集計し、終わると自動で反映（初回のみ GitHub でログイン）。デザインを Material Design 3 準拠に刷新"],
  ["11月1日","家計簿アプリと同じ配布方式（固定署名・画面同梱・最新版の確認）。家計簿アプリと同じ配色と設定画面"],
  ["11月1日","設定画面、ライト／ダーク切替、概要の完全日本語化、読み込み中・エラー・オフライン表示、引っ張って更新"],
  ["11月1日","Androidアプリ（毎朝の通知）、ランキングの実データ化、AIニュースの4日分"],
@@ -631,7 +633,7 @@ function showSetPage(k){SPAGE=k;$("#slist").hidden=!!k;document.querySelectorAll
 document.addEventListener("click",e=>{const b=e.target.closest("[data-sp]");if(b&&b.closest("#v-set")){showSetPage(b.dataset.sp);if(b.dataset.sp)history.pushState({sp:1},"")}});
 window.addEventListener("popstate",()=>{if(view==="set"&&SPAGE)showSetPage("")});
 function renderSet(){
-  if($("#tinfo")){$("#tinfo").textContent=tok()?"登録済み（この端末のアプリ内にだけ保存）":"未登録。「今すぐ集計」に必要です";$("#tokBtn").textContent=tok()?"変更":"登録"}
+  if($("#tinfo")){$("#tinfo").textContent=tok()?"連携済み":"未連携。「今すぐ集計」に必要です（最初の1回だけ）";$("#tokBtn").textContent=tok()?"解除":"連携"}
   document.querySelectorAll("[data-set]").forEach(g=>g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",SET[g.dataset.set]===b.dataset.val)));
   $("#nOn").checked=SET.nOn;$("#nTime").value=SET.nTime;$("#nTime").disabled=!SET.nOn;
   $("#ninfo").textContent=isApp()?(SET.nOn?`毎朝 ${SET.nTime} に通知します`:"通知しません"):"Androidアプリでのみ有効（このブラウザでは通知されません）";
@@ -668,7 +670,7 @@ async function runNow(){
   try{
     const r=await ghf(WF+"/dispatches",{method:"POST",body:JSON.stringify({ref:"main"})});
     if(r.status!==204)throw r.status;
-  }catch(st){RUN=null;saveRun(null);runbar(st===401?"トークンが無効か期限切れです。設定 → データ管理 で登録し直してください":st===403||st===404?"トークンの権限が足りません（Actions: Read and write が必要です）":"集計を開始できませんでした。通信状態を確認してください","err");return}
+  }catch(st){RUN=null;saveRun(null);runbar(st===401?"GitHub 連携が切れています。設定 → データ管理 → GitHub 連携 からもう一度連携してください":st===403||st===404?"GitHub 連携の権限が足りません。連携を解除して、もう一度連携してください":"集計を開始できませんでした。通信状態を確認してください","err");return}
   watchRun();
 }
 async function watchRun(){
@@ -691,16 +693,40 @@ async function watchRun(){
     await new Promise(r=>setTimeout(r,8000));
   }
 }
+// GitHub でログイン（GitHub App のデバイスフロー）。アプリ版はネイティブ通信（CapacitorHttp）で CORS を回避する
+const GH_APP_CLIENT="Iv23liB37gXspuaoV5";
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function ghPost(url,body){const r=await fetch(url,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(body).toString()});return r.json()}
+let LOGIN=null;
 function openToken(){
   const has=!!tok();
-  $("#sheetin").innerHTML=`<div class="shead"><h3>GitHub トークン</h3><button class="x" aria-label="閉じる" onclick="closeSheet()"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button></div>
-  <div class="tokf"><p style="margin:0;color:var(--mut)">「今すぐ集計」に使います。トークンはこの端末のアプリ内にだけ保存されます。</p>
-  <ol><li>下の「GitHub で作成」を開く</li><li>Repository access を <b>Only select repositories</b> にし、<b>github_star_ranking</b> を選ぶ</li><li>Permissions の <b>Actions</b> を <b>Read and write</b> にする</li><li>Generate token で表示された文字列を下に貼り付けて保存</li></ol>
-  <input id="tokIn" type="password" autocomplete="off" placeholder="github_pat_…" aria-label="GitHub トークン">
-  <div class="acts">${has?'<button class="btnt" id="tokDel">削除</button>':""}<a class="btnt" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub で作成</a><button class="btnf" id="tokSave">保存</button></div></div>`;
+  $("#sheetin").innerHTML=`<div class="shead"><h3>GitHub 連携</h3><button class="x" aria-label="閉じる" onclick="closeSheet()"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <div class="tokf" id="loginBox">${has?`<p style="margin:0">連携済みです。「今すぐ集計」をボタン1回で実行できます。</p><div class="acts"><button class="btnt" id="tokDel">連携を解除</button></div>`:
+  `<p style="margin:0">「今すぐ集計」を使うために、最初の1回だけ GitHub と連携します。</p>
+  ${IS_APP?`<div class="acts"><button class="btnf" id="ghLogin">GitHub でログイン</button></div>`:`<p style="margin:0;color:var(--mut)">ブラウザ版では連携できません。Android アプリから連携してください。</p>`}`}</div>`;
   $("#sheet").hidden=false;
-  $("#tokSave").onclick=()=>{const v=$("#tokIn").value.trim();if(!v){toast("トークンを貼り付けてください");return}try{localStorage.setItem("gh_token",v)}catch(e){}closeSheet();toast("保存しました");if(view==="set")renderSet()};
-  if(has)$("#tokDel").onclick=()=>{try{localStorage.removeItem("gh_token")}catch(e){}closeSheet();toast("削除しました");if(view==="set")renderSet()};
+  if(has)$("#tokDel").onclick=()=>{try{localStorage.removeItem("gh_token")}catch(e){}closeSheet();toast("連携を解除しました");if(view==="set")renderSet()};
+  else if(IS_APP)$("#ghLogin").onclick=ghLogin;
+}
+async function ghLogin(){
+  const box=$("#loginBox");
+  try{
+    const d=await ghPost("https://github.com/login/device/code",{client_id:GH_APP_CLIENT});
+    if(!d.user_code)throw 0;
+    box.innerHTML=`<p style="margin:0">下のコードをコピーしました。開いた GitHub の画面に貼り付けて「Continue」→「Authorize」を押してください。押したら、このアプリに戻るだけで完了します。</p>
+    <div class="ucode" aria-label="確認コード">${esc(d.user_code)}</div>
+    <div class="acts"><button class="btnt" id="reopen">GitHub をもう一度開く</button></div><p style="margin:0;color:var(--mut)" id="lstat">GitHub での承認を待っています…</p>`;
+    const open=()=>{try{navigator.clipboard&&navigator.clipboard.writeText(d.user_code)}catch(e){}window.open(d.verification_uri,"_blank")};
+    $("#reopen").onclick=open;open();
+    LOGIN=d.device_code;let iv=(d.interval||5)*1000;const until=Date.now()+(d.expires_in||900)*1000;
+    while(LOGIN===d.device_code&&Date.now()<until){
+      await sleep(iv);
+      const t=await ghPost("https://github.com/login/oauth/access_token",{client_id:GH_APP_CLIENT,device_code:d.device_code,grant_type:"urn:ietf:params:oauth:grant-type:device_code"});
+      if(t.access_token){try{localStorage.setItem("gh_token",t.access_token)}catch(e){}LOGIN=null;closeSheet();toast("GitHub と連携しました");if(view==="set")renderSet();return}
+      if(t.error==="slow_down")iv+=5000;else if(t.error&&t.error!=="authorization_pending"){throw t.error}
+    }
+    if(LOGIN)throw "expired";
+  }catch(e){LOGIN=null;if(box.isConnected)box.innerHTML=`<p style="margin:0">${e==="access_denied"?"GitHub で承認が取り消されました。":e==="expired"||e==="expired_token"?"時間切れになりました。":"連携できませんでした。通信状態を確認してください。"}</p><div class="acts"><button class="btnf" id="ghLogin">もう一度</button></div>`;const b=$("#ghLogin");if(b)b.onclick=ghLogin}
 }
 $("#runNow").onclick=runNow;$("#runNow2").onclick=runNow;$("#tokBtn").onclick=openToken;
 try{const p=JSON.parse(localStorage.getItem("run_pending")||"null");if(p&&Date.now()-p.start<20*60000){RUN=p;watchRun()}else saveRun(null)}catch(e){}
