@@ -696,7 +696,13 @@ async function watchRun(){
 // GitHub でログイン（GitHub App のデバイスフロー）。アプリ版はネイティブ通信（CapacitorHttp）で CORS を回避する
 const GH_APP_CLIENT="Iv23liB37gXspuaoV5";
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-async function ghPost(url,body){const r=await fetch(url,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(body).toString()});return r.json()}
+// アプリ版はネイティブ HTTP（CapacitorHttp）を直接呼ぶ。fetch の差し替え経由だとフォーム本文の扱いが不安定なため JSON で送る
+async function ghPost(url,body){
+  const H=window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.CapacitorHttp;
+  if(H){const r=await H.request({url,method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},data:body});
+    const d=typeof r.data==="string"?(()=>{try{return JSON.parse(r.data)}catch(e){return {error:"bad_response",status:r.status,raw:String(r.data).slice(0,80)}}})():r.data;
+    if(r.status>=400&&!d.error)d.error="http_"+r.status;return d}
+  const r=await fetch(url,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},body:JSON.stringify(body)});return r.json()}
 let LOGIN=null;
 function openToken(){
   const has=!!tok();
@@ -712,11 +718,11 @@ async function ghLogin(){
   const box=$("#loginBox");
   try{
     const d=await ghPost("https://github.com/login/device/code",{client_id:GH_APP_CLIENT});
-    if(!d.user_code)throw 0;
-    box.innerHTML=`<p style="margin:0">下のコードをコピーしました。開いた GitHub の画面に貼り付けて「Continue」→「Authorize」を押してください。押したら、このアプリに戻るだけで完了します。</p>
+    if(!d.user_code)throw (d.error||"no_code")+(d.status?"/"+d.status:"");
+    box.innerHTML=`<p style="margin:0">下のコードをコピーしました（コピーできない場合は手で入力してください）。開いた GitHub の画面に貼り付けて「Continue」→「Authorize」を押してください。押したら、このアプリに戻るだけで完了します。</p>
     <div class="ucode" aria-label="確認コード">${esc(d.user_code)}</div>
     <div class="acts"><button class="btnt" id="reopen">GitHub をもう一度開く</button></div><p style="margin:0;color:var(--mut)" id="lstat">GitHub での承認を待っています…</p>`;
-    const open=()=>{try{navigator.clipboard&&navigator.clipboard.writeText(d.user_code)}catch(e){}window.open(d.verification_uri,"_blank")};
+    const open=()=>{try{navigator.clipboard&&navigator.clipboard.writeText(d.user_code).catch(()=>{})}catch(e){}const a=document.createElement("a");a.href=d.verification_uri;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove()};
     $("#reopen").onclick=open;open();
     LOGIN=d.device_code;let iv=(d.interval||5)*1000;const until=Date.now()+(d.expires_in||900)*1000;
     while(LOGIN===d.device_code&&Date.now()<until){
@@ -726,7 +732,7 @@ async function ghLogin(){
       if(t.error==="slow_down")iv+=5000;else if(t.error&&t.error!=="authorization_pending"){throw t.error}
     }
     if(LOGIN)throw "expired";
-  }catch(e){LOGIN=null;if(box.isConnected)box.innerHTML=`<p style="margin:0">${e==="access_denied"?"GitHub で承認が取り消されました。":e==="expired"||e==="expired_token"?"時間切れになりました。":"連携できませんでした。通信状態を確認してください。"}</p><div class="acts"><button class="btnf" id="ghLogin">もう一度</button></div>`;const b=$("#ghLogin");if(b)b.onclick=ghLogin}
+  }catch(e){LOGIN=null;if(box.isConnected)box.innerHTML=`<p style="margin:0">${e==="access_denied"?"GitHub で承認が取り消されました。":e==="expired"||e==="expired_token"?"時間切れになりました。":"連携できませんでした。"}<br><small style="color:var(--mut)">詳細: ${esc(String(e&&e.message||e))}</small></p><div class="acts"><button class="btnf" id="ghLogin">もう一度</button></div>`;const b=$("#ghLogin");if(b)b.onclick=ghLogin}
 }
 $("#runNow").onclick=runNow;$("#runNow2").onclick=runNow;$("#tokBtn").onclick=openToken;
 try{const p=JSON.parse(localStorage.getItem("run_pending")||"null");if(p&&Date.now()-p.start<20*60000){RUN=p;watchRun()}else saveRun(null)}catch(e){}
