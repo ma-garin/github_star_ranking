@@ -297,6 +297,30 @@ def write_feed(days: int = 14) -> None:
            + "".join(items) + "</channel></rss>\n")
     (ROOT / "docs" / "feed.xml").write_text(xml)
 
+
+# ---------------------------------------------------------------- アプリ用データ
+def build_app_data(days: int = 14) -> None:
+    """PWA 用に、日別順位・スター推移・AIニュースを1ファイルにまとめる（docs/data/app.json）。"""
+    dates = sorted(p.stem for p in DOCS_DATA.glob("????-??-??.json"))[-days:]
+    keep = ("rank", "full_name", "delta", "stars", "basis", "language", "url", "description", "summary_ja")
+    ranks, dranks = {}, {}
+    for d in dates:
+        j = load_json(DOCS_DATA / f"{d}.json", {})
+        ranks[d] = [{k: r.get(k) for k in keep} for r in j.get("weekly", [])]
+        dranks[d] = [{k: r.get(k) for k in keep} for r in j.get("daily", [])]
+    names = {r["full_name"] for v in list(ranks.values()) + list(dranks.values()) for r in v}
+    snaps = {d: load_json(SNAP_DIR / f"{d}.json", {}) for d in dates}
+    series = {n: [snaps[d].get(n) for d in dates] for n in sorted(names)}
+    news = []
+    for p in sorted((DOCS_DATA / "news").glob("????-??-??.json"))[-7:]:
+        n = load_json(p, None)
+        if n:
+            news.append(n)
+    latest = load_json(DOCS_DATA / "latest.json", {})
+    save_json(DOCS_DATA / "app.json", {"dates": dates, "ranks": ranks, "daily_ranks": dranks, "series": series,
+                                       "news": news, "pool_size": latest.get("pool_size"),
+                                       "generated_at": latest.get("generated_at")})
+
 # ---------------------------------------------------------------- main
 def main() -> int:
     today = dt.datetime.now(JST).date()
@@ -338,6 +362,7 @@ def main() -> int:
     save_json(DOCS_DATA / "index.json", dates)
 
     write_feed()
+    build_app_data()
     post_slack(today, weekly)
     print(f"pool={len(repos)} weekly={len(weekly)} daily={len(daily)}")
     return 0

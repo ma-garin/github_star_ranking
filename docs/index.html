@@ -8,139 +8,340 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
+
 <style>
-:root{--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c;--ok:#5fd39a}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg)}
-body{font:14px/1.5 -apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
-header{position:sticky;top:0;z-index:5;background:rgba(15,13,20,.92);backdrop-filter:blur(8px);padding:calc(10px + env(safe-area-inset-top)) 16px 8px;border-bottom:1px solid var(--line)}
+/* 層: 上部固定ヘッダ（日付ステッパー）→ 本文（表/グラフ/カード）→ 下部固定タブ。ボトムシートで詳細 */
+:root{--bg:#f6f4f9;--card:#ffffff;--line:#e4dfeb;--fg:#1c1824;--mut:#6d6679;--acc:#c77700;--pink:#c2337f;--up:#13894f;--down:#c2412d;--g1:#b8860b;--g2:#7d8593;--g3:#a0623a;--chip:#1c1824;--chipfg:#fff;--grid:#ece8f1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--up:#5fd39a;--down:#ff7b6b;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c;--chip:#ece9f2;--chipfg:#0f0d14;--grid:#24202d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--up:#5fd39a;--down:#ff7b6b;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c;--chip:#ece9f2;--chipfg:#0f0d14;--grid:#24202d;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.mockbar{background:var(--acc);color:var(--chipfg);font-size:11px;text-align:center;padding:3px 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px 8px}
+.hrow{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;max-width:860px;margin:0 auto}
 .eyebrow{letter-spacing:.3em;font-size:10px;color:var(--acc)}
-h1{font-size:19px;margin:2px 0 0}h1 em{font-style:normal;color:var(--pink)}
-.meta{color:var(--mut);font-size:12px}
+h1{font-size:19px;margin:0;text-wrap:balance}h1 em{font-style:normal;color:var(--pink)}
+.meta{color:var(--mut);font-size:12px;max-width:860px;margin:2px auto 0}
+.step{display:flex;align-items:center;gap:2px;font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
+.step button{background:var(--card);border:1px solid var(--line);color:var(--fg);width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer}
+.step button:disabled{opacity:.35;cursor:default}.step span{padding:0 6px}
 main{max-width:860px;margin:0 auto;padding:12px 16px}
-.seg{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap;align-items:center}
+.seg{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
 .chip{border:1px solid var(--line);background:none;color:var(--mut);padding:5px 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
-.chip[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-input[type=search]{flex:1;min-width:110px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;font-size:13px}
+.chip[aria-pressed=true]{background:var(--chip);color:var(--chipfg);border-color:var(--chip)}
+button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 /* ランキング表 */
 table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px}
-thead th{position:sticky;top:var(--hh,64px);background:var(--bg);color:var(--mut);font-weight:600;text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);font-size:11px}
+thead th{color:var(--mut);font-weight:600;text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);font-size:11px}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--card)}
 td{padding:8px 4px;border-bottom:1px solid var(--line);vertical-align:top}
-col.no{width:30px}col.ttl{width:34%}col.wk{width:64px}
-td.no{font:700 15px/1.2 Georgia,serif;color:var(--mut);text-align:center}
-tr:nth-child(1) td.no{color:var(--g1)}tr:nth-child(2) td.no{color:var(--g2)}tr:nth-child(3) td.no{color:var(--g3)}
-td.ttl a{color:var(--fg);font-weight:600;text-decoration:none;word-break:break-all}
-td.ttl .own{display:block;color:var(--mut);font-weight:400;font-size:11px}
-td.wk{text-align:right;color:var(--acc);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
-td.wk small{display:block;color:var(--mut);font-weight:400;font-size:10.5px}
-td.ds{color:#cfc9da}
-td.ds span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
-td.ds span.open{display:block}
-.note{color:var(--mut);font-size:11px;margin:10px 0}
-/* AIニュース */
-.news-head{color:var(--mut);font-size:12px;margin-bottom:10px}
-.legend{font-size:11px;color:var(--mut);margin-bottom:12px}
+col.no{width:38px}col.ttl{width:36%}col.wk{width:76px}
+td.no{text-align:center}
+td.no b{display:block;font:700 15px/1.2 Georgia,serif;color:var(--mut)}
+tr.r1 td.no b{color:var(--g1)}tr.r2 td.no b{color:var(--g2)}tr.r3 td.no b{color:var(--g3)}
+.mv{font-size:10px;font-weight:700;font-variant-numeric:tabular-nums}.mv.up{color:var(--up)}.mv.dn{color:var(--down)}.mv.new{color:var(--pink)}.mv.eq{color:var(--mut)}
+td.ttl b{display:block;word-break:break-all}
+td.ttl small{color:var(--mut);font-size:11px}
+td.wk{text-align:right;font-variant-numeric:tabular-nums}
+td.wk b{color:var(--acc);display:block}
+td.wk svg{display:block;margin-left:auto;margin-top:2px}
+td.ds{color:var(--mut)}td.ds span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* カード・グラフ */
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.card h2{font-size:14px;margin:0 0 2px}.card .sub{color:var(--mut);font-size:11px;margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.grid2 .card{margin:0}
+svg text{fill:var(--mut);font-size:10px;font-family:inherit}
+.bar{display:grid;grid-template-columns:90px 1fr 34px;gap:6px;align-items:center;font-size:12px;margin:4px 0}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--acc)}
+.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--mut)}
+.list{margin:0;padding:0;list-style:none}.list li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.list li:last-child{border:0}.list b{word-break:break-all}
+/* ニュース */
+.legend{font-size:11px;color:var(--mut);margin-bottom:10px}
 article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
-article h2{font-size:15px;margin:0 0 6px;line-height:1.45}
-.cat{display:inline-block;min-width:22px;text-align:center;color:var(--acc);margin-right:4px}
-.badge{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;color:var(--mut);vertical-align:2px}
-.badge.mine{color:var(--pink);border-color:var(--pink)}
-article p{margin:4px 0;color:#d7d2e0}
+article h2{font-size:15px;margin:0 0 6px;line-height:1.45;text-wrap:balance}
+.cat{color:var(--acc);margin-right:4px}
+article p{margin:4px 0}
 article dl{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;margin:8px 0;font-size:13px}
 article dt{color:var(--mut);white-space:nowrap}article dd{margin:0}
-.src{font-size:12px}.src a{color:var(--acc)}
+.src a{color:var(--acc);font-size:12px}
 .foot{font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
-.empty{color:var(--mut);padding:32px;text-align:center}
+/* ニュース v3: 日付ストリップ → 今日の要点（トップ記事）→ 見出しリスト → 詳細シート */
+.dstrip{display:flex;gap:6px;overflow-x:auto;margin:0 0 14px;padding-bottom:2px;scrollbar-width:none}
+.dstrip button{flex:none;min-width:56px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 8px;color:var(--mut);font:inherit;font-size:11px;cursor:pointer;text-align:center}
+.dstrip button b{display:block;font-size:17px;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1.2}
+.dstrip button[aria-pressed=true]{background:var(--chip);border-color:var(--chip);color:var(--chipfg)}
+.dstrip button[aria-pressed=true] b{color:var(--chipfg)}
+.dstrip i{display:block;font-style:normal;font-size:10px;margin-top:1px}
+.lead{font-size:12px;color:var(--mut);margin:0 0 6px;letter-spacing:.08em}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;cursor:pointer;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--cc)}
+.hero .kick{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mut);margin-bottom:8px}
+.hero h2{font-size:19px;line-height:1.45;margin:0 0 8px;text-wrap:balance}
+.hero p{margin:0;color:var(--mut);font-size:14px;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hero .imp{margin-top:10px;font-size:13px;line-height:1.6;border-top:1px solid var(--line);padding-top:10px}
+.hero .imp b{color:var(--acc);margin-right:6px}
+.seg2{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:6px}
+.seg2 button{flex:1;background:none;border:0;border-radius:8px;padding:6px 0;font:inherit;font-size:12.5px;color:var(--mut);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:var(--bg);color:var(--fg);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.seg2 button span{font-variant-numeric:tabular-nums;margin-left:3px;opacity:.7}
+.nlist{list-style:none;margin:0;padding:0}
+.nrow{display:grid;grid-template-columns:4px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.nrow:last-child{border-bottom:0}
+.nrow .bar{border-radius:2px;background:var(--cc)}
+.nrow .meta2{display:flex;gap:6px;align-items:center;font-size:11.5px;color:var(--mut);margin-bottom:3px}
+.nrow h3{font-size:15px;line-height:1.5;margin:0 0 4px;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nrow.read h3{font-weight:500;color:var(--mut)}
+.nrow .one{font-size:12.5px;color:var(--mut);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nrow .side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:20px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.tag{font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 6px;white-space:nowrap}
+.tag.mine{color:var(--pink);background:color-mix(in srgb,var(--pink) 14%,transparent)}
+.tag.try{color:var(--up);background:color-mix(in srgb,var(--up) 14%,transparent)}
+.tag.sg{color:var(--mut);background:color-mix(in srgb,var(--mut) 14%,transparent)}
+.co2{font-weight:700;color:var(--fg)}
+.catl{color:var(--cc);font-weight:700}
+.nfoot{font-size:12px;color:var(--mut);line-height:1.6;background:var(--card);border-radius:12px;padding:10px 12px;margin-top:14px}
+.nfoot b{color:var(--fg);font-weight:600}
+.empty2{text-align:center;color:var(--mut);padding:32px 0}
+/* 詳細シート（ニュース） */
+.nd .kick{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mut);margin:4px 0 8px;flex-wrap:wrap}
+.nd h3{font-size:20px;line-height:1.45;margin:0 0 12px;text-wrap:balance}
+.nd .body{font-size:15px;line-height:1.8;margin:0 0 14px}
+.nd section{border-top:1px solid var(--line);padding:12px 0}
+.nd h4{font-size:11px;letter-spacing:.12em;color:var(--mut);margin:0 0 6px;font-weight:700}
+.nd section p{margin:0;font-size:14px;line-height:1.75}
+.nd .relbox{background:color-mix(in srgb,var(--pink) 10%,transparent);border-radius:10px;padding:10px 12px;margin:4px 0 12px;font-size:14px;line-height:1.7}
+.nd .relbox h4{color:var(--pink)}
+.srcs{display:grid;gap:8px}
+.srcs a{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--fg);text-decoration:none;font-size:14px}
+.srcs a::after{content:"↗";color:var(--acc)}
+.ndnav{display:grid;grid-template-columns:1fr 48px 1fr;gap:8px;align-items:center;margin-top:16px;position:sticky;bottom:calc(-20px - env(safe-area-inset-bottom,0px));background:var(--bg);padding:10px 0 calc(20px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.ndnav button{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;padding:10px;font:inherit;font-size:13px;cursor:pointer}
+.ndnav button:disabled{opacity:.35;cursor:default}
+.ndnav .sv{width:44px;font-size:18px}.ndnav .sv[aria-pressed=true]{color:var(--acc);border-color:var(--acc)}
+.ndnav span{text-align:center;color:var(--mut);font-size:12px;font-variant-numeric:tabular-nums}
 /* 下部タブ */
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:rgba(26,23,34,.96);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:6}
-nav button{flex:1;background:none;border:0;color:var(--mut);font:inherit;font-size:12px;padding:8px 0 10px;cursor:pointer}
-nav button b{display:block;font-size:18px;line-height:1.2}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:6}
+nav button{flex:1;background:none;border:0;color:var(--mut);font:inherit;font-size:11px;padding:7px 0 9px;cursor:pointer}
+nav button b{display:block;font-size:17px;line-height:1.25}
 nav button[aria-selected=true]{color:var(--fg)}nav button[aria-selected=true] b{color:var(--acc)}
-.mockbar{background:#3a2a10;color:#f5c451;font-size:11px;text-align:center;padding:4px}
+/* 詳細シート */
+#sheet{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center}
+[hidden]{display:none!important}
+#sheet .in{background:var(--bg);width:100%;max-width:640px;max-height:86%;overflow:auto;border-radius:16px 16px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px))}
+.shead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.shead h3{margin:0;font-size:17px;word-break:break-all}.x{background:none;border:0;color:var(--mut);font-size:22px;cursor:pointer;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+.stats small{display:block;color:var(--mut);font-size:10px}.stats b{font-variant-numeric:tabular-nums;font-size:14px}
+.gh{display:inline-block;margin-top:8px;color:var(--acc)}
+@media (prefers-reduced-motion:no-preference){#sheet .in{animation:up .18s ease-out}@keyframes up{from{transform:translateY(30px);opacity:.6}}}
 </style>
-</head>
-<body>
-<div class="mockbar">モック：AIニュースは 11/1 の Slack 投稿を流用したサンプルです</div>
-<header id="hdr">
-  <div class="eyebrow" id="eyebrow">LEADERBOARD</div>
-  <h1 id="title">GitHub <em>スター</em>獲得ランキング</h1>
-  <div class="meta" id="meta">読み込み中…</div>
+<header>
+  <div class="hrow">
+    <div><div class="eyebrow" id="eyebrow"></div><h1 id="title"></h1></div>
+    <div class="step"><button id="prev" aria-label="前の日">‹</button><span id="day"></span><button id="next" aria-label="次の日">›</button></div>
+  </div>
+  <div class="meta" id="meta"></div>
 </header>
 <main>
   <section id="v-rank">
-    <div class="seg">
-      <button class="chip" data-k="weekly" aria-pressed="true">週間 Top30</button>
-      <button class="chip" data-k="daily" aria-pressed="false">前日比 Top30</button>
-      <input id="q" type="search" placeholder="絞り込み" aria-label="絞り込み">
+    <div class="seg"><button class="chip" data-k="weekly" aria-pressed="true">週間 Top30</button><button class="chip" data-k="daily" aria-pressed="false">前日比 Top30</button></div>
+    <table><colgroup><col class="no"><col class="ttl"><col class="wk"><col></colgroup>
+      <thead><tr><th>No.</th><th>リポジトリ</th><th style="text-align:right" id="wkh">+週 / 推移</th><th>概要</th></tr></thead>
+      <tbody id="rows"></tbody></table>
+  </section>
+  <section id="v-trend" hidden>
+    <div class="card"><h2>順位の推移（Top10）</h2><div class="sub">直近8日・線をタップで詳細</div><div id="bump"></div></div>
+    <div class="grid2">
+      <div class="card"><h2>急上昇</h2><div class="sub">前日から順位を上げた上位5件</div><ul class="list" id="climb"></ul></div>
+      <div class="card"><h2>言語別の内訳</h2><div class="sub">Top30に入った件数</div><div id="langs"></div></div>
+      <div class="card"><h2>初登場</h2><div class="sub">今日はじめてTop30入り</div><ul class="list" id="newbies"></ul></div>
+      <div class="card"><h2>常連</h2><div class="sub">Top30に連続で入っている日数</div><ul class="list" id="streak"></ul></div>
     </div>
-    <table>
-      <colgroup><col class="no"><col class="ttl"><col class="wk"><col></colgroup>
-      <thead><tr><th>No.</th><th>リポジトリ</th><th style="text-align:right" id="wkh">+週</th><th>概要</th></tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-    <p class="note">† Trending の表示値（履歴7日分がたまるまでの補完）　★ 期間内に新規作成</p>
   </section>
   <section id="v-news" hidden>
-    <div class="legend">◎新モデル ○API・料金 □資金 △規制 ▲安全・障害 ◇研究 ●機能追加 ｜ ★自分ごと ｜ ※単独報道</div>
-    <div id="news"></div>
+    <div class="dstrip" id="dstrip" role="tablist" aria-label="日付"></div>
+    <div id="nhero"></div>
+    <div class="seg2" id="nseg"></div>
+    <ul class="nlist" id="nlist"></ul>
+    <div id="nfoot"></div>
   </section>
 </main>
 <nav role="tablist">
   <button role="tab" data-v="rank" aria-selected="true"><b>★</b>ランキング</button>
+  <button role="tab" data-v="trend" aria-selected="false"><b>↗</b>トレンド</button>
   <button role="tab" data-v="news" aria-selected="false"><b>◎</b>AIニュース</button>
 </nav>
+<div id="sheet" hidden><div class="in" role="dialog" aria-modal="true" id="sheetin"></div></div>
 <script>
-const MARK={snapshot:"",trending:"†",new:"★"};
+// AI Daily 本体（docs/index.html に埋め込む）。データは data/app.json（collect.py が毎朝生成）
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let rank=null,news=null,kind="weekly",view="rank";
-async function getJSON(p){try{const r=await fetch(p,{cache:"no-store"});return r.ok?await r.json():null}catch(e){return null}}
+const fmt=n=>(n??0).toLocaleString("ja-JP");
+const k=n=>n>=1000?(n/1000).toFixed(n>=100000?0:1)+"k":String(n);
+const PAL=["#e8590c","#c2337f","#1c7ed6","#2b8a3e","#7048e8","#d6336c","#0c8599","#f08c00","#5c940d","#868e96"];
+let D=null, DAYS=[], di=0, view="rank", mode="weekly";
 
+const listAt=i=>(mode==="weekly"?D.ranks:D.daily_ranks)[DAYS[i]]||[];
+const rankMap=i=>{const m={};(i>=0?listAt(i):[]).forEach(r=>m[r.full_name]=r.rank);return m};
+const starsOf=(n,upto)=>(D.series[n]||[]).slice(0,upto+1);
+const gains=arr=>arr.slice(1).map((v,i)=>v!=null&&arr[i]!=null?v-arr[i]:null);
+function spark(arr,w=64,h=18){
+  const v=arr.filter(x=>x!=null);if(v.length<2)return `<svg width="${w}" height="${h}" aria-hidden="true"><text x="${w}" y="${h-4}" text-anchor="end">蓄積中</text></svg>`;
+  const mx=Math.max(...v,1),st=w/(arr.length-1);let p=[];
+  arr.forEach((x,i)=>{if(x!=null)p.push(`${(i*st).toFixed(1)},${(h-2-(x/mx)*(h-4)).toFixed(1)}`)});
+  const last=p.at(-1).split(",");
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${p.join(" ")}" fill="none" stroke="var(--acc)" stroke-width="1.5"/><circle cx="${last[0]}" cy="${last[1]}" r="2" fill="var(--acc)"/></svg>`;
+}
+function mv(cur,prev){
+  if(di===0)return `<span class="mv eq">―</span>`;
+  if(prev==null)return `<span class="mv new">NEW</span>`;
+  const d=prev-cur;return d>0?`<span class="mv up">↑${d}</span>`:d<0?`<span class="mv dn">↓${-d}</span>`:`<span class="mv eq">―</span>`;
+}
+function streak(n,i){let c=0;for(let j=i;j>=0;j--){if((D.ranks[DAYS[j]]||[]).some(r=>r.full_name===n))c++;else break}return c}
 function renderRank(){
-  if(!rank){$("#rows").innerHTML=`<tr><td colspan="4" class="empty">データを読み込めませんでした</td></tr>`;return}
-  const q=$("#q").value.trim().toLowerCase();
-  const rows=(rank[kind]||[]).filter(r=>!q||(r.full_name+" "+r.description+" "+(r.summary_ja||"")).toLowerCase().includes(q));
-  $("#wkh").textContent=kind==="weekly"?"+週":"+日";
-  $("#rows").innerHTML=rows.map(r=>{const [own,name]=r.full_name.split("/");return `<tr>
-    <td class="no">${r.rank}</td>
-    <td class="ttl"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(name)}</a><span class="own">${esc(own)}${r.language?" · "+esc(r.language):""}</span></td>
-    <td class="wk">+${r.delta.toLocaleString()}${MARK[r.basis]||""}<small>累計 ${(r.stars/1000).toFixed(1)}k</small></td>
-    <td class="ds"><span onclick="this.classList.toggle('open')">${esc(r.summary_ja||r.description||"—")}</span></td></tr>`}).join("")||`<tr><td colspan="4" class="empty">該当なし</td></tr>`;
+  const rows=listAt(di), pv=rankMap(di-1);
+  $("#wkh").textContent=mode==="weekly"?"+週 / 推移":"+日 / 推移";
+  $("#rows").innerHTML=rows.map(r=>{const [o,n]=r.full_name.split("/");
+    return `<tr class="r${r.rank}" data-n="${esc(r.full_name)}"><td class="no"><b>${r.rank}</b>${mv(r.rank,pv[r.full_name])}</td>
+    <td class="ttl"><b>${esc(n)}</b><small>${esc(o)}${r.language?" · "+esc(r.language):""}</small></td>
+    <td class="wk"><b>+${fmt(r.delta)}${r.basis==="trending"?"†":r.basis==="new"?"★":""}</b>${spark(gains(starsOf(r.full_name,di)).slice(-13))}</td>
+    <td class="ds"><span>${esc(r.summary_ja||r.description||"—")}</span></td></tr>`}).join("")||`<tr><td colspan="4" class="empty2">この日のデータはありません</td></tr>`;
 }
+function renderTrend(){
+  const from=Math.max(0,di-7), idx=[];for(let i=from;i<=di;i++)idx.push(i);
+  const top=(D.ranks[DAYS[di]]||[]).slice(0,10).map(r=>r.full_name);
+  const W=Math.min(820,document.querySelector("main").clientWidth-30),H=250,L=20,R=118,T=12,B=22,N=12;
+  const x=i=>idx.length<2?(L+(W-R))/2:L+(i-from)*((W-L-R)/(idx.length-1)), y=rk=>T+(Math.min(rk,N)-1)*((H-T-B)/(N-1));
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Top10の順位推移">`;
+  for(let rk=1;rk<=10;rk++)s+=`<line x1="${L}" x2="${W-R}" y1="${y(rk)}" y2="${y(rk)}" stroke="var(--grid)"/>`;
+  idx.forEach(i=>s+=`<text x="${x(i)}" y="${H-6}" text-anchor="middle">${DAYS[i].slice(5).replace("-","/")}</text>`);
+  top.forEach((n,j)=>{const pts=idx.map(i=>{const m=rankMap(i);return m[n]?[x(i),y(m[n])]:null}).filter(Boolean);const c=PAL[j%PAL.length];
+    s+=`<g data-n="${esc(n)}" style="cursor:pointer">`+(pts.length>1?`<polyline points="${pts.map(p=>p.join(",")).join(" ")}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`:"")+
+    pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${c}"/>`).join("")+
+    `<text x="${W-R+6}" y="${y(j+1)+3}" style="fill:${c};font-weight:600">${j+1}. ${esc(n.split("/")[1].slice(0,15))}</text></g>`});
+  $("#bump").innerHTML=s+"</svg>"+(idx.length<3?`<div class="sub">データは10/31から蓄積中です。日数が増えるほど推移が見えるようになります。</div>`:"");
+  const cur=rankMap(di),pr=rankMap(di-1),rows=D.ranks[DAYS[di]]||[];
+  const climb=di?rows.map(r=>({r,d:pr[r.full_name]?pr[r.full_name]-r.rank:0})).filter(x=>x.d>0).sort((a,b)=>b.d-a.d).slice(0,5):[];
+  $("#climb").innerHTML=climb.map(x=>`<li data-n="${esc(x.r.full_name)}"><b>${esc(x.r.full_name)}</b><span><span class="mv up">↑${x.d}</span> ${x.r.rank}位</span></li>`).join("")||"<li>前日比較できるデータがありません</li>";
+  const lc={};rows.forEach(r=>{const l=r.language||"その他";lc[l]=(lc[l]||0)+1});
+  const ls=Object.entries(lc).sort((a,b)=>b[1]-a[1]).slice(0,7),mx=ls.length?ls[0][1]:1;
+  $("#langs").innerHTML=ls.map(([l,c])=>`<div class="bar"><span>${esc(l)}</span><i style="width:${c/mx*100}%"></i><span>${c}件</span></div>`).join("");
+  $("#newbies").innerHTML=di?rows.filter(r=>!pr[r.full_name]).map(r=>`<li data-n="${esc(r.full_name)}"><b>${esc(r.full_name)}</b><span>+${fmt(r.delta)}</span></li>`).join("")||"<li>なし</li>":"<li>前日比較できるデータがありません</li>";
+  $("#streak").innerHTML=[...rows].map(r=>({r,s:streak(r.full_name,di)})).sort((a,b)=>b.s-a.s).slice(0,5).map(x=>`<li data-n="${esc(x.r.full_name)}"><b>${esc(x.r.full_name)}</b><span>${x.s}日連続</span></li>`).join("");
+}
+function lineChart(arr,{w,h,bars,labels}){
+  const pts=arr.map((v,i)=>[i,v]).filter(p=>p[1]!=null);if(pts.length<2)return `<div class="sub">データ蓄積中（2日分以上で表示）</div>`;
+  const L=40,R=6,T=8,B=18,vs=pts.map(p=>p[1]),mx=Math.max(...vs),mn=bars?0:Math.min(...vs),rg=Math.max(1,mx-mn);
+  const x=i=>L+i*((w-L-R)/Math.max(1,arr.length-1)),y=v=>T+(1-(v-mn)/rg)*(h-T-B);
+  let s=`<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img">`;
+  [0,.5,1].forEach(f=>{const v=mn+rg*f;s+=`<line x1="${L}" x2="${w-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)"/><text x="${L-4}" y="${y(v)+3}" text-anchor="end">${k(Math.round(v))}</text>`});
+  [0,arr.length-1].forEach(i=>s+=`<text x="${x(i)}" y="${h-4}" text-anchor="${i?"end":"start"}">${labels[i].slice(5).replace("-","/")}</text>`);
+  if(bars){const bw=(w-L-R)/arr.length*.7;pts.forEach(([i,v])=>s+=`<rect x="${x(i)-bw/2}" y="${y(v)}" width="${bw}" height="${Math.max(0,y(0)-y(v))}" rx="2" fill="var(--acc)" opacity="${i===arr.length-1?1:.55}"/>`)}
+  else{const p=pts.map(([i,v])=>`${x(i)},${y(v)}`).join(" ");s+=`<polyline points="${p}" fill="none" stroke="var(--acc)" stroke-width="2"/><circle cx="${x(pts.at(-1)[0])}" cy="${y(pts.at(-1)[1])}" r="3.5" fill="var(--acc)"/>`}
+  return s+"</svg>";
+}
+function openSheet(n){
+  const r=listAt(di).find(x=>x.full_name===n)||(D.ranks[DAYS[di]]||[]).find(x=>x.full_name===n);if(!r)return;
+  const w=Math.min(600,window.innerWidth)-32, st=starsOf(n,di), lab=DAYS.slice(0,di+1);
+  $("#sheetin").innerHTML=`<div class="shead"><div><small style="color:var(--mut)">${esc(r.language||"")}</small><h3>${esc(n)}</h3></div><button class="x" aria-label="閉じる" onclick="closeSheet()">×</button></div>
+   <p style="margin:6px 0">${esc(r.summary_ja||r.description)}</p>
+   <div class="stats"><div><small>順位</small><b>${r.rank}位</b></div><div><small>+${mode==="weekly"?"週":"日"}</small><b>${fmt(r.delta)}</b></div><div><small>累計</small><b>${k(r.stars)}</b></div><div><small>連続</small><b>${streak(n,di)}日</b></div></div>
+   <div class="card"><h2>累計スター</h2><div class="sub">${lab.length}日</div>${lineChart(st,{w:w-30,h:150,labels:lab})}</div>
+   <div class="card"><h2>日別の獲得スター</h2><div class="sub">${lab.length-1}日</div>${lineChart(gains(st),{w:w-30,h:130,bars:true,labels:lab.slice(1)})}</div>
+   <a class="gh" href="${esc(r.url)}" target="_blank" rel="noopener">GitHubで開く →</a>`;
+  $("#sheet").hidden=false;
+}
+function closeSheet(){$("#sheet").hidden=true}
+$("#sheet").onclick=e=>{if(e.target.id==="sheet")closeSheet()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+document.addEventListener("click",e=>{if(e.target.closest("#v-news"))return;const t=e.target.closest("[data-n]");if(t&&!t.closest("#sheet"))openSheet(t.dataset.n)});
+document.querySelectorAll("#v-rank .chip").forEach(b=>b.onclick=()=>{mode=b.dataset.k;document.querySelectorAll("#v-rank .chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderRank()});
+const CAT={"◎":"新モデル","○":"API・料金","□":"資金・買収","△":"規制・訴訟","▲":"安全・障害","◇":"研究","●":"機能追加"};
+const CATC={"◎":"#e8590c","○":"#1c7ed6","□":"#7048e8","△":"#868e96","▲":"#d6336c","◇":"#2b8a3e","●":"#0c8599"};
+let ND=[], ni=0, nf="all", cur=null;
+const st=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let READ=st("read",{}), FAV=st("fav",{});
+const nid=(d,n)=>d.date+"#"+n.no;
+const md=s=>{const [,m,d]=s.split("-");return `${+m}/${+d}`};
+const firstSentence=s=>{const i=s.indexOf("。");return i>0?s.slice(0,i+1):s};
+// 一覧の並び: 自分ごと → 試す価値◯ → 元の順
+const order=its=>[...its].sort((a,b)=>(b.mine-a.mine)||((b.try==="◯")-(a.try==="◯"))||(a.no-b.no));
+function tags(n){return (n.mine?'<span class="tag mine">自分ごと</span>':"")+(n.try==="◯"?'<span class="tag try">試す価値あり</span>':"")+(n.single?'<span class="tag sg">単独報道</span>':"")}
 function renderNews(){
-  if(!news){$("#news").innerHTML=`<div class="empty">データを読み込めませんでした</div>`;return}
-  const items=news.items||[];
-  $("#news").innerHTML=(items.length?items.map(n=>`<article>
-    <h2><span class="cat" title="${esc(n.category_label)}">${esc(n.category)}</span>${n.no}. ${esc(n.title)}${n.mine?'<span class="badge mine">★自分ごと</span>':""}${n.single?'<span class="badge">※単独</span>':""}</h2>
-    <p>${esc(n.summary)}</p>
-    <dl><dt>影響</dt><dd>${esc(n.impact)}</dd><dt>QA観点</dt><dd>${esc(n.qa)}</dd>${n.related?`<dt>関連</dt><dd>${esc(n.related)}</dd>`:""}<dt>根拠</dt><dd>${esc(n.basis)}　試す価値 ${esc(n.try)}</dd></dl>
-    <div class="src">出典: ${(n.sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(" · ")}</div>
-  </article>`).join(""):`<div class="empty">本日は大きなニュースはありません</div>`)
-  +(news.memo?`<div class="foot">判定メモ: ${esc(news.memo)}</div>`:"")
-  +((news.failures||[]).length?`<div class="foot">取得失敗: ${esc(news.failures.join("、"))}</div>`:"");
+  const d=ND[ni];
+  $("#dstrip").innerHTML=ND.map((x,i)=>`<button role="tab" data-ni="${i}" aria-pressed="${i===ni}"><span>${md(x.date)}（${x.weekday}）</span><b>${x.items.length}</b><i>件</i></button>`).join("");
+  const ord=order(d.items), top=ord[0];
+  $("#nhero").innerHTML=top?`<div class="lead">今日の要点</div><div class="hero" data-open="${top.no}" style="--cc:${CATC[top.category]}">
+    <div class="kick"><span class="co2">${esc(top.company)}</span><span class="catl" style="--cc:${CATC[top.category]}">${esc(CAT[top.category])}</span>${tags(top)}</div>
+    <h2>${esc(top.title)}</h2><p>${esc(top.summary)}</p>
+    <div class="imp"><b>影響</b>${esc(top.impact)}</div></div>`:`<div class="empty2">この日は大きなニュースはありません</div>`;
+  const rest=ord.slice(1), cnt={all:rest.length,mine:rest.filter(n=>n.mine).length,try:rest.filter(n=>n.try==="◯").length,fav:rest.filter(n=>FAV[nid(d,n)]).length};
+  $("#nseg").hidden=!rest.length;
+  $("#nseg").innerHTML=[["all","すべて"],["mine","自分ごと"],["try","試す価値"],["fav","保存"]].map(([k,l])=>`<button data-f="${k}" aria-pressed="${k===nf}">${l}<span>${cnt[k]}</span></button>`).join("");
+  const pass=n=>nf==="all"||(nf==="mine"&&n.mine)||(nf==="try"&&n.try==="◯")||(nf==="fav"&&FAV[nid(d,n)]);
+  const list=rest.filter(pass);
+  $("#nlist").innerHTML=rest.length?(list.map(n=>{const r=READ[nid(d,n)];return `<li class="nrow${r?" read":""}" data-open="${n.no}" style="--cc:${CATC[n.category]}">
+    <span class="bar"></span>
+    <div><div class="meta2"><span class="co2">${esc(n.company)}</span><span class="catl">${esc(CAT[n.category])}</span></div>
+      <h3>${esc(n.title)}</h3><div class="one">${esc(firstSentence(n.impact))}</div></div>
+    <div class="side">${r?"":'<span class="dot" aria-label="未読"></span>'}${n.mine?'<span class="tag mine">自分ごと</span>':""}${n.try==="◯"&&!n.mine?'<span class="tag try">試す</span>':""}</div></li>`}).join("")||`<li class="empty2">該当する記事はありません</li>`):"";
+  $("#nfoot").innerHTML=`<div class="nfoot"><b>見送った話題</b><br>${esc(d.memo)}${d.failures.length?`<br><b>取得できなかった情報源</b> ${esc(d.failures.join("、"))}`:""}</div>`;
 }
-function setView(v){
-  view=v;document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
-  $("#v-rank").hidden=v!=="rank";$("#v-news").hidden=v!=="news";
-  if(v==="rank"){$("#eyebrow").textContent="LEADERBOARD";$("#title").innerHTML="GitHub <em>スター</em>獲得ランキング";
-    $("#meta").textContent=rank?`${rank.date} 集計 ・ 追跡 ${rank.pool_size} リポジトリ`:"—"}
-  else{$("#eyebrow").textContent="DAILY NEWS";$("#title").innerHTML="<em>AI</em>ニュース";
-    $("#meta").textContent=news?`${news.date}（${news.weekday}） ${news.items.length}件 ・ 対象 ${news.period}`:"—"}
-  try{localStorage.setItem("view",v)}catch(e){}
-  window.scrollTo(0,0);
+function openNews(no){
+  const d=ND[ni], ord=order(d.items), i=ord.findIndex(n=>n.no===+no), n=ord[i]; if(!n)return; cur=i;
+  const id=nid(d,n); READ[id]=1; save("read",READ);
+  $("#sheetin").innerHTML=`<div class="nd"><div class="shead"><span style="color:var(--mut);font-size:12px">${md(d.date)}（${d.weekday}）のAIニュース ・ ${i+1} / ${ord.length}</span><button class="x" aria-label="閉じる" data-close>×</button></div>
+    <div class="kick"><span class="co2">${esc(n.company)}</span><span class="catl" style="--cc:${CATC[n.category]}">${esc(CAT[n.category])}</span>${tags(n)}</div>
+    <h3>${esc(n.title)}</h3><p class="body">${esc(n.summary)}</p>
+    ${n.related?`<div class="relbox"><h4>自分の取り組みとの関係</h4>${esc(n.related)}</div>`:""}
+    <section><h4>影響</h4><p>${esc(n.impact)}</p></section>
+    <section><h4>QAの観点</h4><p>${esc(n.qa)}</p></section>
+    <section><h4>掲載理由</h4><p>${esc(n.basis)}</p></section>
+    <section><h4>出典</h4><div class="srcs">${n.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join("")}</div></section>
+    <div class="ndnav"><button data-step="-1" ${i===0?"disabled":""}>‹ 前の記事</button><button class="sv" data-sv="${esc(id)}" aria-pressed="${!!FAV[id]}" aria-label="保存">${FAV[id]?"★":"☆"}</button><button data-step="1" ${i===ord.length-1?"disabled":""}>次の記事 ›</button></div></div>`;
+  $("#sheet").hidden=false; $("#sheetin").scrollTop=0; renderNews();
 }
-document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{kind=b.dataset.k;document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderRank()});
+document.addEventListener("click",e=>{
+  if(view!=="news"&&!e.target.closest("#sheet"))return;
+  const q=s=>e.target.closest(s);
+  if(q("[data-ni]")){ni=+q("[data-ni]").dataset.ni;nf="all";head();renderNews();return}
+  if(q("[data-f]")){nf=q("[data-f]").dataset.f;renderNews();return}
+  if(q("[data-open]")){openNews(q("[data-open]").dataset.open);return}
+  if(q("[data-step]")){const ord=order(ND[ni].items);openNews(ord[cur+ +q("[data-step]").dataset.step].no);return}
+  if(q("[data-sv]")){const id=q("[data-sv]").dataset.sv;FAV[id]?delete FAV[id]:FAV[id]=1;save("fav",FAV);openNews(order(ND[ni].items)[cur].no);return}
+  if(q("[data-close]"))closeSheet();
+});
+function head(){
+  const T={rank:["LEADERBOARD","GitHub <em>スター</em>獲得ランキング"],trend:["TRENDS","<em>推移</em>と傾向"],news:["DAILY BRIEFING","<em>AI</em>ニュース"]}[view];
+  $("#eyebrow").textContent=T[0];$("#title").innerHTML=T[1];
+  const N=view==="news";document.querySelector(".step").style.visibility=N?"hidden":"visible";
+  $("#day").textContent=(DAYS[di]||"").slice(5).replace("-","/");
+  $("#prev").disabled=di<=0;$("#next").disabled=di>=DAYS.length-1;
+  $("#meta").textContent=N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
+    :`${DAYS[di]} 集計 ・ 追跡 ${D.pool_size??"—"} リポジトリ`;
+}
+function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="news")renderNews()}
+function setView(v){view=v;document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
+  ["rank","trend","news"].forEach(x=>$("#v-"+x).hidden=x!==v);try{localStorage.setItem("view",v)}catch(e){}render();window.scrollTo(0,0)}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
-$("#q").oninput=renderRank;
-new ResizeObserver(()=>document.documentElement.style.setProperty("--hh",$("#hdr").offsetHeight+"px")).observe($("#hdr"));
+$("#prev").onclick=()=>{di--;render()};$("#next").onclick=()=>{di++;render()};
+window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
 (async()=>{
-  [rank,news]=await Promise.all([getJSON("data/latest.json"),getJSON("data/news/latest.json")]);
-  if(!rank&&window.__RANK__)rank=window.__RANK__; if(!news&&window.__NEWS__)news=window.__NEWS__;
-  renderRank();renderNews();
-  let v="rank";try{v=localStorage.getItem("view")||"rank"}catch(e){}
-  if(location.hash==="#news")v="news";
-  setView(v);
+  try{D=await (await fetch("data/app.json",{cache:"no-store"})).json()}catch(e){D=null}
+  if(!D){$("#meta").textContent="データを読み込めませんでした。通信状態を確認して再読み込みしてください";return}
+  DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;
+  let v0="rank";try{v0=localStorage.getItem("view")||"rank"}catch(e){}
+  if(["rank","trend","news"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
+  setView(v0);
 })();
 if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js");
+
 </script>
 </body>
 </html>
