@@ -392,7 +392,7 @@ def main() -> int:
     dates = sorted({p.stem for p in DOCS_DATA.glob("????-??-??.json")}, reverse=True)
     save_json(DOCS_DATA / "index.json", dates)
 
-    write_feed()
+    # Slack への RSS 投稿は停止（通知は Android アプリに一本化）。docs/feed.xml は更新しない
     build_app_data()
     post_slack(today, weekly)
     print(f"pool={len(repos)} weekly={len(weekly)} daily={len(daily)}")
