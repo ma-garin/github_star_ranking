@@ -2,11 +2,6 @@
   "appId": "io.github.magarin.aidaily",
   "appName": "AI Daily",
   "webDir": "www",
-  "server": {
-    "url": "https://ma-garin.github.io/github_star_ranking/",
-    "cleartext": false
-  },
-  "plugins": {
-    "LocalNotifications": { "iconColor": "#F5A524" }
-  }
+  "server": { "androidScheme": "https" },
+  "plugins": { "LocalNotifications": { "iconColor": "#F5A524" } }
 }

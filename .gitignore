@@ -2,3 +2,5 @@ __pycache__/
 .pytest_cache/
 node_modules/
 android-app/android/
+android-app/signing/
+*.keystore
