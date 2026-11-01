@@ -694,7 +694,7 @@ async function watchRun(){
   }
 }
 // GitHub でログイン（GitHub App のデバイスフロー）。アプリ版はネイティブ通信（CapacitorHttp）で CORS を回避する
-const GH_APP_CLIENT="Iv23liB37gXspuaoV5";
+const GH_APP_CLIENT="Iv23liB37gXspuaoV5Td";
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 // アプリ版はネイティブ HTTP（CapacitorHttp）を直接呼ぶ。fetch の差し替え経由だとフォーム本文の扱いが不安定なため JSON で送る
 async function ghPost(url,body){
