@@ -47,3 +47,30 @@ jobs:
           git add data reports docs/data docs/feed.xml
           git diff --cached --quiet || git commit -m "data: $(TZ=Asia/Tokyo date +%F)"
           git pull --rebase origin "${GITHUB_REF_NAME}" && git push
+
+  signing-key:
+    # APK の署名鍵を Actions のキャッシュ（非公開）に保持する。毎朝復元するので期限切れで消えない。
+    # 鍵そのものはリポジトリに置かない。証明書の指紋（公開情報）だけを記録し、APK ビルドで照合する。
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: key
+        uses: actions/cache@v4
+        with:
+          path: signing
+          key: android-signing-key-v1
+      - name: Generate key if missing
+        if: steps.key.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p signing
+          keytool -genkeypair -keystore signing/ci-debug.keystore -storetype PKCS12 -storepass android -keypass android \
+            -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=AI Daily Debug,O=ma-garin,C=JP"
+      - name: Record certificate fingerprint
+        run: |
+          keytool -list -v -keystore signing/ci-debug.keystore -storepass android | grep -m1 "SHA256:" | awk '{print $2}' | tr -d ':' | tr 'A-F' 'a-f' > android-app/signing-cert.sha256
+          cat android-app/signing-cert.sha256
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add android-app/signing-cert.sha256
+          git diff --cached --quiet || { git commit -m "android: 署名証明書の指紋を記録 [skip ci]"; git pull --rebase origin main && git push; }
