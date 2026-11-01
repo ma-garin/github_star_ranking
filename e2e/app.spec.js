@@ -74,3 +74,27 @@ for (const theme of ["light", "dark"]) {
     }
   });
 }
+
+test("今すぐ集計: トークン未登録なら登録シート、登録済みなら実行→反映", async ({ page }) => {
+  const errors = await ready(page);
+  await page.click("#runNow");
+  await expect(page.locator("#tokIn")).toBeVisible();
+  await page.fill("#tokIn", "github_pat_test");
+  await page.click("#tokSave");
+  let dispatched = false;
+  await page.route("https://api.github.com/**", async route => {
+    const u = route.request().url();
+    if (u.endsWith("/dispatches")) { dispatched = true; return route.fulfill({ status: 204, body: "" }); }
+    if (u.includes("/runs?")) return route.fulfill({ json: { workflow_runs: [{ id: 7, created_at: new Date().toISOString() }] } });
+    if (u.endsWith("/runs/7")) return route.fulfill({ json: { status: "completed", conclusion: "success" } });
+    return route.abort();
+  });
+  await page.route(/data\/app\.json\?t=/, async route => {
+    const r = await route.fetch(); const j = await r.json(); j.generated_at = "2099-01-01T06:50:00+09:00";
+    return route.fulfill({ json: j });
+  });
+  await page.click("#runNow");
+  await expect(page.locator("#runmsg")).toHaveText("最新の集計を反映しました");
+  expect(dispatched).toBe(true);
+  expect(errors).toEqual([]);
+});

@@ -37,7 +37,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          # Slack 通知は毎朝の定期実行だけ。アプリからの手動集計（workflow_dispatch）では送らない
+          SLACK_WEBHOOK_URL: ${{ github.event_name == 'schedule' && secrets.SLACK_WEBHOOK_URL || '' }}
           PAGES_URL: https://ma-garin.github.io/github_star_ranking/
         run: python scripts/collect.py
       - name: Commit

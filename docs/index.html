@@ -312,6 +312,21 @@ header h1{font:400 22px/28px var(--ff)}
  nav button{flex:none;height:56px}
  header{padding-left:16px}main{max-width:840px}
  .toast{bottom:24px}}
+/* 手動集計 */
+#runbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 104px);z-index:4;background:var(--md-secondary-container);color:var(--md-on-secondary-container)}
+#runbar .rb{display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:860px;margin:0 auto;padding:10px 16px;font:500 14px/20px var(--ff)}
+#runbar.err{background:color-mix(in srgb,var(--down) 16%,var(--md-surface));color:var(--md-on-surface)}#runbar.err .lp,#runbar.ok .lp{visibility:hidden}
+.rbx{background:none;border:0;color:inherit;font:500 14px/20px var(--ff);min-height:40px;padding:0 8px;cursor:pointer}
+.lp{height:4px;overflow:hidden;background:color-mix(in srgb,var(--md-primary) 24%,transparent)}
+.lp i{display:block;height:100%;width:40%;background:var(--md-primary);animation:lp 1.4s var(--md-ease) infinite}
+@keyframes lp{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@media (prefers-reduced-motion:reduce){.lp i{animation:none;width:100%;opacity:.6}}
+.tokf{display:grid;gap:12px;margin-top:8px}.tokf ol{margin:0;padding-left:20px;font:400 14px/22px var(--ff)}
+.tokf input{height:48px;border:1px solid var(--md-outline);border-radius:4px;background:none;color:var(--md-on-surface);padding:0 12px;font:400 16px/24px var(--ff)}
+.tokf .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.btnf{height:40px;padding:0 24px;border:0;border-radius:999px;background:var(--md-primary);color:var(--md-on-primary);font:500 14px/20px var(--ff);cursor:pointer}
+.btnt{height:40px;padding:0 12px;border:0;border-radius:999px;background:none;color:var(--md-primary);font:500 14px/20px var(--ff);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+@media (min-width:600px){#runbar{top:calc(env(safe-area-inset-top,0px) + 104px)}}
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-rank" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></symbol>
@@ -327,15 +342,17 @@ header h1{font:400 22px/28px var(--ff)}
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
 <symbol id="i-mark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
 <symbol id="i-markf" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z" fill="currentColor"/></symbol>
+<symbol id="i-run" viewBox="0 0 24 24"><path d="M13 3L5 13h6l-1 8 8-10h-6l1-8z"/></symbol>
 <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 </defs></svg>
 <header>
   <div class="hrow">
     <div><div class="eyebrow" id="eyebrow"></div><h1 id="title"></h1></div>
-    <div class="tools"><button class="ib" id="reload" aria-label="最新に更新"><svg class="ic" aria-hidden="true"><use href="#i-reload"/></svg></button></div>
+    <div class="tools"><button class="ib" id="runNow" aria-label="今すぐ集計"><svg class="ic" aria-hidden="true"><use href="#i-run"/></svg></button><button class="ib" id="reload" aria-label="最新に更新"><svg class="ic" aria-hidden="true"><use href="#i-reload"/></svg></button></div>
   </div>
   <div class="hsub"><div class="meta" id="meta"></div><div class="step"><button id="prev" aria-label="前の日"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg></button><span id="day"></span><button id="next" aria-label="次の日"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></button></div></div>
 </header>
+<div id="runbar" hidden role="status" aria-live="polite"><div class="lp"><i></i></div><div class="rb"><span id="runmsg"></span><button id="runx" class="rbx" hidden>閉じる</button></div></div>
 <main>
   <section id="v-rank">
     <div class="seg"><button class="chip" data-k="weekly" aria-pressed="true">週間 Top30</button><button class="chip" data-k="daily" aria-pressed="false">前日比 Top30</button><input class="q" id="q" type="search" placeholder="絞り込み" aria-label="絞り込み"></div>
@@ -367,7 +384,7 @@ header h1{font:400 22px/28px var(--ff)}
         <div class="srow"><div>毎朝の通知<small id="ninfo">Androidアプリでのみ有効</small></div><label class="sw"><input type="checkbox" id="nOn" aria-label="毎朝の通知"><span></span></label></div>
         <div class="srow"><div>通知の時刻<small>ランキング06:47・ニュース07:45更新のあと</small></div><input type="time" id="nTime" aria-label="通知の時刻"></div>
       </div></div><div class="spage" data-page="data" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">データ管理</h2><div class="sbox">
-        <div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新">↻</button></div>
+        <div class="srow"><div>今すぐ集計<small>GitHub でランキングを集計し直します（2〜3分）。Slack には通知しません</small></div><button class="chip" id="runNow2">実行</button></div><div class="srow"><div>GitHub トークン<small id="tinfo">—</small></div><button class="chip" id="tokBtn">登録</button></div><div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新"><svg class="ic" aria-hidden="true"><use href="#i-reload"/></svg></button></div>
         <div class="srow"><div>既読と保存をリセット<small id="rinfo">—</small></div><button class="sbtn" id="resetRead">リセット</button></div>
       </div></div><div class="spage" data-page="about" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">アプリ情報</h2><div class="sbox">
         <div class="srow"><div>AI Daily<small id="ver">—</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
@@ -537,7 +554,7 @@ function jdate(d,full){if(!d)return "";const [y,m,dd]=d.split("-").map(Number);c
 function head(){
   const T={rank:["毎朝6:47更新","スター獲得ランキング"],trend:["日ごとの変化","推移と傾向"],news:["毎朝7:45更新","AIニュース"],set:["","設定"]}[view];
   $("#eyebrow").textContent=T[0];$("#title").innerHTML=T[1];
-  const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";$("#reload").style.visibility=view==="set"?"hidden":"visible";
+  const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";$("#reload").style.visibility=view==="set"?"hidden":"visible";$("#runNow").hidden=!(view==="rank"||view==="trend");
   $("#day").textContent=jdate(DAYS[di]);
   $("#prev").disabled=di<=0;$("#next").disabled=di>=DAYS.length-1;
   $("#meta").textContent=view==="set"?"":N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
@@ -551,8 +568,8 @@ $("#prev").onclick=()=>{di--;render()};$("#next").onclick=()=>{di++;render()};
 window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
 const IS_APP=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const DATA_BASE=IS_APP?"https://ma-garin.github.io/github_star_ranking/":"";
-async function loadData(){
-  try{const r=await fetch(DATA_BASE+"data/app.json",{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();try{localStorage.setItem("app-cache",JSON.stringify(j))}catch(e){}return j}
+async function loadData(bust){
+  try{const r=await fetch(DATA_BASE+"data/app.json"+(bust?"?t="+Date.now():""),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();try{localStorage.setItem("app-cache",JSON.stringify(j))}catch(e){}return j}
   catch(e){try{const c=localStorage.getItem("app-cache");if(c)return JSON.parse(c)}catch(_){}return null}
 }
 function showLoading(){$("#rows").innerHTML=Array.from({length:6},()=>`<li class="rrow sk"><div class="no"><b>&nbsp;</b></div><div class="nm"><i></i><i class="s"></i></div><div class="wk"><i></i></div><div class="ds"><i></i></div></li>`).join("");$("#meta").textContent="読み込み中…"}
@@ -603,6 +620,7 @@ async function checkUpdate(){
     else $("#upd").textContent=latest?`最新版です（#${BUILD??latest}）`:"版を判定できませんでした";
   }catch(e){$("#upd").textContent="通信できませんでした。接続を確認してください"}}
 const CHANGELOG=[
+  ["2026-11-01","「今すぐ集計」を追加。ボタン1回で集計し、終わると自動で反映（初回のみ GitHub トークンを登録）。デザインを Material Design 3 準拠に刷新"],
  ["11月1日","家計簿アプリと同じ配布方式（固定署名・画面同梱・最新版の確認）。家計簿アプリと同じ配色と設定画面"],
  ["11月1日","設定画面、ライト／ダーク切替、概要の完全日本語化、読み込み中・エラー・オフライン表示、引っ張って更新"],
  ["11月1日","Androidアプリ（毎朝の通知）、ランキングの実データ化、AIニュースの4日分"],
@@ -613,6 +631,7 @@ function showSetPage(k){SPAGE=k;$("#slist").hidden=!!k;document.querySelectorAll
 document.addEventListener("click",e=>{const b=e.target.closest("[data-sp]");if(b&&b.closest("#v-set")){showSetPage(b.dataset.sp);if(b.dataset.sp)history.pushState({sp:1},"")}});
 window.addEventListener("popstate",()=>{if(view==="set"&&SPAGE)showSetPage("")});
 function renderSet(){
+  if($("#tinfo")){$("#tinfo").textContent=tok()?"登録済み（この端末のアプリ内にだけ保存）":"未登録。「今すぐ集計」に必要です";$("#tokBtn").textContent=tok()?"変更":"登録"}
   document.querySelectorAll("[data-set]").forEach(g=>g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",SET[g.dataset.set]===b.dataset.val)));
   $("#nOn").checked=SET.nOn;$("#nTime").value=SET.nTime;$("#nTime").disabled=!SET.nOn;
   $("#ninfo").textContent=isApp()?(SET.nOn?`毎朝 ${SET.nTime} に通知します`:"通知しません"):"Androidアプリでのみ有効（このブラウザでは通知されません）";
@@ -632,6 +651,59 @@ document.addEventListener("click",async e=>{
 $("#nOn").onchange=async()=>{SET.nOn=$("#nOn").checked;saveSet();const r=await scheduleNotify();renderSet();toast(r==="denied"?"端末の設定で通知が許可されていません":SET.nOn?"通知をオンにしました":"通知をオフにしました")};
 $("#nTime").onchange=async()=>{if(!$("#nTime").value)return;SET.nTime=$("#nTime").value;saveSet();await scheduleNotify();renderSet();toast(`通知を ${SET.nTime} に変更しました`)};
 $("#checkUpd").onclick=checkUpdate;loadBuild();
+
+// ===== 手動集計: GitHub Actions の daily.yml を workflow_dispatch で起動 → 進行を表示 → 反映を待って再読込 =====
+const GH="https://api.github.com/repos/ma-garin/github_star_ranking", WF=GH+"/actions/workflows/daily.yml";
+const tok=()=>{try{return localStorage.getItem("gh_token")||""}catch(e){return ""}};
+const ghf=(u,o={})=>fetch(u,{...o,headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+tok(),"X-GitHub-Api-Version":"2022-11-28",...(o.headers||{})}});
+const mmss=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+let RUN=null;
+function runbar(msg,kind){const b=$("#runbar");b.hidden=!msg;b.className=kind||"";$("#runmsg").textContent=msg||"";$("#runx").hidden=!kind}
+$("#runx").onclick=()=>runbar("");
+function saveRun(r){try{r?localStorage.setItem("run_pending",JSON.stringify(r)):localStorage.removeItem("run_pending")}catch(e){}}
+async function runNow(){
+  if(!tok()){openToken();return}
+  if(RUN)return;
+  RUN={start:Date.now(),gen:D&&D.generated_at||""};saveRun(RUN);runbar("集計を開始しています…");
+  try{
+    const r=await ghf(WF+"/dispatches",{method:"POST",body:JSON.stringify({ref:"main"})});
+    if(r.status!==204)throw r.status;
+  }catch(st){RUN=null;saveRun(null);runbar(st===401?"トークンが無効か期限切れです。設定 → データ管理 で登録し直してください":st===403||st===404?"トークンの権限が足りません（Actions: Read and write が必要です）":"集計を開始できませんでした。通信状態を確認してください","err");return}
+  watchRun();
+}
+async function watchRun(){
+  const t0=RUN.start;let runId=RUN.id||null;
+  while(RUN){
+    const el=Math.round((Date.now()-t0)/1000);
+    if(el>20*60){RUN=null;saveRun(null);runbar("20分たっても完了しませんでした。GitHub の Actions 画面を確認してください","err");return}
+    try{
+      if(!runId){const j=await (await ghf(WF+"/runs?event=workflow_dispatch&per_page=5")).json();
+        const hit=(j.workflow_runs||[]).find(x=>Date.parse(x.created_at)>=t0-60000);if(hit){runId=hit.id;RUN.id=runId;saveRun(RUN)}}
+      if(runId){const x=await (await ghf(GH+"/actions/runs/"+runId)).json();
+        if(x.status==="completed"){
+          if(x.conclusion!=="success"){RUN=null;saveRun(null);runbar("集計に失敗しました（GitHub の Actions 画面に詳細があります）","err");return}
+          runbar(`集計が完了しました。アプリへの反映を待っています…（${mmss(el)}）`);
+          const nd=await loadData(true);
+          if(nd&&nd.generated_at&&nd.generated_at!==RUN.gen){RUN=null;saveRun(null);D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render();runbar("最新の集計を反映しました","ok");setTimeout(()=>{if($("#runbar").className==="ok")runbar("")},4000);return}
+        }else runbar(`${x.status==="queued"?"順番待ち":"集計中"}…（${mmss(el)}・通常2〜3分）`);
+      }else runbar(`集計を準備しています…（${mmss(el)}）`);
+    }catch(e){runbar(`通信を再試行しています…（${mmss(el)}）`)}
+    await new Promise(r=>setTimeout(r,8000));
+  }
+}
+function openToken(){
+  const has=!!tok();
+  $("#sheetin").innerHTML=`<div class="shead"><h3>GitHub トークン</h3><button class="x" aria-label="閉じる" onclick="closeSheet()"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <div class="tokf"><p style="margin:0;color:var(--mut)">「今すぐ集計」に使います。トークンはこの端末のアプリ内にだけ保存されます。</p>
+  <ol><li>下の「GitHub で作成」を開く</li><li>Repository access を <b>Only select repositories</b> にし、<b>github_star_ranking</b> を選ぶ</li><li>Permissions の <b>Actions</b> を <b>Read and write</b> にする</li><li>Generate token で表示された文字列を下に貼り付けて保存</li></ol>
+  <input id="tokIn" type="password" autocomplete="off" placeholder="github_pat_…" aria-label="GitHub トークン">
+  <div class="acts">${has?'<button class="btnt" id="tokDel">削除</button>':""}<a class="btnt" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub で作成</a><button class="btnf" id="tokSave">保存</button></div></div>`;
+  $("#sheet").hidden=false;
+  $("#tokSave").onclick=()=>{const v=$("#tokIn").value.trim();if(!v){toast("トークンを貼り付けてください");return}try{localStorage.setItem("gh_token",v)}catch(e){}closeSheet();toast("保存しました");if(view==="set")renderSet()};
+  if(has)$("#tokDel").onclick=()=>{try{localStorage.removeItem("gh_token")}catch(e){}closeSheet();toast("削除しました");if(view==="set")renderSet()};
+}
+$("#runNow").onclick=runNow;$("#runNow2").onclick=runNow;$("#tokBtn").onclick=openToken;
+try{const p=JSON.parse(localStorage.getItem("run_pending")||"null");if(p&&Date.now()-p.start<20*60000){RUN=p;watchRun()}else saveRun(null)}catch(e){}
 $("#reload2").onclick=()=>{$("#reload").click();setTimeout(renderSet,800)};
 $("#resetRead").onclick=()=>{try{localStorage.removeItem("read");localStorage.removeItem("fav")}catch(e){}READ={};FAV={};renderSet();toast("既読と保存をリセットしました")};
 applyTheme(SET.theme);scheduleNotify();
