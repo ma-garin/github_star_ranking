@@ -41,8 +41,22 @@ button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .rrow .wk{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.rrow .wk b{color:var(--acc);display:block;font-size:14px}
 .rrow .wk svg{display:block;margin-left:auto;margin-top:3px}
 .rrow .ds{grid-column:2/4;color:var(--mut);font-size:13px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.set{display:grid;gap:14px}
+.sgroup h2{font-size:12px;letter-spacing:.1em;color:var(--mut);margin:0 0 6px;font-weight:700}
+.sbox{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.srow:last-child{border-bottom:0}.srow small{display:block;color:var(--mut);font-size:11.5px;margin-top:2px}
+.seg3{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:2px;flex:none}
+.seg3 button{background:none;border:0;border-radius:6px;padding:5px 10px;font:inherit;font-size:12.5px;color:var(--mut);cursor:pointer}
+.seg3 button[aria-pressed=true]{background:var(--chip);color:var(--chipfg);font-weight:700}
+.sw{position:relative;width:46px;height:28px;flex:none}.sw input{opacity:0;width:100%;height:100%;margin:0;cursor:pointer;position:absolute;inset:0;z-index:1}
+.sw span{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.15s}.sw span::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.15s}
+.sw input:checked+span{background:var(--acc)}.sw input:checked+span::after{transform:translateX(18px)}
+.srow input[type=time]{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:inherit}
+.sbtn{background:none;border:0;color:var(--down);font:inherit;font-size:14px;cursor:pointer;padding:0}
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--chip);color:var(--chipfg);padding:8px 14px;border-radius:999px;font-size:13px;z-index:30}
 .tools{display:flex;gap:4px;align-items:center}
-.tools .ib{background:var(--card);border:1px solid var(--line);color:var(--fg);width:32px;height:32px;border-radius:8px;font-size:15px;cursor:pointer}
+.ib{background:var(--card);border:1px solid var(--line);color:var(--fg);width:32px;height:32px;border-radius:8px;font-size:15px;cursor:pointer}
 .q{flex:1;min-width:120px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px}
 table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px}
 thead th{color:var(--mut);font-weight:600;text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);font-size:11px}
@@ -155,7 +169,7 @@ nav button[aria-selected=true]{color:var(--fg)}nav button[aria-selected=true] b{
 <header>
   <div class="hrow">
     <div><div class="eyebrow" id="eyebrow"></div><h1 id="title"></h1></div>
-    <div class="tools"><button class="ib" id="reload" aria-label="最新に更新">↻</button><button class="ib" id="theme" aria-label="表示テーマ">◐</button><div class="step"><button id="prev" aria-label="前の日">‹</button><span id="day"></span><button id="next" aria-label="次の日">›</button></div></div>
+    <div class="tools"><button class="ib" id="reload" aria-label="最新に更新">↻</button><div class="step"><button id="prev" aria-label="前の日">‹</button><span id="day"></span><button id="next" aria-label="次の日">›</button></div></div>
   </div>
   <div class="meta" id="meta"></div>
 </header>
@@ -180,11 +194,33 @@ nav button[aria-selected=true]{color:var(--fg)}nav button[aria-selected=true] b{
     <ul class="nlist" id="nlist"></ul>
     <div id="nfoot"></div>
   </section>
+  <section id="v-set" hidden>
+    <div class="set">
+      <div class="sgroup"><h2>表示</h2><div class="sbox">
+        <div class="srow"><div>テーマ</div><div class="seg3" data-set="theme"><button data-val="auto">自動</button><button data-val="light">ライト</button><button data-val="dark">ダーク</button></div></div>
+        <div class="srow"><div>起動時に開く画面</div><div class="seg3" data-set="start"><button data-val="last">前回</button><button data-val="rank">順位</button><button data-val="news">ニュース</button></div></div>
+        <div class="srow"><div>ランキングの初期表示</div><div class="seg3" data-set="mode"><button data-val="weekly">週間</button><button data-val="daily">前日比</button></div></div>
+      </div></div>
+      <div class="sgroup"><h2>通知</h2><div class="sbox">
+        <div class="srow"><div>毎朝の通知<small id="ninfo">Androidアプリでのみ有効</small></div><label class="sw"><input type="checkbox" id="nOn" aria-label="毎朝の通知"><span></span></label></div>
+        <div class="srow"><div>通知の時刻<small>ランキング06:47・ニュース07:45更新のあと</small></div><input type="time" id="nTime" aria-label="通知の時刻"></div>
+      </div></div>
+      <div class="sgroup"><h2>データ</h2><div class="sbox">
+        <div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新">↻</button></div>
+        <div class="srow"><div>既読と保存をリセット<small id="rinfo">—</small></div><button class="sbtn" id="resetRead">リセット</button></div>
+      </div></div>
+      <div class="sgroup"><h2>このアプリについて</h2><div class="sbox">
+        <div class="srow"><div>AI Daily<small>GitHubスター獲得ランキングとAIニュース</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
+      </div></div>
+    </div>
+  </section>
 </main>
+
 <nav role="tablist">
   <button role="tab" data-v="rank" aria-selected="true"><b>★</b>ランキング</button>
   <button role="tab" data-v="trend" aria-selected="false"><b>↗</b>トレンド</button>
   <button role="tab" data-v="news" aria-selected="false"><b>◎</b>AIニュース</button>
+  <button role="tab" data-v="set" aria-selected="false"><b>⚙</b>設定</button>
 </nav>
 <div id="sheet" hidden><div class="in" role="dialog" aria-modal="true" id="sheetin"></div></div>
 <script>
@@ -273,10 +309,7 @@ window.addEventListener("popstate",()=>{$("#sheet").hidden=true});
 new MutationObserver(()=>{if(!$("#sheet").hidden)_openSheetEl()}).observe($("#sheet"),{attributes:true,attributeFilter:["hidden"]});
 // テーマ: 自動 → ライト → ダーク
 const THEMES=["auto","light","dark"],TLABEL={auto:"◐",light:"☀",dark:"☾"};
-function applyTheme(t){if(t==="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t;$("#theme").textContent=TLABEL[t];$("#theme").setAttribute("aria-label","表示テーマ: "+{auto:"端末に合わせる",light:"ライト",dark:"ダーク"}[t]);try{localStorage.setItem("theme",t)}catch(e){}}
-let THEME="auto";try{THEME=localStorage.getItem("theme")||"auto"}catch(e){}
-applyTheme(THEME);
-$("#theme").onclick=()=>{THEME=THEMES[(THEMES.indexOf(THEME)+1)%3];applyTheme(THEME)};
+
 $("#reload").onclick=async()=>{$("#reload").textContent="…";try{const nd=await (await fetch("data/app.json",{cache:"no-store"})).json();D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render()}catch(e){}$("#reload").textContent="↻"};
 $("#q").oninput=()=>renderRank();
 $("#sheet").onclick=e=>{if(e.target.id==="sheet")closeSheet()};
@@ -340,17 +373,17 @@ document.addEventListener("click",e=>{
   if(q("[data-close]"))closeSheet();
 });
 function head(){
-  const T={rank:["LEADERBOARD","GitHub <em>スター</em>獲得ランキング"],trend:["TRENDS","<em>推移</em>と傾向"],news:["DAILY BRIEFING","<em>AI</em>ニュース"]}[view];
+  const T={rank:["LEADERBOARD","GitHub <em>スター</em>獲得ランキング"],trend:["TRENDS","<em>推移</em>と傾向"],news:["DAILY BRIEFING","<em>AI</em>ニュース"],set:["SETTINGS","設定"]}[view];
   $("#eyebrow").textContent=T[0];$("#title").innerHTML=T[1];
-  const N=view==="news";document.querySelector(".step").style.visibility=N?"hidden":"visible";
+  const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";
   $("#day").textContent=(DAYS[di]||"").slice(5).replace("-","/");
   $("#prev").disabled=di<=0;$("#next").disabled=di>=DAYS.length-1;
-  $("#meta").textContent=N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
+  $("#meta").textContent=view==="set"?"表示・通知・データの設定":N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
     :`${DAYS[di]} 集計 ・ 追跡 ${D.pool_size??"—"} リポジトリ`;
 }
-function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="news")renderNews()}
+function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="news")renderNews();if(view==="set")renderSet()}
 function setView(v){view=v;document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
-  ["rank","trend","news"].forEach(x=>$("#v-"+x).hidden=x!==v);try{localStorage.setItem("view",v)}catch(e){}render();window.scrollTo(0,0)}
+  ["rank","trend","news","set"].forEach(x=>$("#v-"+x).hidden=x!==v);if(v!=="set")try{localStorage.setItem("view",v)}catch(e){}render();window.scrollTo(0,0)}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
 $("#prev").onclick=()=>{di--;render()};$("#next").onclick=()=>{di++;render()};
 window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
@@ -358,19 +391,46 @@ window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
   try{D=await (await fetch("data/app.json",{cache:"no-store"})).json()}catch(e){D=null}
   if(!D){$("#meta").textContent="データを読み込めませんでした。通信状態を確認して再読み込みしてください";return}
   DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;
-  let v0="rank";try{v0=localStorage.getItem("view")||"rank"}catch(e){}
-  if(["rank","trend","news"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
+  mode=SET.mode;document.querySelectorAll("#v-rank .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===mode));
+  let v0=SET.start==="last"?"rank":SET.start;if(SET.start==="last")try{v0=localStorage.getItem("view")||"rank"}catch(e){}
+  if(["rank","trend","news","set"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
   setView(v0);
 })();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.Capacitor)navigator.serviceWorker.register("sw.js");
-// Android アプリ（Capacitor）内で開かれたときだけ、毎朝 07:55 の通知を登録する
-(async()=>{try{const C=window.Capacitor;if(!C||!C.isNativePlatform||!C.isNativePlatform())return;
-  const LN=C.Plugins.LocalNotifications;const p=await LN.requestPermissions();if(p.display!=="granted")return;
-  await LN.cancel({notifications:[{id:1}]}).catch(()=>{});
-  await LN.schedule({notifications:[{id:1,title:"AI Daily",body:"今日のAIニュースとGitHubランキングが届いています",schedule:{on:{hour:7,minute:55},repeats:true,allowWhileIdle:true}}]});
-}catch(e){console.log("notify",e)}})();
-
-
+// 設定（端末ごとに保存）
+const SDEF={theme:"auto",start:"last",mode:"weekly",nOn:true,nTime:"07:55"};
+let SET=(()=>{try{return {...SDEF,...JSON.parse(localStorage.getItem("settings")||"{}")}}catch(e){return {...SDEF}}})();
+try{const t=localStorage.getItem("theme");if(t&&!localStorage.getItem("settings"))SET.theme=t}catch(e){}
+const saveSet=()=>{try{localStorage.setItem("settings",JSON.stringify(SET))}catch(e){}};
+const isApp=()=>{const C=window.Capacitor;return !!(C&&C.isNativePlatform&&C.isNativePlatform())};
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),1800)}
+function applyTheme(t){if(t==="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
+async function scheduleNotify(){if(!isApp())return "app";
+  try{const LN=window.Capacitor.Plugins.LocalNotifications;await LN.cancel({notifications:[{id:1}]}).catch(()=>{});
+    if(!SET.nOn)return "off";
+    const p=await LN.requestPermissions();if(p.display!=="granted")return "denied";
+    const [h,m]=SET.nTime.split(":").map(Number);
+    await LN.schedule({notifications:[{id:1,title:"AI Daily",body:"今日のAIニュースとGitHubランキングが届いています",schedule:{on:{hour:h,minute:m},repeats:true,allowWhileIdle:true}}]});return "ok"}catch(e){console.log("notify",e);return "err"}}
+function renderSet(){
+  document.querySelectorAll("[data-set]").forEach(g=>g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",SET[g.dataset.set]===b.dataset.val)));
+  $("#nOn").checked=SET.nOn;$("#nTime").value=SET.nTime;$("#nTime").disabled=!SET.nOn;
+  $("#ninfo").textContent=isApp()?(SET.nOn?`毎朝 ${SET.nTime} に通知します`:"通知しません"):"Androidアプリでのみ有効（このブラウザでは通知されません）";
+  $("#dinfo").textContent=D?`ランキング ${D.dates.at(-1)} ・ ニュース ${ND.length?ND.at(-1).date+" "+(ND.at(-1).updated||""):"なし"}`:"—";
+  let r=0,f=0;try{r=Object.keys(JSON.parse(localStorage.getItem("read")||"{}")).length;f=Object.keys(JSON.parse(localStorage.getItem("fav")||"{}")).length}catch(e){}
+  $("#rinfo").textContent=`既読 ${r}件・保存 ${f}件`;
+}
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("[data-set] button");if(!b)return;
+  const key=b.closest("[data-set]").dataset.set;SET[key]=b.dataset.val;saveSet();
+  if(key==="theme")applyTheme(SET.theme);
+  if(key==="mode"){mode=SET.mode;document.querySelectorAll("#v-rank .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===mode))}
+  renderSet();toast("保存しました");
+});
+$("#nOn").onchange=async()=>{SET.nOn=$("#nOn").checked;saveSet();const r=await scheduleNotify();renderSet();toast(r==="denied"?"端末の設定で通知が許可されていません":SET.nOn?"通知をオンにしました":"通知をオフにしました")};
+$("#nTime").onchange=async()=>{if(!$("#nTime").value)return;SET.nTime=$("#nTime").value;saveSet();await scheduleNotify();renderSet();toast(`通知を ${SET.nTime} に変更しました`)};
+$("#reload2").onclick=()=>{$("#reload").click();setTimeout(renderSet,800)};
+$("#resetRead").onclick=()=>{try{localStorage.removeItem("read");localStorage.removeItem("fav")}catch(e){}READ={};FAV={};renderSet();toast("既読と保存をリセットしました")};
+applyTheme(SET.theme);scheduleNotify();
 </script>
 </body>
 </html>
