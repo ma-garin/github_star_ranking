@@ -24,6 +24,19 @@ jobs:
           npx cap add android
           # Android 13 以降の通知許可・正確な時刻の通知
           sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#<uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />#' android/app/src/main/AndroidManifest.xml
+          # アプリのアイコン（docs/icons から各解像度を生成。アダプティブアイコン定義は使わない）
+          pip install -q pillow
+          python3 - <<'PY'
+          from PIL import Image
+          import os, shutil
+          src = Image.open("../docs/icons/icon-512.png").convert("RGBA")
+          res = "android/app/src/main/res"
+          shutil.rmtree(f"{res}/mipmap-anydpi-v26", ignore_errors=True)
+          for d, n in {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144, "xxxhdpi": 192}.items():
+              os.makedirs(f"{res}/mipmap-{d}", exist_ok=True)
+              for f in ("ic_launcher.png", "ic_launcher_round.png", "ic_launcher_foreground.png"):
+                  src.resize((n, n), Image.LANCZOS).save(f"{res}/mipmap-{d}/{f}")
+          PY
           npx cap sync android
           cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon -q
           cp app/build/outputs/apk/debug/app-debug.apk ../../ai-daily.apk

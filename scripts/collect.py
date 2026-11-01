@@ -181,12 +181,28 @@ def load_snapshot(day: dt.date) -> dict[str, int] | None:
 
 
 # ---------------------------------------------------------------- 日本語化
+GLOSSARY = [("クロード コード", "Claude Code"), ("クロードコード", "Claude Code"), ("クロード", "Claude"), ("コーデックス", "Codex"),
+            ("カーソル", "Cursor"), ("オープンコード", "OpenCode"), ("ジェミニ", "Gemini"), ("イレブンラボ", "ElevenLabs"),
+            ("ハーネス", "ハーネス"), ("ギットハブ", "GitHub"), ("オープンAI", "OpenAI"), ("アンスロピック", "Anthropic")]
+JA = __import__("re").compile(r"[ぁ-んァ-ヶ一-龠]")
+
+
+def fix_terms(t: str) -> str:
+    for a, b in GLOSSARY:
+        t = t.replace(a, b)
+    return t
+
+
+def is_japanese(t: str) -> bool:
+    return bool(t) and len(JA.findall(t)) >= max(2, len(t) // 10)
+
+
 def translate_ja(text: str) -> str:
     """Google翻訳の公開エンドポイントで英語→日本語。失敗時は空文字。"""
     qs = urllib.parse.urlencode({"client": "gtx", "sl": "auto", "tl": "ja", "dt": "t", "q": text[:500]})
     try:
         data = json.loads(_get(f"https://translate.googleapis.com/translate_a/single?{qs}", api=False))
-        return "".join(seg[0] for seg in data[0] if seg and seg[0]).strip()
+        return fix_terms("".join(seg[0] for seg in data[0] if seg and seg[0]).strip())
     except Exception as e:  # noqa: BLE001
         print(f"[warn] translate: {e}", file=sys.stderr)
         return ""
@@ -308,6 +324,21 @@ def build_app_data(days: int = 14) -> None:
         j = load_json(DOCS_DATA / f"{d}.json", {})
         ranks[d] = [{k: r.get(k) for k in keep} for r in j.get("weekly", [])]
         dranks[d] = [{k: r.get(k) for k in keep} for r in j.get("daily", [])]
+    cache: dict[str, str] = load_json(SUMMARY_FILE, {})
+    todo = {r["full_name"]: r["description"] for v in list(ranks.values()) + list(dranks.values()) for r in v
+            if r.get("description") and not is_japanese(cache.get(r["full_name"], "")) and not is_japanese(r["description"])}
+    if todo:
+        with ThreadPoolExecutor(max_workers=4) as ex:
+            for n, ja in zip(todo, ex.map(translate_ja, todo.values())):
+                if ja:
+                    cache[n] = ja
+        save_json(SUMMARY_FILE, cache)
+    cache = {n: fix_terms(t) for n, t in cache.items()}
+    for v in list(ranks.values()) + list(dranks.values()):
+        for r in v:
+            d = r.get("description") or ""
+            r["summary_ja"] = cache.get(r["full_name"]) or (d if is_japanese(d) else "") or ("説明文がありません" if not d else "")
+            r.pop("description", None) if r["summary_ja"] else None
     names = {r["full_name"] for v in list(ranks.values()) + list(dranks.values()) for r in v}
     snaps = {d: load_json(SNAP_DIR / f"{d}.json", {}) for d in dates}
     series = {n: [snaps[d].get(n) for d in dates] for n in sorted(names)}

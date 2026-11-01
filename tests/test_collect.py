@@ -79,3 +79,8 @@ def test_build_app_data(tmp_path, monkeypatch):
     collect.build_app_data()
     a = json.loads((data / "app.json").read_text())
     assert a["dates"] == ["2026-10-31", "2026-11-01"] and a["series"]["o/r"] == [100, 130] and len(a["news"]) == 1
+
+
+def test_fix_terms_and_is_japanese():
+    assert collect.fix_terms("クロード コード、カーソル、コーデックスの対策") == "Claude Code、Cursor、Codexの対策"
+    assert collect.is_japanese("日本語の説明です") and not collect.is_japanese("An English description")
