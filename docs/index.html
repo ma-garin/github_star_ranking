@@ -11,14 +11,17 @@
 
 <style>
 /* 層: 上部固定ヘッダ（日付ステッパー）→ 本文（表/グラフ/カード）→ 下部固定タブ。ボトムシートで詳細 */
-:root{--bg:#f6f4f9;--card:#ffffff;--line:#e4dfeb;--fg:#1c1824;--mut:#6d6679;--acc:#c77700;--pink:#c2337f;--up:#13894f;--down:#c2412d;--g1:#b8860b;--g2:#7d8593;--g3:#a0623a;--chip:#1c1824;--chipfg:#fff;--grid:#ece8f1}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--up:#5fd39a;--down:#ff7b6b;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c;--chip:#ece9f2;--chipfg:#0f0d14;--grid:#24202d;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--up:#5fd39a;--down:#ff7b6b;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c;--chip:#ece9f2;--chipfg:#0f0d14;--grid:#24202d;color-scheme:dark}
+:root{--bg:#eceff1;--card:#ffffff;--line:#e0e0e0;--fg:#263238;--mut:#546e7a;--acc:#37474f;--pink:#ad1457;--up:#2e7d32;--down:#c62828;--g1:#b8860b;--g2:#78909c;--g3:#a0623a;--chip:#37474f;--chipfg:#fff;--grid:#e6eaec;--hdr:#37474f;--hdrfg:#ffffff;--hdrmut:#cfd8dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12171a;--card:#1b2226;--line:#333c42;--fg:#e2e7ea;--mut:#9dabb3;--acc:#8fa5b0;--pink:#f48fb1;--up:#81c784;--down:#ef9a9a;--g1:#f5c451;--g2:#b0bec5;--g3:#d99a6c;--chip:#8fa5b0;--chipfg:#12171a;--grid:#242c31;--hdr:#1b2226;--hdrfg:#e2e7ea;--hdrmut:#9dabb3;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12171a;--card:#1b2226;--line:#333c42;--fg:#e2e7ea;--mut:#9dabb3;--acc:#8fa5b0;--pink:#f48fb1;--up:#81c784;--down:#ef9a9a;--g1:#f5c451;--g2:#b0bec5;--g3:#d99a6c;--chip:#8fa5b0;--chipfg:#12171a;--grid:#242c31;--hdr:#1b2226;--hdrfg:#e2e7ea;--hdrmut:#9dabb3;color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font:14px/1.6 "Noto Sans JP","Hiragino Sans","Helvetica Neue",Arial,sans-serif;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--hdr)}
 .mockbar{background:var(--acc);color:var(--chipfg);font-size:11px;text-align:center;padding:3px 16px}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px 8px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--hdr);color:var(--hdrfg);border-bottom:1px solid var(--line);padding:10px 16px 8px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+header .eyebrow{color:var(--hdrmut)}header h1 em{color:var(--hdrfg);font-style:normal;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}header .meta{color:var(--hdrmut)}
+header .step span{color:var(--hdrfg)}
+header .ib,header .step button{background:rgba(255,255,255,.14);border-color:transparent;color:var(--hdrfg)}header .step button:disabled{opacity:.35}
 .hrow{display:flex;justify-content:space-between;align-items:center;gap:8px;max-width:860px;margin:0 auto}
 .eyebrow{letter-spacing:.08em;font-size:11px;color:var(--acc)}
 h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:17px;margin:0;text-wrap:balance}h1 em{font-style:normal;color:var(--pink)}
@@ -42,6 +45,10 @@ button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .rrow .wk svg{display:block;margin-left:auto;margin-top:3px}
 .rrow .ds{grid-column:2/4;color:var(--mut);font-size:13px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .set{display:grid;gap:14px}
+.slist{display:block}.sitem{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:14px;font:inherit;color:var(--fg);text-align:left;cursor:pointer;min-height:56px}
+.sitem:last-child{border-bottom:0}.sitem .si{font-size:18px;color:var(--acc);text-align:center}.sitem b{display:block;font-size:14px}.sitem small{color:var(--mut);font-size:11.5px}.chev{color:var(--mut);font-size:20px}
+.sback{background:none;border:0;color:var(--acc);font:inherit;font-size:14px;padding:6px 0 10px;cursor:pointer;min-height:44px}.sph{font-size:17px;margin:0 0 10px}
+.clog{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}.clog:last-child{border-bottom:0}.clog b{display:block;font-size:12px;color:var(--mut)}
 .sgroup h2{font-size:12px;letter-spacing:.1em;color:var(--mut);margin:0 0 6px;font-weight:700}
 .sbox{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .srow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px}
@@ -201,25 +208,21 @@ nav button[aria-selected=true]{color:var(--fg)}nav button[aria-selected=true] b{
     <div id="nfoot"></div>
   </section>
   <section id="v-set" hidden>
-    <div class="set">
-      <div class="sgroup"><h2>表示</h2><div class="sbox">
+    <div class="slist sbox" id="slist"><button class="sitem" data-sp="look"><span class="si">◐</span><span class="st"><b>外観と表示</b><small>テーマ・起動時の画面・ランキングの初期表示</small></span><span class="chev">›</span></button><button class="sitem" data-sp="notify"><span class="si">🔔</span><span class="st"><b>通知</b><small>毎朝の通知のオンオフと時刻（Androidアプリのみ）</small></span><span class="chev">›</span></button><button class="sitem" data-sp="data"><span class="si">⇅</span><span class="st"><b>データ管理</b><small>最新データの取得・既読と保存のリセット</small></span><span class="chev">›</span></button><button class="sitem" data-sp="about"><span class="si">ⓘ</span><span class="st"><b>アプリ情報</b><small>バージョン・最新版の確認・変更履歴</small></span><span class="chev">›</span></button></div>
+    <div class="spage" data-page="look" hidden><button class="sback" data-sp="">‹ 設定</button><h2 class="sph">外観と表示</h2><div class="sbox">
         <div class="srow"><div>テーマ</div><div class="seg3" data-set="theme"><button data-val="auto">自動</button><button data-val="light">ライト</button><button data-val="dark">ダーク</button></div></div>
         <div class="srow"><div>起動時に開く画面</div><div class="seg3" data-set="start"><button data-val="last">前回</button><button data-val="rank">順位</button><button data-val="news">ニュース</button></div></div>
         <div class="srow"><div>ランキングの初期表示</div><div class="seg3" data-set="mode"><button data-val="weekly">週間</button><button data-val="daily">前日比</button></div></div>
-      </div></div>
-      <div class="sgroup"><h2>通知</h2><div class="sbox">
+      </div></div><div class="spage" data-page="notify" hidden><button class="sback" data-sp="">‹ 設定</button><h2 class="sph">通知</h2><div class="sbox">
         <div class="srow"><div>毎朝の通知<small id="ninfo">Androidアプリでのみ有効</small></div><label class="sw"><input type="checkbox" id="nOn" aria-label="毎朝の通知"><span></span></label></div>
         <div class="srow"><div>通知の時刻<small>ランキング06:47・ニュース07:45更新のあと</small></div><input type="time" id="nTime" aria-label="通知の時刻"></div>
-      </div></div>
-      <div class="sgroup"><h2>データ</h2><div class="sbox">
+      </div></div><div class="spage" data-page="data" hidden><button class="sback" data-sp="">‹ 設定</button><h2 class="sph">データ管理</h2><div class="sbox">
         <div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新">↻</button></div>
         <div class="srow"><div>既読と保存をリセット<small id="rinfo">—</small></div><button class="sbtn" id="resetRead">リセット</button></div>
-      </div></div>
-      <div class="sgroup"><h2>このアプリについて</h2><div class="sbox">
+      </div></div><div class="spage" data-page="about" hidden><button class="sback" data-sp="">‹ 設定</button><h2 class="sph">アプリ情報</h2><div class="sbox">
         <div class="srow"><div>AI Daily<small id="ver">—</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
-        <div class="srow"><div>最新版の確認<small id="upd">アプリ版のみ。押したときだけ確認します</small></div><button class="chip" id="checkUpd" style="min-height:44px">確認する</button></div>
-      </div></div>
-    </div>
+        <div class="srow"><div>最新版の確認<small id="upd">アプリ版のみ。押したときだけ確認します</small></div><button class="chip" id="checkUpd" style="min-height:44px;white-space:nowrap">確認する</button></div>
+      </div><div class="sgroup" style="margin-top:14px"><h2>変更履歴</h2><div class="sbox" id="changelog"></div></div></div>
   </section>
 </main>
 
@@ -382,12 +385,12 @@ document.addEventListener("click",e=>{
 const WD="日月火水木金土";
 function jdate(d,full){if(!d)return "";const [y,m,dd]=d.split("-").map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return full?`${m}月${dd}日（${w}）`:`${m}/${dd}（${w}）`}
 function head(){
-  const T={rank:["毎朝6:47更新","<em>スター</em>獲得ランキング"],trend:["日ごとの変化","<em>推移</em>と傾向"],news:["毎朝7:45更新","<em>AI</em>ニュース"],set:["アプリの設定","設定"]}[view];
+  const T={rank:["毎朝6:47更新","<em>スター</em>獲得ランキング"],trend:["日ごとの変化","<em>推移</em>と傾向"],news:["毎朝7:45更新","<em>AI</em>ニュース"],set:["","設定"]}[view];
   $("#eyebrow").textContent=T[0];$("#title").innerHTML=T[1];
-  const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";
+  const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";$("#reload").style.visibility=view==="set"?"hidden":"visible";
   $("#day").textContent=jdate(DAYS[di]);
   $("#prev").disabled=di<=0;$("#next").disabled=di>=DAYS.length-1;
-  $("#meta").textContent=view==="set"?"表示・通知・データの設定":N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
+  $("#meta").textContent=view==="set"?"":N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
     :`${jdate(DAYS[di],1)}の集計 ・ ${D.pool_size??"—"}件を追跡`+(navigator.onLine?"":" ・ オフライン（前回のデータ）");
 }
 function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="news")renderNews();if(view==="set")renderSet()}
@@ -449,6 +452,16 @@ async function checkUpdate(){
     if(latest&&BUILD&&latest>BUILD){$("#upd").innerHTML=`新しい版 #${latest} があります。<a class="gh" style="margin:0" href="https://github.com/ma-garin/github_star_ranking/releases/latest/download/ai-daily.apk">ダウンロード</a>（上書きインストールできます）`}
     else $("#upd").textContent=latest?`最新版です（#${BUILD??latest}）`:"版を判定できませんでした";
   }catch(e){$("#upd").textContent="通信できませんでした。接続を確認してください"}}
+const CHANGELOG=[
+ ["11月1日","家計簿アプリと同じ配布方式（固定署名・画面同梱・最新版の確認）。家計簿アプリと同じ配色と設定画面"],
+ ["11月1日","設定画面、ライト／ダーク切替、概要の完全日本語化、読み込み中・エラー・オフライン表示、引っ張って更新"],
+ ["11月1日","Androidアプリ（毎朝の通知）、ランキングの実データ化、AIニュースの4日分"],
+ ["10月31日","GitHubスター獲得ランキング（週間・前日比Top30）の毎朝集計を開始"]];
+let SPAGE="";
+function showSetPage(k){SPAGE=k;$("#slist").hidden=!!k;document.querySelectorAll(".spage").forEach(p=>p.hidden=p.dataset.page!==k);
+  $("#changelog").innerHTML=CHANGELOG.map(([d,t])=>`<div class="clog"><b>${d}</b>${esc(t)}</div>`).join("");window.scrollTo(0,0)}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-sp]");if(b&&b.closest("#v-set")){showSetPage(b.dataset.sp);if(b.dataset.sp)history.pushState({sp:1},"")}});
+window.addEventListener("popstate",()=>{if(view==="set"&&SPAGE)showSetPage("")});
 function renderSet(){
   document.querySelectorAll("[data-set]").forEach(g=>g.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",SET[g.dataset.set]===b.dataset.val)));
   $("#nOn").checked=SET.nOn;$("#nTime").value=SET.nTime;$("#nTime").disabled=!SET.nOn;
