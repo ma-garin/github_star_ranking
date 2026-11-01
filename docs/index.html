@@ -19,16 +19,16 @@ body{background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,"Hiragino 
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 .mockbar{background:var(--acc);color:var(--chipfg);font-size:11px;text-align:center;padding:3px 16px}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px 8px}
-.hrow{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;max-width:860px;margin:0 auto}
-.eyebrow{letter-spacing:.3em;font-size:10px;color:var(--acc)}
-h1{font-size:17px;margin:0;text-wrap:balance}h1 em{font-style:normal;color:var(--pink)}
+.hrow{display:flex;justify-content:space-between;align-items:center;gap:8px;max-width:860px;margin:0 auto}
+.eyebrow{letter-spacing:.08em;font-size:11px;color:var(--acc)}
+h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:17px;margin:0;text-wrap:balance}h1 em{font-style:normal;color:var(--pink)}
 .meta{color:var(--mut);font-size:12px;max-width:860px;margin:2px auto 0}
 .step{display:flex;align-items:center;gap:2px;font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
-.step button{background:var(--card);border:1px solid var(--line);color:var(--fg);width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer}
+.step button{background:var(--card);border:1px solid var(--line);color:var(--fg);width:44px;height:44px;border-radius:8px;font-size:15px;cursor:pointer}
 .step button:disabled{opacity:.35;cursor:default}.step span{padding:0 6px}
 main{max-width:860px;margin:0 auto;padding:12px 16px}
 .seg{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:none;color:var(--mut);padding:5px 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.chip{border:1px solid var(--line);background:none;color:var(--mut);padding:10px 14px;min-height:44px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
 .chip[aria-pressed=true]{background:var(--chip);color:var(--chipfg);border-color:var(--chip)}
 button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 /* ランキング表 */
@@ -55,8 +55,14 @@ button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 .srow input[type=time]{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:5px 8px;font:inherit}
 .sbtn{background:none;border:0;color:var(--down);font:inherit;font-size:14px;cursor:pointer;padding:0}
 .toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--chip);color:var(--chipfg);padding:8px 14px;border-radius:999px;font-size:13px;z-index:30}
+.sk .no b,.sk i{display:block;background:var(--line);border-radius:6px;animation:pulse 1.2s ease-in-out infinite}
+.sk .no b{height:18px;width:20px;margin:0 auto}.sk .nm i{height:15px;width:60%;margin-bottom:6px}.sk .nm i.s{width:40%;height:11px}.sk .wk i{height:15px;width:60px}.sk .ds i{height:12px;width:90%}
+@keyframes pulse{50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.sk i,.sk .no b{animation:none}}
+.ptr{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:50%;transform:translateX(-50%);background:var(--chip);color:var(--chipfg);font-size:12px;padding:6px 12px;border-radius:999px;opacity:0;z-index:20;pointer-events:none;transition:opacity .15s}
+.hrow>div:first-child{min-width:0;flex:1}
 .tools{display:flex;gap:4px;align-items:center}
-.ib{background:var(--card);border:1px solid var(--line);color:var(--fg);width:32px;height:32px;border-radius:8px;font-size:15px;cursor:pointer}
+.ib{background:var(--card);border:1px solid var(--line);color:var(--fg);width:44px;height:44px;border-radius:8px;font-size:15px;cursor:pointer}
 .q{flex:1;min-width:120px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px}
 table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px}
 thead th{color:var(--mut);font-weight:600;text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);font-size:11px}
@@ -245,18 +251,18 @@ function spark(arr,w=64,h=18){
 }
 function mv(cur,prev){
   if(di===0)return `<span class="mv eq">―</span>`;
-  if(prev==null)return `<span class="mv new">NEW</span>`;
+  if(prev==null)return `<span class="mv new">新</span>`;
   const d=prev-cur;return d>0?`<span class="mv up">↑${d}</span>`:d<0?`<span class="mv dn">↓${-d}</span>`:`<span class="mv eq">―</span>`;
 }
 function streak(n,i){let c=0;for(let j=i;j>=0;j--){if((D.ranks[DAYS[j]]||[]).some(r=>r.full_name===n))c++;else break}return c}
 function renderRank(){
   const q=($("#q").value||"").trim().toLowerCase();
-  const rows=listAt(di).filter(r=>!q||(r.full_name+" "+(r.summary_ja||"")+" "+(r.description||"")).toLowerCase().includes(q)), pv=rankMap(di-1);
+  const rows=listAt(di).filter(r=>!q||(r.full_name+" "+(r.summary_ja||"")).toLowerCase().includes(q)), pv=rankMap(di-1);
   $("#rows").innerHTML=rows.map(r=>{const [o,n]=r.full_name.split("/");
     return `<li class="rrow r${r.rank}" data-n="${esc(r.full_name)}"><div class="no"><b>${r.rank}</b>${mv(r.rank,pv[r.full_name])}</div>
     <div class="nm"><b>${esc(n)}</b><small>${esc(o)}${r.language?" · "+esc(r.language):""} · 累計 ${k(r.stars)}</small></div>
     <div class="wk"><b>+${fmt(r.delta)}${r.basis==="trending"?"†":r.basis==="new"?"★":""}<small style="color:var(--mut);font-weight:400;font-size:11px">/${mode==="weekly"?"週":"日"}</small></b>${gains(starsOf(r.full_name,di)).filter(x=>x!=null).length>=2?spark(gains(starsOf(r.full_name,di)).slice(-13)):""}</div>
-    <div class="ds">${esc(r.summary_ja||r.description||"説明なし")}</div></li>`}).join("")||`<li class="empty2">${q?"該当するリポジトリはありません":"この日のデータはありません"}</li>`;
+    <div class="ds">${esc(r.summary_ja||"日本語の概要を準備中です")}</div></li>`}).join("")||`<li class="empty2">${q?"該当するリポジトリはありません":"この日のデータはありません"}</li>`;
 }
 function renderTrend(){
   const from=Math.max(0,di-7), idx=[];for(let i=from;i<=di;i++)idx.push(i);
@@ -295,7 +301,7 @@ function openSheet(n){
   const r=listAt(di).find(x=>x.full_name===n)||(D.ranks[DAYS[di]]||[]).find(x=>x.full_name===n);if(!r)return;
   const w=Math.min(600,window.innerWidth)-32, st=starsOf(n,di), lab=DAYS.slice(0,di+1);
   $("#sheetin").innerHTML=`<div class="shead"><div><small style="color:var(--mut)">${esc(r.language||"")}</small><h3>${esc(n)}</h3></div><button class="x" aria-label="閉じる" onclick="closeSheet()">×</button></div>
-   <p style="margin:6px 0">${esc(r.summary_ja||r.description)}</p>
+   <p style="margin:6px 0">${esc(r.summary_ja||"日本語の概要を準備中です")}</p>
    <div class="stats"><div><small>順位</small><b>${r.rank}位</b></div><div><small>+${mode==="weekly"?"週":"日"}</small><b>${fmt(r.delta)}</b></div><div><small>累計</small><b>${k(r.stars)}</b></div><div><small>連続</small><b>${streak(n,di)}日</b></div></div>
    <div class="card"><h2>累計スター</h2><div class="sub">${lab.length}日</div>${lineChart(st,{w:w-30,h:150,labels:lab})}</div>
    <div class="card"><h2>日別の獲得スター</h2><div class="sub">${lab.length-1}日</div>${lineChart(gains(st),{w:w-30,h:130,bars:true,labels:lab.slice(1)})}</div>
@@ -310,7 +316,7 @@ new MutationObserver(()=>{if(!$("#sheet").hidden)_openSheetEl()}).observe($("#sh
 // テーマ: 自動 → ライト → ダーク
 const THEMES=["auto","light","dark"],TLABEL={auto:"◐",light:"☀",dark:"☾"};
 
-$("#reload").onclick=async()=>{$("#reload").textContent="…";try{const nd=await (await fetch("data/app.json",{cache:"no-store"})).json();D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render()}catch(e){}$("#reload").textContent="↻"};
+$("#reload").onclick=async()=>{$("#reload").textContent="…";try{const nd=await loadData();if(!nd)throw 0;D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render()}catch(e){}$("#reload").textContent="↻"};
 $("#q").oninput=()=>renderRank();
 $("#sheet").onclick=e=>{if(e.target.id==="sheet")closeSheet()};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
@@ -372,14 +378,16 @@ document.addEventListener("click",e=>{
   if(q("[data-sv]")){const id=q("[data-sv]").dataset.sv;FAV[id]?delete FAV[id]:FAV[id]=1;save("fav",FAV);openNews(order(ND[ni].items)[cur].no);return}
   if(q("[data-close]"))closeSheet();
 });
+const WD="日月火水木金土";
+function jdate(d,full){if(!d)return "";const [y,m,dd]=d.split("-").map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return full?`${m}月${dd}日（${w}）`:`${m}/${dd}（${w}）`}
 function head(){
-  const T={rank:["LEADERBOARD","GitHub <em>スター</em>獲得ランキング"],trend:["TRENDS","<em>推移</em>と傾向"],news:["DAILY BRIEFING","<em>AI</em>ニュース"],set:["SETTINGS","設定"]}[view];
+  const T={rank:["毎朝6:47更新","<em>スター</em>獲得ランキング"],trend:["日ごとの変化","<em>推移</em>と傾向"],news:["毎朝7:45更新","<em>AI</em>ニュース"],set:["アプリの設定","設定"]}[view];
   $("#eyebrow").textContent=T[0];$("#title").innerHTML=T[1];
   const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";
-  $("#day").textContent=(DAYS[di]||"").slice(5).replace("-","/");
+  $("#day").textContent=jdate(DAYS[di]);
   $("#prev").disabled=di<=0;$("#next").disabled=di>=DAYS.length-1;
   $("#meta").textContent=view==="set"?"表示・通知・データの設定":N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
-    :`${DAYS[di]} 集計 ・ 追跡 ${D.pool_size??"—"} リポジトリ`;
+    :`${jdate(DAYS[di],1)}の集計 ・ ${D.pool_size??"—"}件を追跡`+(navigator.onLine?"":" ・ オフライン（前回のデータ）");
 }
 function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="news")renderNews();if(view==="set")renderSet()}
 function setView(v){view=v;document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
@@ -387,14 +395,28 @@ function setView(v){view=v;document.querySelectorAll("nav button").forEach(b=>b.
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
 $("#prev").onclick=()=>{di--;render()};$("#next").onclick=()=>{di++;render()};
 window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
-(async()=>{
-  try{D=await (await fetch("data/app.json",{cache:"no-store"})).json()}catch(e){D=null}
-  if(!D){$("#meta").textContent="データを読み込めませんでした。通信状態を確認して再読み込みしてください";return}
+async function loadData(){
+  try{const r=await fetch("data/app.json",{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();try{localStorage.setItem("app-cache",JSON.stringify(j))}catch(e){}return j}
+  catch(e){try{const c=localStorage.getItem("app-cache");if(c)return JSON.parse(c)}catch(_){}return null}
+}
+function showLoading(){$("#rows").innerHTML=Array.from({length:6},()=>`<li class="rrow sk"><div class="no"><b>&nbsp;</b></div><div class="nm"><i></i><i class="s"></i></div><div class="wk"><i></i></div><div class="ds"><i></i></div></li>`).join("");$("#meta").textContent="読み込み中…"}
+function showError(){$("#rows").innerHTML=`<li class="empty2">データを読み込めませんでした。<br>通信状態を確認してください。<br><button class="chip" id="retry" style="margin-top:12px">もう一度読み込む</button></li>`;$("#meta").textContent="読み込みに失敗しました";$("#retry").onclick=boot}
+async function boot(){
+  showLoading();D=await loadData();
+  if(!D){showError();return}
   DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;
   mode=SET.mode;document.querySelectorAll("#v-rank .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===mode));
   let v0=SET.start==="last"?"rank":SET.start;if(SET.start==="last")try{v0=localStorage.getItem("view")||"rank"}catch(e){}
   if(["rank","trend","news","set"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
   setView(v0);
+}
+boot();
+window.addEventListener("online",()=>{if(D)render()});window.addEventListener("offline",()=>{if(D)render()});
+// 画面の一番上で下に引っ張ると更新
+(()=>{let y0=null,pulled=false;const ind=document.createElement("div");ind.className="ptr";ind.textContent="離すと更新";document.body.appendChild(ind);
+  addEventListener("touchstart",e=>{if(scrollY<=0&&$("#sheet").hidden)y0=e.touches[0].clientY},{passive:true});
+  addEventListener("touchmove",e=>{if(y0==null)return;const d=e.touches[0].clientY-y0;pulled=d>70;ind.style.opacity=Math.min(1,d/70);ind.textContent=pulled?"離すと更新":"下に引っ張って更新"},{passive:true});
+  addEventListener("touchend",async()=>{ind.style.opacity=0;if(pulled){ind.textContent="更新中…";ind.style.opacity=1;const nd=await loadData();if(nd){D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render()}setTimeout(()=>ind.style.opacity=0,400)}y0=null;pulled=false});
 })();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.Capacitor)navigator.serviceWorker.register("sw.js");
 // 設定（端末ごとに保存）
@@ -404,7 +426,11 @@ try{const t=localStorage.getItem("theme");if(t&&!localStorage.getItem("settings"
 const saveSet=()=>{try{localStorage.setItem("settings",JSON.stringify(SET))}catch(e){}};
 const isApp=()=>{const C=window.Capacitor;return !!(C&&C.isNativePlatform&&C.isNativePlatform())};
 function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),1800)}
-function applyTheme(t){if(t==="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
+function applyTheme(t){if(t==="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t;
+  // Android アプリではステータスバーの色を画面に合わせる
+  try{if(isApp()){const SB=window.Capacitor.Plugins.StatusBar;if(SB){const bg=getComputedStyle(document.body).backgroundColor;const m=bg.match(/\d+/g)||[255,255,255];const hex="#"+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,"0")).join("");
+    const dark=(+m[0]+ +m[1]+ +m[2])<384;SB.setBackgroundColor({color:hex});SB.setStyle({style:dark?"DARK":"LIGHT"})}}}catch(e){}}
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>applyTheme(SET.theme));
 async function scheduleNotify(){if(!isApp())return "app";
   try{const LN=window.Capacitor.Plugins.LocalNotifications;await LN.cancel({notifications:[{id:1}]}).catch(()=>{});
     if(!SET.nOn)return "off";
