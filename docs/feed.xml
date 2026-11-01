@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel><title>GitHub Star Ranking</title><link>https://github.com/ma-garin/github_star_ranking</link><description>GitHubスター獲得ランキング（週間Top30）</description><item><title>GitHub週間スター獲得Top30 2026-11-01</title><link>https://github.com/ma-garin/github_star_ranking/blob/main/reports/2026-11-01.md</link><guid isPermaLink="false">star-ranking-2026-11-01</guid><pubDate>Sun, 01 Nov 2026 11:14:09 +0900</pubDate><description>1. debpalash/VoiceStudio　+12,294/週
+<rss version="2.0"><channel><title>GitHub Star Ranking</title><link>https://github.com/ma-garin/github_star_ranking</link><description>GitHubスター獲得ランキング（週間Top30）</description><item><title>GitHub週間スター獲得Top30 2026-11-01</title><link>https://github.com/ma-garin/github_star_ranking/blob/main/reports/2026-11-01.md</link><guid isPermaLink="false">star-ranking-2026-11-01</guid><pubDate>Sun, 01 Nov 2026 11:30:28 +0900</pubDate><description>1. debpalash/VoiceStudio　+12,294/週
 　 VoiceStudio は、オープンソースで完全にローカルな イレブンラボの代替製品であり、646 言語で音声クローン、音声デザイン、ビデオ ダビング、ディクテ
 2. Nutlope/hallmark　+12,062/週
 　 クロード コード、カーソル、コーデックスの AI スロップ対策設計スキル。
@@ -15,7 +15,7 @@
 　 DeepSeek ハーネス アーマー破壊: すべてのモデルがアーマーを破壊できるようになります。異なるモデルを異なるプロンプト単語に置き換えることができます。デ
 8. affaan-m/ECC　+6,380/週
 　 エージェントハーネスパフォーマンス最適化システム。クロード コード、コーデックス、オープンコード、カーソルなどのスキル、本能、記憶力、セキュリティ、研究優先の開
-9. unclebob/ub-mode　+5,837/週
+9. unclebob/ub-mode　+5,843/週
 10. Graphify-Labs/graphify　+5,802/週
 　 ドキュメント、SQL スキーマ、構成、PDF を含むあらゆるコードベースを、クエリ可能なナレッジ グラフに変換します。 Claude Code、Cursor、C
 11. JetBrains/thinkrail　+5,738/週
@@ -34,7 +34,7 @@
 　 コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック
 18. AgriciDaniel/claude-seo　+4,814/週
 　 Claude Code のユニバーサル SEO スキル。テクニカル SEO、E-E-A-T、スキーマ、GEO/AEO、エージェントの準備状況 (Lighthou
-19. anhao/ai-pose-gallery-zh　+4,712/週
+19. anhao/ai-pose-gallery-zh　+4,720/週
 　 中国語版 AI 姿勢リファレンス ギャラリー · 1439 グループ / 2878 枚の写真 / 完全な中国語版 · ゼロ依存静的ギャラリー
 20. thedotmack/claude-mem　+4,575/週
 　 すべてのエージェントのセッション全体で永続的なコンテキスト – セッション中のエージェントの行動をすべてキャプチャし、AI で圧縮して、関連するコンテキストを将
@@ -47,16 +47,16 @@
 24. Donchitos/Claude-Code-Game-Studios　+3,788/週
 　 Claude Code を完全なゲーム開発スタジオに変えます。49 の AI エージェント、72 のワークフロー スキル、実際のスタジオ階層を反映した完全な調整
 25. pingdotgg/t3code　+3,718/週
-26. heydamir/unslop　+3,566/週
+26. heydamir/unslop　+3,585/週
 　 バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル
 27. nightly-labs/openbot　+3,533/週
 　 永続的な AI チームメイトのためのローカルファーストのデスクトップ ワークスペース。専用のワークスペース、タスク キュー、ファイル共有、ブラウザ制御、エージェ
 28. xerj-org/xerj　+2,910/週
 　 AI 検索エンジンとボットおよびエージェント用の MCP サーバー。 1 つの Rust バイナリ インデックスは、BM25 フルテキスト、ベクターおよびハイブ
-29. anomalyco/opencode　+2,880/週
-　 オープンソースのコーディング エージェント。
-30. deepseek-ai/dsh-superagent-prototype　+2,815/週
-　 より自律的なエージェント システムに向けて</description></item><item><title>GitHub週間スター獲得Top30 2026-10-31</title><link>https://github.com/ma-garin/github_star_ranking/blob/main/reports/2026-10-31.md</link><guid isPermaLink="false">star-ranking-2026-10-31</guid><pubDate>Sat, 31 Oct 2026 23:56:25 +0900</pubDate><description>1. debpalash/VoiceStudio　+12,910/週
+29. deepseek-ai/dsh-superagent-prototype　+2,897/週
+　 より自律的なエージェント システムに向けて
+30. anomalyco/opencode　+2,880/週
+　 オープンソースのコーディング エージェント。</description></item><item><title>GitHub週間スター獲得Top30 2026-10-31</title><link>https://github.com/ma-garin/github_star_ranking/blob/main/reports/2026-10-31.md</link><guid isPermaLink="false">star-ranking-2026-10-31</guid><pubDate>Sat, 31 Oct 2026 23:56:25 +0900</pubDate><description>1. debpalash/VoiceStudio　+12,910/週
 　 VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloni
 2. cloudflare/security-audit-skill　+12,838/週
 　 A coding-agent skill for multi-phase security audits with independently verified
