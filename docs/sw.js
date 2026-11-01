@@ -1,4 +1,4 @@
-const SHELL = "ai-daily-v1";
+const SHELL = "ai-daily-v2";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(SHELL).then(c => c.addAll(ASSETS))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== SHELL).map(k => caches.delete(k))))); self.clients.claim(); });

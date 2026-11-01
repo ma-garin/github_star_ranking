@@ -1,0 +1,96 @@
+{
+ "date": "2026-10-30",
+ "weekday": "金",
+ "period": "10/29 8:00 〜 10/30 8:00 JST",
+ "memo": "Google Q3 決算（AI Mode の収益化減速）は基準外のため見送り。1・2 の openai.com ページは自動取得がブロックされたため本文未確認（公式 RSS の掲載情報のみで記載）",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
+ "items": [
+  {
+   "category": "◇",
+   "company": "OpenAI",
+   "title": "OpenAI、フロンティアモデルの不整合検知手法を公開",
+   "summary": "OpenAI が「How we detect frontier model misalignment」を公開。モデルの不整合や許可されていないエージェント行動を多層的に監視する仕組みを説明。",
+   "impact": "エージェントの挙動監視を「運用時の多層チェック」として設計する際の公式リファレンスになる。",
+   "qa": "不整合・逸脱行動の検知観点は、そのままエージェント受け入れテストの観点表に転用できる。",
+   "basis": "基準6（エージェント安全性・監視の記事）／初報",
+   "sources": [
+    {
+     "name": "OpenAI",
+     "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment"
+    }
+   ],
+   "mine": true,
+   "single": false,
+   "related": "AIエージェント基盤（監視）／QA4AI — 監視レイヤの設計と評価観点を一次情報で補強できる",
+   "no": 1,
+   "try": "◯"
+  },
+  {
+   "category": "▲",
+   "company": "OpenAI",
+   "title": "OpenAI、Model Spec を更新",
+   "summary": "OpenAI がモデルの振る舞いを定める Model Spec を更新。AIの判断と意図を導く5つの中核価値を整理し直した。",
+   "impact": "ChatGPT・API のモデルが「何を優先して応答するか」の公式基準が変わり、安全性・拒否挙動の期待値を見直す必要がある。",
+   "qa": "Model Spec は LLM 出力の合否基準（期待動作）の一次ソース。評価セットの期待値を更新版に合わせて点検したい。",
+   "basis": "基準5（安全性に関する公式発表）／初報",
+   "sources": [
+    {
+     "name": "OpenAI",
+     "url": "https://openai.com/index/updated-model-spec"
+    }
+   ],
+   "mine": false,
+   "single": false,
+   "related": "",
+   "no": 2,
+   "try": "◯"
+  },
+  {
+   "category": "○",
+   "company": "Anthropic",
+   "title": "Claude API、利用量・コスト分析 API（beta）を公開",
+   "summary": "Claude API に Usage and Cost Analytics API（beta）が追加。従来の Usage/Cost API はレガシー扱い（提供は継続）になった。",
+   "impact": "利用量・コストの取得は新 API への移行が前提になる。既存の集計スクリプトはレガシー API 依存のままにしない方がよい。",
+   "qa": "エージェント実行ごとのトークン消費・コストを自動集計でき、回帰テストの「コスト退行」検知に使える。",
+   "basis": "基準2（API 変更・旧 API のレガシー化）／初報",
+   "sources": [
+    {
+     "name": "Claude Docs（Analytics API）",
+     "url": "https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api"
+    },
+    {
+     "name": "Claude Docs（旧 API）",
+     "url": "https://platform.claude.com/docs/en/manage-claude/usage-cost-api"
+    }
+   ],
+   "mine": true,
+   "single": false,
+   "related": "AIエージェント基盤（監視） — 監視ダッシュボードのコスト指標を公式 API から直接取れる",
+   "no": 3,
+   "try": "◯"
+  },
+  {
+   "category": "○",
+   "company": "OpenAI",
+   "title": "ChatGPT Pro・Business プランで API 利用が可能に",
+   "summary": "ChatGPT の Pro・Business プランに、月最大500ドル分の API 利用枠が含まれると報道。",
+   "impact": "別途 API 課金を組まなくても、既存プランの範囲で API 検証を始められる。",
+   "qa": "検証用の小規模 API 利用（テストデータ生成・評価スクリプト）を既存契約内で回せる可能性がある。",
+   "basis": "基準2（料金・プラン変更）／初報",
+   "sources": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2610/29/2000002728/"
+    }
+   ],
+   "mine": false,
+   "single": true,
+   "related": "",
+   "no": 4,
+   "try": "◯"
+  }
+ ],
+ "updated": "07:50"
+}

@@ -2,26 +2,35 @@
  "date": "2026-11-01",
  "weekday": "日",
  "period": "10/31 8:00 〜 11/1 8:00 JST",
+ "memo": "Claude Enterprise の新機能3つ（Smart reports / In-app surveys / Pooled group budgets）は発表が10/28で24時間超のため見送り",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
  "items": [
   {
-   "no": 1,
    "category": "□",
-   "category_label": "資金",
+   "company": "OpenAI",
    "title": "OpenAI、資金調達の目標を300億ドルから約200億ドルに縮小",
-   "mine": false,
-   "single": false,
    "summary": "FT・WSJの報道として、OpenAIが進行中の調達ラウンドで目標300億ドルの半分未満（約110億ドル）のコミットしか確保できず、目標を約200億ドル（評価額約1.25兆ドル）に引き下げたと伝えられた。",
    "impact": "当面のAPI・製品には直接影響なし。ただし計算資源投資の減速やコスト転嫁（料金・レート制限）の動きは今後要注意。",
    "qa": "特定ベンダー依存のリスク評価材料。エージェント基盤の設計ではモデル差し替え可能な抽象化を前提にしておくのが安全。",
-   "related": "",
    "basis": "基準3（1億ドル超の大型資金調達）／初報",
-   "try": "×",
    "sources": [
-    {"name": "Startup Fortune", "url": "https://startupfortune.com/openai-cuts-its-funding-round-target-by-10-billion-dollars-amid-market-jitters/"},
-    {"name": "TechBooky", "url": "https://www.techbooky.com/openai-cuts-funding-target-to-20b-as-report-puts-commitments-near-11b/"}
-   ]
+    {
+     "name": "Startup Fortune",
+     "url": "https://startupfortune.com/openai-cuts-its-funding-round-target-by-10-billion-dollars-amid-market-jitters/"
+    },
+    {
+     "name": "TechBooky",
+     "url": "https://www.techbooky.com/openai-cuts-funding-target-to-20b-as-report-puts-commitments-near-11b/"
+    }
+   ],
+   "mine": false,
+   "single": false,
+   "related": "",
+   "no": 1,
+   "try": "×"
   }
  ],
- "memo": "Claude Enterprise の新機能3つ（Smart reports / In-app surveys / Pooled group budgets、ITmedia 10/31 記事）は発表が10/28で24時間超のため見送り",
- "failures": ["ChatGPTリリースノート"]
+ "updated": "07:48"
 }

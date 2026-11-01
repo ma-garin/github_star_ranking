@@ -65,3 +65,17 @@ def test_ranking_lines_two_rows_per_repo():
     rows = [{**repo("o/r", 10), "url": "https://g/o/r", "delta": 1234, "rank": 1, "description": "A tool", "summary_ja": "ツール"}]
     assert collect.ranking_lines(rows, links=True) == ["1. <https://g/o/r|o/r>　+1,234/週", "　 ツール"]
     assert collect.ranking_lines([{**rows[0], "summary_ja": ""}], links=False)[1] == "　 A tool"
+
+
+def test_build_app_data(tmp_path, monkeypatch):
+    import json
+    data = tmp_path / "docs" / "data"; (data / "news").mkdir(parents=True); snap = tmp_path / "snap"; snap.mkdir()
+    for d, st in (("2026-10-31", 100), ("2026-11-01", 130)):
+        (data / f"{d}.json").write_text(json.dumps({"weekly": [{**repo("o/r", st), "rank": 1, "delta": 5}], "daily": []}))
+        (snap / f"{d}.json").write_text(json.dumps({"o/r": st}))
+    (data / "news" / "2026-11-01.json").write_text(json.dumps({"date": "2026-11-01", "items": []}))
+    (data / "latest.json").write_text(json.dumps({"pool_size": 3}))
+    monkeypatch.setattr(collect, "DOCS_DATA", data); monkeypatch.setattr(collect, "SNAP_DIR", snap)
+    collect.build_app_data()
+    a = json.loads((data / "app.json").read_text())
+    assert a["dates"] == ["2026-10-31", "2026-11-01"] and a["series"]["o/r"] == [100, 130] and len(a["news"]) == 1
