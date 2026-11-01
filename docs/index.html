@@ -340,7 +340,14 @@ window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
   if(["rank","trend","news"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
   setView(v0);
 })();
-if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js");
+if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.Capacitor)navigator.serviceWorker.register("sw.js");
+// Android アプリ（Capacitor）内で開かれたときだけ、毎朝 07:55 の通知を登録する
+(async()=>{try{const C=window.Capacitor;if(!C||!C.isNativePlatform||!C.isNativePlatform())return;
+  const LN=C.Plugins.LocalNotifications;const p=await LN.requestPermissions();if(p.display!=="granted")return;
+  await LN.cancel({notifications:[{id:1}]}).catch(()=>{});
+  await LN.schedule({notifications:[{id:1,title:"AI Daily",body:"今日のAIニュースとGitHubランキングが届いています",schedule:{on:{hour:7,minute:55},repeats:true,allowWhileIdle:true}}]});
+}catch(e){console.log("notify",e)}})();
+
 
 </script>
 </body>
