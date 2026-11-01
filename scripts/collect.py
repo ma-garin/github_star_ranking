@@ -235,7 +235,7 @@ def summarize(rows: list[dict]) -> None:
                     cache[r["full_name"]] = ja
         save_json(SUMMARY_FILE, cache)
     for r in rows:
-        r["summary_ja"] = cache.get(r["full_name"], "")
+        r["summary_ja"] = fix_terms(cache.get(r["full_name"], ""))
 
 
 # ---------------------------------------------------------------- 出力
@@ -304,7 +304,7 @@ def write_feed(days: int = 14) -> None:
         items.append(
             f"<item><title>{_x('GitHub週間スター獲得Top30 ' + d['date'])}</title>"
             f"<link>{report}</link><guid isPermaLink=\"false\">star-ranking-{d['date']}</guid>"
-            f"<pubDate>{dt.datetime.fromisoformat(d['generated_at']).strftime('%a, %d %b %Y %H:%M:%S %z')}</pubDate>"
+            f"<pubDate>{dt.datetime.fromisoformat(d['date'] + 'T06:47:00+09:00').strftime('%a, %d %b %Y %H:%M:%S %z')}</pubDate>"
             f"<description>{_x(chr(10).join(lines))}</description></item>")
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>'
            "<title>GitHub Star Ranking</title>"
