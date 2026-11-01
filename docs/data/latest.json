@@ -3,35 +3,35 @@
   {
    "basis": "snapshot",
    "created_at": "2026-02-08T23:46:22Z",
-   "delta": 1648,
+   "delta": 1649,
    "description": "",
    "full_name": "pingdotgg/t3code",
    "language": "TypeScript",
    "rank": 1,
-   "stars": 35726,
+   "stars": 35727,
    "url": "https://github.com/pingdotgg/t3code"
   },
   {
    "basis": "snapshot",
    "created_at": "2026-04-14T00:51:32Z",
-   "delta": 1329,
+   "delta": 1331,
    "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
    "full_name": "morluto/rea",
    "language": "TypeScript",
    "rank": 2,
-   "stars": 415712,
+   "stars": 415714,
    "summary_ja": "アプリの動作からネイティブ バイナリに至るまで、エージェントを使用してあらゆるものをリバース エンジニアリングします。",
    "url": "https://github.com/morluto/rea"
   },
   {
    "basis": "snapshot",
    "created_at": "2026-10-29T15:41:21Z",
-   "delta": 873,
+   "delta": 874,
    "description": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface",
    "full_name": "heydamir/unslop",
    "language": "JavaScript",
    "rank": 3,
-   "stars": 3585,
+   "stars": 3586,
    "url": "https://github.com/heydamir/unslop"
   },
   {
@@ -49,12 +49,12 @@
   {
    "basis": "snapshot",
    "created_at": "2026-09-13T16:31:06Z",
-   "delta": 808,
+   "delta": 810,
    "description": "Open-source skills for designing and reviewing software with AI agents",
    "full_name": "google/elephant-goldfish-model",
    "language": "Python",
    "rank": 5,
-   "stars": 7865,
+   "stars": 7867,
    "summary_ja": "AI エージェントを使用してソフトウェアを設計およびレビューするためのオープンソース スキル",
    "url": "https://github.com/google/elephant-goldfish-model"
   },
@@ -106,35 +106,35 @@
   {
    "basis": "snapshot",
    "created_at": "2026-09-24T16:17:19Z",
-   "delta": 528,
+   "delta": 529,
    "description": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
    "full_name": "Ebony-Vinyl/dsh-our-free-model",
    "language": "JavaScript",
    "rank": 10,
-   "stars": 54473,
+   "stars": 54474,
    "summary_ja": "このプラグインを dsh にインストールするだけで、ログイン、登録、API キーの入力なしで、DeepSeek V4.1 Flash や Kim K3 などの最先端モデルを完全に無料かつ無制限に使用できます。このプラグインを dsh にインストールするだけです。ログイン、サインアップ、API キーは必要ありません。DeepSeek V4.1 Flash や Kim K3 など、フロンティア モデルがすぐそこにあります。完全に無料で、使用量の上限はありません。",
    "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
   },
   {
    "basis": "snapshot",
    "created_at": "2026-04-09T21:40:26Z",
-   "delta": 502,
+   "delta": 504,
    "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
    "full_name": "debpalash/VoiceStudio",
    "language": "Python",
    "rank": 11,
-   "stars": 96925,
+   "stars": 96927,
    "url": "https://github.com/debpalash/VoiceStudio"
   },
   {
    "basis": "snapshot",
    "created_at": "2026-10-17T08:12:35Z",
-   "delta": 493,
+   "delta": 494,
    "description": "Debloat any Android or Google TV over Wi-Fi and get an Apple TV-style home.",
    "full_name": "Gathin23/cleanyourtv",
    "language": "Python",
    "rank": 12,
-   "stars": 47997,
+   "stars": 47998,
    "summary_ja": "Wi-Fi 経由で Android または Google TV を削除し、Apple TV スタイルの家を手に入れましょう。",
    "url": "https://github.com/Gathin23/cleanyourtv"
   },
@@ -164,36 +164,36 @@
   {
    "basis": "snapshot",
    "created_at": "2026-02-03T11:15:53Z",
-   "delta": 469,
+   "delta": 472,
    "description": "Skills for Real Engineers. Straight from my .agents directory.",
    "full_name": "mattpocock/skills",
    "language": "Shell",
    "rank": 15,
-   "stars": 308469,
+   "stars": 308472,
    "summary_ja": "本物のエンジニアのためのスキル。私の .agents ディレクトリから直接。",
    "url": "https://github.com/mattpocock/skills"
   },
   {
    "basis": "snapshot",
    "created_at": "2026-04-29T12:19:08Z",
-   "delta": 465,
+   "delta": 466,
    "description": "Orkas is an open-source (MIT), local-first AI team for your desktop: a Commander turns your goal into to-dos and coordinates 16 built-in specialist agents plus Claude Code, Codex, OpenCode, OpenClaw and Hermes, with projects, scheduled automations and connectors. Free app for macOS & Windows; built-in models or your own keys.",
    "full_name": "Orkas-AI/Orkas",
    "language": "JavaScript",
    "rank": 16,
-   "stars": 6400,
+   "stars": 6401,
    "summary_ja": "Orkas は、デスクトップ向けのオープンソース (MIT) のローカル ファースト AI チームです。司令官は、目標を To Do に変換し、16 の組み込み専門エージェントに加え、Claude Code、Codex、OpenCode、OpenClaw、Hermes をプロジェクト、スケジュールされた自動化、およびコネクタと調整します。 macOS と Windows 用の無料アプリ。組み込みモデルまたは独自のキー。",
    "url": "https://github.com/Orkas-AI/Orkas"
   },
   {
    "basis": "snapshot",
    "created_at": "2026-10-13T04:16:50Z",
-   "delta": 458,
+   "delta": 459,
    "description": "Experience-Driven Black-Box Cost Control for Coding Agents",
    "full_name": "microsoft/TokenEconomizer",
    "language": "Python",
    "rank": 17,
-   "stars": 3133,
+   "stars": 3134,
    "summary_ja": "コーディングエージェント向けのエクスペリエンス主導のブラックボックスコスト管理",
    "url": "https://github.com/microsoft/TokenEconomizer"
   },
@@ -246,13 +246,25 @@
   {
    "basis": "snapshot",
    "created_at": "2026-08-11T18:58:55Z",
-   "delta": 400,
+   "delta": 401,
    "description": "Open-source Grok Bot alternative with a virtual machine that bots can use",
    "full_name": "milind-soni/OpenMausBot",
    "language": "TypeScript",
    "rank": 22,
-   "stars": 9696,
+   "stars": 9697,
    "url": "https://github.com/milind-soni/OpenMausBot"
+  },
+  {
+   "basis": "snapshot",
+   "created_at": "2026-06-18T18:21:25Z",
+   "delta": 376,
+   "description": "LIST OF ALL MY JAILBREAKS",
+   "full_name": "togg53192-cmd/jailbreaks",
+   "language": "",
+   "rank": 23,
+   "stars": 12303,
+   "summary_ja": "私のすべての脱獄リスト",
+   "url": "https://github.com/togg53192-cmd/jailbreaks"
   },
   {
    "basis": "snapshot",
@@ -261,32 +273,20 @@
    "description": "Linux, Jenkins, AWS, SRE, Prometheus, Docker, Python, Ansible, Git, Kubernetes, Terraform, OpenStack, SQL, NoSQL, Azure, GCP, DNS, Elastic, Network, Virtualization. DevOps Interview Questions",
    "full_name": "bregman-arie/devops-exercises",
    "language": "Python",
-   "rank": 23,
+   "rank": 24,
    "stars": 86028,
    "summary_ja": "Linux、Jenkins、AWS、SRE、Prometheus、Docker、Python、Ansible、Git、Kubernetes、Terraform、OpenStack、SQL、NoSQL、Azure、GCP、DNS、Elastic、ネットワーク、仮想化。 DevOps 面接の質問",
    "url": "https://github.com/bregman-arie/devops-exercises"
   },
   {
    "basis": "snapshot",
-   "created_at": "2026-06-18T18:21:25Z",
-   "delta": 375,
-   "description": "LIST OF ALL MY JAILBREAKS",
-   "full_name": "togg53192-cmd/jailbreaks",
-   "language": "",
-   "rank": 24,
-   "stars": 12302,
-   "summary_ja": "私のすべての脱獄リスト",
-   "url": "https://github.com/togg53192-cmd/jailbreaks"
-  },
-  {
-   "basis": "snapshot",
    "created_at": "2026-02-19T21:44:05Z",
-   "delta": 351,
+   "delta": 352,
    "description": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages",
    "full_name": "Leonxlnx/taste-skill",
    "language": "JavaScript",
    "rank": 25,
-   "stars": 107092,
+   "stars": 107093,
    "url": "https://github.com/Leonxlnx/taste-skill"
   },
   {
@@ -315,12 +315,12 @@
   {
    "basis": "snapshot",
    "created_at": "2026-06-12T15:25:43Z",
-   "delta": 331,
+   "delta": 332,
    "description": "Free and open-source macOS menu bar toolkit.",
    "full_name": "vorssaint/vorssaint-utils",
    "language": "Swift",
    "rank": 28,
-   "stars": 31943,
+   "stars": 31944,
    "summary_ja": "無料のオープンソース macOS メニュー バー ツールキット。",
    "url": "https://github.com/vorssaint/vorssaint-utils"
   },
@@ -349,7 +349,7 @@
   }
  ],
  "date": "2026-11-01",
- "generated_at": "2026-11-01T11:30:28+09:00",
+ "generated_at": "2026-11-01T11:32:05+09:00",
  "pool_size": 705,
  "weekly": [
   {
@@ -360,7 +360,7 @@
    "full_name": "debpalash/VoiceStudio",
    "language": "Python",
    "rank": 1,
-   "stars": 96925,
+   "stars": 96927,
    "summary_ja": "VoiceStudio は、オープンソースで完全にローカルな イレブンラボの代替製品であり、646 言語で音声クローン、音声デザイン、ビデオ ダビング、ディクテーション、文字起こし、オーディオブックの作成を行うことができます。",
    "url": "https://github.com/debpalash/VoiceStudio"
   },
@@ -432,7 +432,7 @@
    "full_name": "YuJunZhiXue/dsh-purge",
    "language": "JavaScript",
    "rank": 7,
-   "stars": 14629,
+   "stars": 14632,
    "summary_ja": "DeepSeek ハーネス アーマー破壊: すべてのモデルがアーマーを破壊できるようになります。異なるモデルを異なるプロンプト単語に置き換えることができます。デフォルトのプロンプトワードは国家モデル「Xiaomajiang」です。すべてのモデルの脱獄 — モデルごとにプロンプ​​トを交換します。スターコレクションを要求する ⭐ コピーを開きたい場合は、署名要件セクションを確認してください",
    "url": "https://github.com/YuJunZhiXue/dsh-purge"
   },
@@ -468,7 +468,7 @@
    "full_name": "Graphify-Labs/graphify",
    "language": "Python",
    "rank": 10,
-   "stars": 140056,
+   "stars": 140057,
    "summary_ja": "ドキュメント、SQL スキーマ、構成、PDF を含むあらゆるコードベースを、クエリ可能なナレッジ グラフに変換します。 Claude Code、Cursor、Codex、および Gemini CLI の /graphify スキル: ローカル決定論的 AST 解析、すべてのエッジの説明、ベクトル ストアなし。",
    "url": "https://github.com/Graphify-Labs/graphify"
   },
@@ -552,7 +552,7 @@
    "full_name": "Leonxlnx/taste-skill",
    "language": "JavaScript",
    "rank": 17,
-   "stars": 107092,
+   "stars": 107093,
    "summary_ja": "コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック",
    "url": "https://github.com/Leonxlnx/taste-skill"
   },
@@ -571,12 +571,12 @@
   {
    "basis": "new",
    "created_at": "2026-10-27T12:24:37Z",
-   "delta": 4720,
+   "delta": 4721,
    "description": "中文版 AI 姿势参考图库 · 1439 组 / 2878 张图片 / 完整汉化 · 零依赖静态画廊",
    "full_name": "anhao/ai-pose-gallery-zh",
    "language": "TypeScript",
    "rank": 19,
-   "stars": 4720,
+   "stars": 4721,
    "summary_ja": "中国語版 AI 姿勢リファレンス ギャラリー · 1439 グループ / 2878 枚の写真 / 完全な中国語版 · ゼロ依存静的ギャラリー",
    "url": "https://github.com/anhao/ai-pose-gallery-zh"
   },
@@ -600,7 +600,7 @@
    "full_name": "tashfeenahmed/freellmapi",
    "language": "TypeScript",
    "rank": 21,
-   "stars": 45225,
+   "stars": 45226,
    "summary_ja": "月間 74 億トークン。 34 の無料 LLM プロバイダー。 635 の無料モデル エンドポイント。すべては 1 つの /v1 エンドポイントと、OpenAI 互換のカスタム エンドポイントの背後にあります。スマート ルーティング、自動フェイルオーバー、暗号化キー。個人的な実験のみ。",
    "url": "https://github.com/tashfeenahmed/freellmapi"
   },
@@ -612,7 +612,7 @@
    "full_name": "multica-ai/andrej-karpathy-skills",
    "language": "",
    "rank": 22,
-   "stars": 227535,
+   "stars": 227536,
    "summary_ja": "クロード コードの動作を改善するための単一の CLAUDE.md ファイル。LLM コーディングの落とし穴に関する Andrej Karpathy の観察から派生しました。",
    "url": "https://github.com/multica-ai/andrej-karpathy-skills"
   },
@@ -624,7 +624,7 @@
    "full_name": "milind-soni/OpenMausBot",
    "language": "TypeScript",
    "rank": 23,
-   "stars": 9696,
+   "stars": 9697,
    "summary_ja": "ボットが使用できる仮想マシンを備えたオープンソースの Grok Bot 代替ツール",
    "url": "https://github.com/milind-soni/OpenMausBot"
   },
@@ -648,19 +648,19 @@
    "full_name": "pingdotgg/t3code",
    "language": "TypeScript",
    "rank": 25,
-   "stars": 35726,
+   "stars": 35727,
    "summary_ja": "",
    "url": "https://github.com/pingdotgg/t3code"
   },
   {
    "basis": "new",
    "created_at": "2026-10-29T15:41:21Z",
-   "delta": 3585,
+   "delta": 3586,
    "description": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface",
    "full_name": "heydamir/unslop",
    "language": "JavaScript",
    "rank": 26,
-   "stars": 3585,
+   "stars": 3586,
    "summary_ja": "バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル",
    "url": "https://github.com/heydamir/unslop"
   },
@@ -672,7 +672,7 @@
    "full_name": "nightly-labs/openbot",
    "language": "TypeScript",
    "rank": 27,
-   "stars": 4398,
+   "stars": 4400,
    "summary_ja": "永続的な AI チームメイトのためのローカルファーストのデスクトップ ワークスペース。専用のワークスペース、タスク キュー、ファイル共有、ブラウザ制御、エージェント間のコラボレーションを使用して、Codex、Claude、および Grok を実行します。",
    "url": "https://github.com/nightly-labs/openbot"
   },
@@ -684,19 +684,19 @@
    "full_name": "xerj-org/xerj",
    "language": "Rust",
    "rank": 28,
-   "stars": 17951,
+   "stars": 17952,
    "summary_ja": "AI 検索エンジンとボットおよびエージェント用の MCP サーバー。 1 つの Rust バイナリ インデックスは、BM25 フルテキスト、ベクターおよびハイブリッド検索、grep を使用しないコード検索、エージェント メモリ、RAG 用にコード、ドキュメント、ログ、JSONL/CSV、PDF にインデックスを付けます。 Elasticsearch 互換 API。 Corpus Hub は、数百もの参照記憶コーパスを提供します。",
    "url": "https://github.com/xerj-org/xerj"
   },
   {
    "basis": "new",
    "created_at": "2026-10-31T09:32:46Z",
-   "delta": 2897,
+   "delta": 2909,
    "description": "Towards a More Autonomous Agent System",
    "full_name": "deepseek-ai/dsh-superagent-prototype",
    "language": "TypeScript",
    "rank": 29,
-   "stars": 2897,
+   "stars": 2909,
    "summary_ja": "より自律的なエージェント システムに向けて",
    "url": "https://github.com/deepseek-ai/dsh-superagent-prototype"
   },
@@ -708,7 +708,7 @@
    "full_name": "anomalyco/opencode",
    "language": "TypeScript",
    "rank": 30,
-   "stars": 223624,
+   "stars": 223625,
    "summary_ja": "オープンソースのコーディング エージェント。",
    "url": "https://github.com/anomalyco/opencode"
   }
