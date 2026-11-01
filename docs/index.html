@@ -2,79 +2,145 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GitHub Star Ranking</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f0d14">
+<title>AI Daily</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
-:root{--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,"Hiragino Sans","Noto Sans JP",sans-serif}
-main{max-width:760px;margin:0 auto;padding:20px 16px 48px}
-.eyebrow{letter-spacing:.3em;font-size:11px;color:var(--acc)}
-h1{font-size:26px;margin:4px 0 2px}h1 em{font-style:normal;color:var(--pink)}
+:root{--bg:#0f0d14;--card:#1a1722;--line:#2a2633;--fg:#ece9f2;--mut:#9a94a8;--acc:#f5a524;--pink:#ff7ac6;--g1:#f5c451;--g2:#cfd3dc;--g3:#d99a6c;--ok:#5fd39a}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font:14px/1.5 -apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:5;background:rgba(15,13,20,.92);backdrop-filter:blur(8px);padding:calc(10px + env(safe-area-inset-top)) 16px 8px;border-bottom:1px solid var(--line)}
+.eyebrow{letter-spacing:.3em;font-size:10px;color:var(--acc)}
+h1{font-size:19px;margin:2px 0 0}h1 em{font-style:normal;color:var(--pink)}
 .meta{color:var(--mut);font-size:12px}
-.bar{display:flex;gap:8px;align-items:center;margin:16px 0;flex-wrap:wrap}
-.tab{border:1px solid var(--line);background:none;color:var(--mut);padding:6px 14px;border-radius:999px;font:inherit;cursor:pointer}
-.tab[aria-selected=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-select,input{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit}
-input{flex:1;min-width:120px}
-ol{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-li{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-.rk{font:700 22px/1 Georgia,serif;text-align:center;color:var(--mut)}
-li:nth-child(1) .rk{color:var(--g1)}li:nth-child(2) .rk{color:var(--g2)}li:nth-child(3) .rk{color:var(--g3)}
-.nm{font-weight:600;word-break:break-all;color:var(--fg);text-decoration:none}.nm:hover{text-decoration:underline}
-.ds{color:var(--mut);font-size:13px;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.nums{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-.d{color:var(--acc);font-weight:700}.t{color:var(--mut);font-size:12px}
-.lang{font-size:11px;color:var(--mut);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:6px}
-.note{color:var(--mut);font-size:12px;margin-top:16px}
-.empty{color:var(--mut);padding:24px;text-align:center}
-@media (max-width:480px){li{grid-template-columns:32px 1fr;}.nums{grid-column:2;text-align:left}.rk{font-size:18px}}
+main{max-width:860px;margin:0 auto;padding:12px 16px}
+.seg{display:flex;gap:6px;margin:4px 0 12px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid var(--line);background:none;color:var(--mut);padding:5px 12px;border-radius:999px;font:inherit;font-size:13px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+input[type=search]{flex:1;min-width:110px;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;font-size:13px}
+/* ランキング表 */
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5px}
+thead th{position:sticky;top:var(--hh,64px);background:var(--bg);color:var(--mut);font-weight:600;text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);font-size:11px}
+td{padding:8px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+col.no{width:30px}col.ttl{width:34%}col.wk{width:64px}
+td.no{font:700 15px/1.2 Georgia,serif;color:var(--mut);text-align:center}
+tr:nth-child(1) td.no{color:var(--g1)}tr:nth-child(2) td.no{color:var(--g2)}tr:nth-child(3) td.no{color:var(--g3)}
+td.ttl a{color:var(--fg);font-weight:600;text-decoration:none;word-break:break-all}
+td.ttl .own{display:block;color:var(--mut);font-weight:400;font-size:11px}
+td.wk{text-align:right;color:var(--acc);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.wk small{display:block;color:var(--mut);font-weight:400;font-size:10.5px}
+td.ds{color:#cfc9da}
+td.ds span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+td.ds span.open{display:block}
+.note{color:var(--mut);font-size:11px;margin:10px 0}
+/* AIニュース */
+.news-head{color:var(--mut);font-size:12px;margin-bottom:10px}
+.legend{font-size:11px;color:var(--mut);margin-bottom:12px}
+article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+article h2{font-size:15px;margin:0 0 6px;line-height:1.45}
+.cat{display:inline-block;min-width:22px;text-align:center;color:var(--acc);margin-right:4px}
+.badge{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;color:var(--mut);vertical-align:2px}
+.badge.mine{color:var(--pink);border-color:var(--pink)}
+article p{margin:4px 0;color:#d7d2e0}
+article dl{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;margin:8px 0;font-size:13px}
+article dt{color:var(--mut);white-space:nowrap}article dd{margin:0}
+.src{font-size:12px}.src a{color:var(--acc)}
+.foot{font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
+.empty{color:var(--mut);padding:32px;text-align:center}
+/* 下部タブ */
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:rgba(26,23,34,.96);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:6}
+nav button{flex:1;background:none;border:0;color:var(--mut);font:inherit;font-size:12px;padding:8px 0 10px;cursor:pointer}
+nav button b{display:block;font-size:18px;line-height:1.2}
+nav button[aria-selected=true]{color:var(--fg)}nav button[aria-selected=true] b{color:var(--acc)}
+.mockbar{background:#3a2a10;color:#f5c451;font-size:11px;text-align:center;padding:4px}
 </style>
 </head>
 <body>
-<main>
-  <div class="eyebrow">LEADERBOARD</div>
-  <h1>GitHub <em>スター</em>獲得ランキング</h1>
+<div class="mockbar">モック：AIニュースは 11/1 の Slack 投稿を流用したサンプルです</div>
+<header id="hdr">
+  <div class="eyebrow" id="eyebrow">LEADERBOARD</div>
+  <h1 id="title">GitHub <em>スター</em>獲得ランキング</h1>
   <div class="meta" id="meta">読み込み中…</div>
-  <div class="bar">
-    <button class="tab" data-k="weekly" aria-selected="true">週間 Top30</button>
-    <button class="tab" data-k="daily" aria-selected="false">前日比 Top30</button>
-    <select id="date" aria-label="日付"></select>
-    <input id="q" type="search" placeholder="絞り込み（例: skill）" aria-label="絞り込み">
-  </div>
-  <ol id="list"></ol>
-  <p class="note">† Trending の表示値（スナップショット履歴が7日分たまるまでの補完）　★ 期間内に新規作成</p>
+</header>
+<main>
+  <section id="v-rank">
+    <div class="seg">
+      <button class="chip" data-k="weekly" aria-pressed="true">週間 Top30</button>
+      <button class="chip" data-k="daily" aria-pressed="false">前日比 Top30</button>
+      <input id="q" type="search" placeholder="絞り込み" aria-label="絞り込み">
+    </div>
+    <table>
+      <colgroup><col class="no"><col class="ttl"><col class="wk"><col></colgroup>
+      <thead><tr><th>No.</th><th>リポジトリ</th><th style="text-align:right" id="wkh">+週</th><th>概要</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="note">† Trending の表示値（履歴7日分がたまるまでの補完）　★ 期間内に新規作成</p>
+  </section>
+  <section id="v-news" hidden>
+    <div class="legend">◎新モデル ○API・料金 □資金 △規制 ▲安全・障害 ◇研究 ●機能追加 ｜ ★自分ごと ｜ ※単独報道</div>
+    <div id="news"></div>
+  </section>
 </main>
+<nav role="tablist">
+  <button role="tab" data-v="rank" aria-selected="true"><b>★</b>ランキング</button>
+  <button role="tab" data-v="news" aria-selected="false"><b>◎</b>AIニュース</button>
+</nav>
 <script>
 const MARK={snapshot:"",trending:"†",new:"★"};
-let data=null,kind="weekly";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function render(){
-  if(!data){return}
+let rank=null,news=null,kind="weekly",view="rank";
+async function getJSON(p){try{const r=await fetch(p,{cache:"no-store"});return r.ok?await r.json():null}catch(e){return null}}
+
+function renderRank(){
+  if(!rank){$("#rows").innerHTML=`<tr><td colspan="4" class="empty">データを読み込めませんでした</td></tr>`;return}
   const q=$("#q").value.trim().toLowerCase();
-  const rows=(data[kind]||[]).filter(r=>!q||(r.full_name+" "+r.description+" "+(r.summary_ja||"")).toLowerCase().includes(q));
-  $("#meta").textContent=`${data.date} 集計 ・ 追跡 ${data.pool_size} リポジトリ`;
-  $("#list").innerHTML=rows.length?rows.map(r=>`<li>
-    <div class="rk">${r.rank}</div>
-    <div><a class="nm" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.full_name)}</a>${r.language?`<span class="lang">${esc(r.language)}</span>`:""}
-      <div class="ds">${esc(r.summary_ja||r.description)}</div></div>
-    <div class="nums"><div class="d">+${r.delta.toLocaleString()}${MARK[r.basis]||""}<span class="t">/${kind==="weekly"?"週":"日"}</span></div>
-      <div class="t">累計 ${r.stars.toLocaleString()}</div></div></li>`).join(""):`<div class="empty">該当なし</div>`;
+  const rows=(rank[kind]||[]).filter(r=>!q||(r.full_name+" "+r.description+" "+(r.summary_ja||"")).toLowerCase().includes(q));
+  $("#wkh").textContent=kind==="weekly"?"+週":"+日";
+  $("#rows").innerHTML=rows.map(r=>{const [own,name]=r.full_name.split("/");return `<tr>
+    <td class="no">${r.rank}</td>
+    <td class="ttl"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(name)}</a><span class="own">${esc(own)}${r.language?" · "+esc(r.language):""}</span></td>
+    <td class="wk">+${r.delta.toLocaleString()}${MARK[r.basis]||""}<small>累計 ${(r.stars/1000).toFixed(1)}k</small></td>
+    <td class="ds"><span onclick="this.classList.toggle('open')">${esc(r.summary_ja||r.description||"—")}</span></td></tr>`}).join("")||`<tr><td colspan="4" class="empty">該当なし</td></tr>`;
 }
-async function load(name){
-  try{data=await (await fetch(`data/${name}.json`,{cache:"no-store"})).json()}
-  catch(e){data=window.__DATA__||null;if(!data){$("#meta").textContent="データを読み込めませんでした"}}
-  render();
+function renderNews(){
+  if(!news){$("#news").innerHTML=`<div class="empty">データを読み込めませんでした</div>`;return}
+  const items=news.items||[];
+  $("#news").innerHTML=(items.length?items.map(n=>`<article>
+    <h2><span class="cat" title="${esc(n.category_label)}">${esc(n.category)}</span>${n.no}. ${esc(n.title)}${n.mine?'<span class="badge mine">★自分ごと</span>':""}${n.single?'<span class="badge">※単独</span>':""}</h2>
+    <p>${esc(n.summary)}</p>
+    <dl><dt>影響</dt><dd>${esc(n.impact)}</dd><dt>QA観点</dt><dd>${esc(n.qa)}</dd>${n.related?`<dt>関連</dt><dd>${esc(n.related)}</dd>`:""}<dt>根拠</dt><dd>${esc(n.basis)}　試す価値 ${esc(n.try)}</dd></dl>
+    <div class="src">出典: ${(n.sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(" · ")}</div>
+  </article>`).join(""):`<div class="empty">本日は大きなニュースはありません</div>`)
+  +(news.memo?`<div class="foot">判定メモ: ${esc(news.memo)}</div>`:"")
+  +((news.failures||[]).length?`<div class="foot">取得失敗: ${esc(news.failures.join("、"))}</div>`:"");
 }
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{kind=b.dataset.k;document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",x===b));render()});
-$("#q").oninput=render;
-$("#date").onchange=e=>load(e.target.value);
+function setView(v){
+  view=v;document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
+  $("#v-rank").hidden=v!=="rank";$("#v-news").hidden=v!=="news";
+  if(v==="rank"){$("#eyebrow").textContent="LEADERBOARD";$("#title").innerHTML="GitHub <em>スター</em>獲得ランキング";
+    $("#meta").textContent=rank?`${rank.date} 集計 ・ 追跡 ${rank.pool_size} リポジトリ`:"—"}
+  else{$("#eyebrow").textContent="DAILY NEWS";$("#title").innerHTML="<em>AI</em>ニュース";
+    $("#meta").textContent=news?`${news.date}（${news.weekday}） ${news.items.length}件 ・ 対象 ${news.period}`:"—"}
+  try{localStorage.setItem("view",v)}catch(e){}
+  window.scrollTo(0,0);
+}
+document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{kind=b.dataset.k;document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderRank()});
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
+$("#q").oninput=renderRank;
+new ResizeObserver(()=>document.documentElement.style.setProperty("--hh",$("#hdr").offsetHeight+"px")).observe($("#hdr"));
 (async()=>{
-  let dates=[];
-  try{dates=await (await fetch("data/index.json",{cache:"no-store"})).json()}catch(e){}
-  $("#date").innerHTML=dates.map(d=>`<option>${d}</option>`).join("")||"<option>latest</option>";
-  load(dates[0]||"latest");
+  [rank,news]=await Promise.all([getJSON("data/latest.json"),getJSON("data/news/latest.json")]);
+  if(!rank&&window.__RANK__)rank=window.__RANK__; if(!news&&window.__NEWS__)news=window.__NEWS__;
+  renderRank();renderNews();
+  let v="rank";try{v=localStorage.getItem("view")||"rank"}catch(e){}
+  if(location.hash==="#news")v="news";
+  setView(v);
 })();
+if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js");
 </script>
 </body>
 </html>
