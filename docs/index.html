@@ -146,6 +146,7 @@ article dt{color:var(--mut);white-space:nowrap}article dd{margin:0}
 .nfoot{font-size:12px;color:var(--mut);line-height:1.6;background:var(--card);border-radius:12px;padding:10px 12px;margin-top:14px}
 .nfoot b{color:var(--fg);font-weight:600}
 .empty2{text-align:center;color:var(--mut);padding:32px 0}
+.stale{margin:0 0 12px;padding:10px 14px;border-radius:12px;background:#b3261e;color:#fff;font:500 14px/20px var(--ff)}
 /* 詳細シート（ニュース） */
 .nd .kick{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mut);margin:4px 0 8px;flex-wrap:wrap}
 .nd h3{font-size:20px;line-height:1.45;margin:0 0 12px;text-wrap:balance}
@@ -435,7 +436,7 @@ function renderRank(){
     return `<li class="rrow r${r.rank}" data-n="${esc(r.full_name)}"><div class="no"><b>${r.rank}</b>${mv(r.rank,pv[r.full_name])}</div>
     <div class="nm"><b>${esc(n)}</b><small>${esc(o)}${r.language?" · "+esc(r.language):""} · 累計 ${k(r.stars)}</small></div>
     <div class="wk"><b>+${fmt(r.delta)}${r.basis==="trending"?"†":r.basis==="new"?"★":""}<small style="color:var(--mut);font-weight:400;font-size:11px">/${mode==="weekly"?"週":"日"}</small></b>${gains(starsOf(r.full_name,di)).filter(x=>x!=null).length>=2?spark(gains(starsOf(r.full_name,di)).slice(-13)):""}</div>
-    <div class="ds">${esc(r.summary_ja||"日本語の概要を準備中です")}</div></li>`}).join("")||`<li class="empty2">${q?"該当するリポジトリはありません":"この日のデータはありません"}</li>`;
+    <div class="ds">${esc(r.summary_ja||r.description||"説明文がありません")}</div></li>`}).join("")||`<li class="empty2">${q?"該当するリポジトリはありません":"この日のデータはありません"}</li>`;
 }
 function renderTrend(){
   const from=Math.max(0,di-7), idx=[];for(let i=from;i<=di;i++)idx.push(i);
@@ -474,7 +475,7 @@ function openSheet(n){
   const r=listAt(di).find(x=>x.full_name===n)||(D.ranks[DAYS[di]]||[]).find(x=>x.full_name===n);if(!r)return;
   const w=Math.min(600,window.innerWidth)-32, st=starsOf(n,di), lab=DAYS.slice(0,di+1);
   $("#sheetin").innerHTML=`<div class="shead"><div><small style="color:var(--mut)">${esc(r.language||"")}</small><h3>${esc(n)}</h3></div><button class="x" aria-label="閉じる" onclick="closeSheet()">×</button></div>
-   <p style="margin:6px 0">${esc(r.summary_ja||"日本語の概要を準備中です")}</p>
+   <p style="margin:6px 0">${esc(r.summary_ja||r.description||"説明文がありません")}</p>
    <div class="stats"><div><small>順位</small><b>${r.rank}位</b></div><div><small>+${mode==="weekly"?"週":"日"}</small><b>${fmt(r.delta)}</b></div><div><small>累計</small><b>${k(r.stars)}</b></div><div><small>連続</small><b>${streak(n,di)}日</b></div></div>
    <div class="card"><h2>累計スター</h2><div class="sub">${lab.length}日</div>${lineChart(st,{w:w-30,h:150,labels:lab})}</div>
    <div class="card"><h2>日別の獲得スター</h2><div class="sub">${lab.length-1}日</div>${lineChart(gains(st),{w:w-30,h:130,bars:true,labels:lab.slice(1)})}</div>
@@ -507,14 +508,20 @@ const firstSentence=s=>{const i=s.indexOf("。");return i>0?s.slice(0,i+1):s};
 // 一覧の並び: 自分ごと → 試す価値◯ → 元の順
 const order=its=>[...its].sort((a,b)=>(b.mine-a.mine)||((b.try==="◯")-(a.try==="◯"))||(a.no-b.no));
 function tags(n){return (n.mine?'<span class="tag mine">自分ごと</span>':"")+(n.try==="◯"?'<span class="tag try">試す価値あり</span>':"")+(n.single?'<span class="tag sg">単独報道</span>':"")}
+// 配信が止まったら画面で分かるようにする（毎朝7:45配信。JST 9:00 を過ぎても今日の分が無ければ警告）
+function staleNote(){
+  const last=ND.length?ND[ND.length-1].date:"", now=new Date(Date.now()+9*3600e3), today=now.toISOString().slice(0,10);
+  const late=last<today&&now.getUTCHours()>=9;
+  return late?`<div class="stale" role="status">ニュースの配信が止まっています（最終: ${last?md(last):"なし"}）</div>`:"";
+}
 function renderNews(){
   const d=ND[ni];
   $("#dstrip").innerHTML=ND.map((x,i)=>`<button role="tab" data-ni="${i}" aria-selected="${i===ni}"><span>${md(x.date)}（${x.weekday}）</span><b>${x.items.length}</b><i>件</i></button>`).join("");
   const ord=order(d.items), top=ord[0];
-  $("#nhero").innerHTML=top?`<div class="lead">今日の要点</div><div class="hero" data-open="${top.no}" style="--cc:${CATC[top.category]}">
+  $("#nhero").innerHTML=staleNote()+(top?`<div class="lead">今日の要点</div><div class="hero" data-open="${top.no}" style="--cc:${CATC[top.category]}">
     <div class="kick"><span class="co2">${esc(top.company)}</span><span class="catl" style="--cc:${CATC[top.category]}">${esc(CAT[top.category])}</span>${tags(top)}</div>
     <h2>${esc(top.title)}</h2><p>${esc(top.summary)}</p>
-    <div class="imp"><b>影響</b>${esc(top.impact)}</div></div>`:`<div class="empty2">この日は大きなニュースはありません</div>`;
+    <div class="imp"><b>影響</b>${esc(top.impact)}</div></div>`:`<div class="empty2">この日は大きなニュースはありません</div>`);
   const rest=ord.slice(1), cnt={all:rest.length,mine:rest.filter(n=>n.mine).length,try:rest.filter(n=>n.try==="◯").length,fav:rest.filter(n=>FAV[nid(d,n)]).length};
   $("#nseg").hidden=!rest.length;
   $("#nseg").innerHTML=[["all","すべて"],["mine","自分ごと"],["try","試す価値"],["fav","保存"]].map(([k,l])=>`<button data-f="${k}" aria-pressed="${k===nf}">${l}<span>${cnt[k]}</span></button>`).join("");
