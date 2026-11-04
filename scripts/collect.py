@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import time
 import os
 import re
 import sys
@@ -200,12 +201,14 @@ def is_japanese(t: str) -> bool:
 def translate_ja(text: str) -> str:
     """Google翻訳の公開エンドポイントで英語→日本語。失敗時は空文字。"""
     qs = urllib.parse.urlencode({"client": "gtx", "sl": "auto", "tl": "ja", "dt": "t", "q": text[:500]})
-    try:
-        data = json.loads(_get(f"https://translate.googleapis.com/translate_a/single?{qs}", api=False))
-        return fix_terms("".join(seg[0] for seg in data[0] if seg and seg[0]).strip())
-    except Exception as e:  # noqa: BLE001
-        print(f"[warn] translate: {e}", file=sys.stderr)
-        return ""
+    for attempt in range(4):  # 公開エンドポイントは並列時に一時拒否されるため、間隔を空けて再試行する
+        try:
+            data = json.loads(_get(f"https://translate.googleapis.com/translate_a/single?{qs}", api=False))
+            return fix_terms("".join(seg[0] for seg in data[0] if seg and seg[0]).strip())
+        except Exception as e:  # noqa: BLE001
+            print(f"[warn] translate (try {attempt + 1}/4): {e}", file=sys.stderr)
+            time.sleep(2 ** attempt)
+    return ""
 
 
 def summarize(rows: list[dict]) -> None:
@@ -229,7 +232,7 @@ def summarize(rows: list[dict]) -> None:
             print(f"[warn] summarize: {e}", file=sys.stderr)
     todo = [r for r in rows if r["full_name"] not in cache and r["description"]]
     if todo:
-        with ThreadPoolExecutor(max_workers=4) as ex:
+        with ThreadPoolExecutor(max_workers=2) as ex:
             for r, ja in zip(todo, ex.map(lambda x: translate_ja(x["description"]), todo)):
                 if ja:
                     cache[r["full_name"]] = ja
@@ -328,7 +331,7 @@ def build_app_data(days: int = 14) -> None:
     todo = {r["full_name"]: r["description"] for v in list(ranks.values()) + list(dranks.values()) for r in v
             if r.get("description") and not is_japanese(cache.get(r["full_name"], "")) and not is_japanese(r["description"])}
     if todo:
-        with ThreadPoolExecutor(max_workers=4) as ex:
+        with ThreadPoolExecutor(max_workers=2) as ex:
             for n, ja in zip(todo, ex.map(translate_ja, todo.values())):
                 if ja:
                     cache[n] = ja
