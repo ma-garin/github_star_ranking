@@ -61,5 +61,18 @@
  "valentderah/totk-pc-recomp": "Vulkan レンダラーを使用した、ゼルダの伝説 王国の涙のネイティブ Windows x86-64 への静的再コンパイル。ゲームファイルは含まれておりません。",
  "vorssaint/vorssaint-utils": "無料のオープンソース macOS メニュー バー ツールキット。",
  "wangzan101/Mika": "ミカ – アプリを操作したり、インターネットをサーフィンしたり、あなたの代わりに作業を行ったりする、携帯電話上のパーソナル AI アシスタントです。アプリとウェブを操作して作業を完了する Android 用のオンデバイス AI エージェント。",
- "xerj-org/xerj": "AI 検索エンジンとボットおよびエージェント用の MCP サーバー。 1 つの Rust バイナリ インデックスは、BM25 フルテキスト、ベクターおよびハイブリッド検索、grep を使用しないコード検索、エージェント メモリ、RAG 用にコード、ドキュメント、ログ、JSONL/CSV、PDF にインデックスを付けます。 Elasticsearch 互換 API。 Corpus Hub は、数百もの参照記憶コーパスを提供します。"
+ "xerj-org/xerj": "AI 検索エンジンとボットおよびエージェント用の MCP サーバー。 1 つの Rust バイナリ インデックスは、BM25 フルテキスト、ベクターおよびハイブリッド検索、grep を使用しないコード検索、エージェント メモリ、RAG 用にコード、ドキュメント、ログ、JSONL/CSV、PDF にインデックスを付けます。 Elasticsearch 互換 API。 Corpus Hub は、数百もの参照記憶コーパスを提供します。",
+ "gitroomhq/postiz-app": "エージェント型のSNS投稿予約ツール。複数SNSへの投稿を一括で管理・自動化する",
+ "blader/humanizer": "文章からAI生成らしさを取り除くエージェントスキル",
+ "storytold/craft-anything": "あらゆるソフトウェアの仕組みを理解し、自分で作り直すためのツール",
+ "patch-gg/pixelfx": "ピクセルアートの効果244種をコードで実装した集。自作用のClaude Codeスキル付き",
+ "l0ng-ai/openidea": "IntelliJ IDEA風の操作性をRustで作り直した高速IDE。60以上の言語に対応",
+ "ifixai-ai/iFixAi": "AIエージェントの独立監査ツール。意図どおり動いているかを120秒以内に判定",
+ "public-apis/public-apis": "無料で使えるAPIをまとめた一覧",
+ "vercel-labs/agent-desktop": "AIエージェント向けのコンピューター操作CLI",
+ "yetone/magpie": "エージェントとモデルの組み合わせをメニューバーから切り替えるツール（DeepSeek上のCodexなど）",
+ "github/spec-kit": "仕様駆動開発（SDD）を始めるためのツールキット",
+ "Zagitta/gpu-unlock": "GeForce 20/30/40系のAI演算性能を最大2倍に引き上げる修正ツール",
+ "Niko1221/Strata": "Qwen3.8-Flash-Nextを一般向けPCで動かす推論エンジン。OpenAI/Anthropic互換APIをローカル提供",
+ "p-e-w/heretic": "学習なしで言語モデルを改変するツール（検閲除去・迎合の抑制など）"
 }
