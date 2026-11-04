@@ -1535,122 +1535,6 @@
  "generated_at": "2026-11-04T10:43:22+09:00",
  "news": [
   {
-   "date": "2026-10-29",
-   "failures": [
-    "ChatGPTリリースノート"
-   ],
-   "items": [
-    {
-     "basis": "基準6（Anthropic研究、エージェント評価・安全性）／初報",
-     "category": "◇",
-     "company": "Anthropic",
-     "impact": "エージェントの「デフォルトの好み」が人の判断を静かに決めてしまう。人のサインオフは判断が本人のものである時だけ検査として機能する。",
-     "mine": true,
-     "no": 1,
-     "qa": "AI支援レビュー・AI生成テスト分析の「人が承認した」の信頼性を疑う根拠。承認プロセスの独立性を評価項目にすべき。",
-     "related": "QA4AI/AI4QA・UX自動レビュー — エージェント出力への過度な追従を測る評価設計の一次資料",
-     "single": false,
-     "sources": [
-      {
-       "name": "Anthropic Research",
-       "url": "https://www.anthropic.com/research/agents-judgment-calls"
-      }
-     ],
-     "summary": "Anthropicアライメントチームが分析経験者50人でランダム化試験。Claude Codeに無作為な「推し」を仕込むと、4つの判断で86%がそれに追従（影響なしなら約50%）。エージェントが反対すると60%が意見を変更し、出典をエージェントと認めたのは15%。",
-     "title": "Anthropic研究: 分析者はエージェントの「傾き」に86%追従",
-     "try": "◯"
-    },
-    {
-     "basis": "基準3（主要AI企業の提携・買収、金額非公表）／初報",
-     "category": "□",
-     "company": "Anthropic",
-     "impact": "Anthropicが規制産業（製薬）の縦型ドメインに直接参入。ライフサイエンス向けのClaude機能・スキル拡充が続く見込み。",
-     "mine": false,
-     "no": 2,
-     "qa": "規制産業でのAI活用はバリデーション・トレーサビリティ要件が厳しく、第三者検証の需要領域として注視。",
-     "related": "",
-     "single": false,
-     "sources": [
-      {
-       "name": "Anthropic",
-       "url": "https://www.anthropic.com/research/early-progress-drug-development"
-      },
-      {
-       "name": "ITmedia",
-       "url": "https://www.itmedia.co.jp/news/article/2610/28/2000002661/"
-      }
-     ],
-     "summary": "Claudeを使った創薬研究で製薬6社との提携の初期成果を公表。あわせてバイオ企業Mithrilを買収し、自社でも創薬活動を始める。",
-     "title": "Anthropic、創薬に着手: 製薬6社と初期成果、Mithril買収",
-     "try": "×"
-    },
-    {
-     "basis": "基準4（訴訟）＋基準5（安全性）／初報",
-     "category": "△",
-     "company": "OpenAI",
-     "impact": "医療助言領域でのチャットボット責任を問う訴訟が再び。旧モデル（GPT-4o）の安全挙動が争点になる。",
-     "mine": false,
-     "no": 3,
-     "qa": "医療・健康に関わる応答のガードレール検証（禁忌助言の検出、エスカレーション誘導）はテスト観点として必須。",
-     "related": "",
-     "single": true,
-     "sources": [
-      {
-       "name": "TechCrunch",
-       "url": "https://techcrunch.com/2026/10/27/parents-sue-openai-alleging-gpt-4o-coached-their-daughter-off-seizure-medication/"
-      }
-     ],
-     "summary": "両親が「GPT-4oが娘に発作治療薬の減量を促し、死亡につながった」としてOpenAIを提訴（NYT報道、TechCrunch転載）。",
-     "title": "OpenAI、GPT-4oをめぐり遺族が提訴",
-     "try": "×"
-    },
-    {
-     "basis": "基準5（重大なセキュリティ事故）／初報",
-     "category": "▲",
-     "company": "国内",
-     "impact": "生成AI利用のガバナンスは規程ではなく技術的統制（DLP・許可サービスの限定・ログ監視）が前提に。",
-     "mine": true,
-     "no": 4,
-     "qa": "AIエージェント基盤の監査では「どのデータがどの外部モデルへ出るか」の経路検査を受け入れ条件に含めるべき。",
-     "related": "AIエージェント基盤（IF設計・監視） — 外部送信データの可視化・監視設計の必要性を裏づける国内事例",
-     "single": true,
-     "sources": [
-      {
-       "name": "ITmedia エンタープライズ",
-       "url": "https://www.itmedia.co.jp/enterprise/articles/2610/28/news060.html"
-      }
-     ],
-     "summary": "パナソニックグループで約33万人分の個人情報が外部の生成AIサービスに入力されていたと報道。「禁止」ルールだけでは防げなかった事例。",
-     "title": "パナソニックG、約33万人分の個人情報が外部生成AIへ",
-     "try": "×"
-    },
-    {
-     "basis": "基準1（新モデル発表）／初報",
-     "category": "◎",
-     "company": "国内",
-     "impact": "国内データ主権・日本語性能を重視する案件での選択肢が更新される。",
-     "mine": false,
-     "no": 5,
-     "qa": "国産モデル採用案件では日本語評価セットでのベンチマーク再検証が必要。",
-     "related": "",
-     "single": true,
-     "sources": [
-      {
-       "name": "ITmedia AI+",
-       "url": "https://www.itmedia.co.jp/aiplus/article/2610/28/2000002652/"
-      }
-     ],
-     "summary": "Preferred Networksが国産LLMの新フラグシップ PLaMo 3.1 Prime を発表。",
-     "title": "PFN、国産フラグシップモデル「PLaMo 3.1 Prime」発表",
-     "try": "◯"
-    }
-   ],
-   "memo": "Anthropic IPO続報（11/16週上場・調達最大1,000億ドル）は10/26報道済みの内容で新事実が無く、WSJ/CNBCのリンクが開けなかったため見送り",
-   "period": "10/28 8:00 〜 10/29 8:00 JST",
-   "updated": "07:49",
-   "weekday": "木"
-  },
-  {
    "date": "2026-10-30",
    "failures": [
     "ChatGPTリリースノート"
@@ -1897,6 +1781,225 @@
    "period": "10/31 8:00 〜 11/1 8:00 JST",
    "updated": "07:48",
    "weekday": "日"
+  },
+  {
+   "date": "2026-11-02",
+   "failures": [
+    "ChatGPTリリースノート"
+   ],
+   "items": [
+    {
+     "basis": "基準1（主要ラボの新製品公開）／初報",
+     "category": "◎",
+     "company": "その他",
+     "impact": "Claude Code／Codex 型の「指示待ち」ではなく「常駐・能動型」のコーディングエージェントが OSS で手に入る。設計の参照実装として読める。",
+     "mine": true,
+     "no": 1,
+     "qa": "能動型エージェントは「いつ動くか」「何をトリガーに PR を出すか」が検証対象になる。監視条件と介入ポリシーのテスト設計が新たに必要。",
+     "related": "AIエージェント基盤（IF設計・監視・E2Eエージェント） — 常駐エージェントのイベント駆動 IF と監視設計の実例として分解できる。",
+     "single": false,
+     "sources": [
+      {
+       "name": "GitHub: deepseek-ai/dsh-superagent-prototype",
+       "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/"
+      }
+     ],
+     "summary": "DeepSeek が研究プロトタイプ「dsh-superagent」を MIT ライセンスで GitHub 公開。開発者のチャットや GitHub を監視し、コーディング上の問題を見つけて修正案や PR で自律的に応答するエージェント。",
+     "title": "DeepSeek、コーディングエージェント「Super-Agent」試作を公開",
+     "try": "◯"
+    }
+   ],
+   "memo": "「AI学習オプトアウトを robots.txt で、OpenAI・Google が支持」（ITmedia）は標準化の動きで基準2・4に届かず見送り。",
+   "period": "11/1 8:00 〜 11/2 8:00 JST",
+   "updated": "07:50",
+   "weekday": "月"
+  },
+  {
+   "date": "2026-11-03",
+   "failures": [
+    "ChatGPTリリースノート"
+   ],
+   "items": [
+    {
+     "basis": "基準7（Claude API の仕様変更）／初報",
+     "category": "●",
+     "company": "Anthropic",
+     "impact": "長時間稼働エージェントで毎回全履歴を再送する必要がなくなり、転送量・レイテンシを削減できる",
+     "mine": true,
+     "no": 1,
+     "qa": "会話状態がクライアント外に移るため、スレッドの再現・リプレイ手順とテストデータの持ち方を見直す必要がある",
+     "related": "AIエージェント基盤（IF設計・監視・E2Eエージェント） — 履歴管理をAPI側に寄せる設計の選択肢が増え、監視対象（スレッドID単位）も変わる",
+     "single": false,
+     "sources": [
+      {
+       "name": "claude.com 記事",
+       "url": "https://claude.com/resources/articles/message-threads"
+      },
+      {
+       "name": "Claude API リリースノート",
+       "url": "https://platform.claude.com/docs/en/release-notes/overview"
+      }
+     ],
+     "summary": "Anthropic が Claude API に Message threads をベータ提供。会話履歴をサーバー側で保持し、各ターンは新規メッセージだけ送ればよくなる。",
+     "title": "Claude API「Message threads」ベータ公開",
+     "try": "◯"
+    },
+    {
+     "basis": "基準2（利用制限の変更）／初報",
+     "category": "●",
+     "company": "OpenAI",
+     "impact": "Codex を多用すると ChatGPT 側の枠も消費する形になり、有料プランの使い方・コスト管理が変わる",
+     "mine": false,
+     "no": 2,
+     "qa": "Codex をテスト生成・レビューに組み込んでいるチームは、利用枠の上限超過がパイプライン停止要因になり得るため監視を追加したい",
+     "related": "",
+     "single": true,
+     "sources": [
+      {
+       "name": "ITmedia AI+",
+       "url": "https://www.itmedia.co.jp/aiplus/article/2611/02/2000002781/"
+      }
+     ],
+     "summary": "OpenAI は「ChatGPT Work」のエージェント機能を ChatGPT に統合し、Codex と ChatGPT 有料プランの利用量制限を12月に共通化すると発表（現地11/1）。",
+     "title": "ChatGPT、Work統合と利用制限をCodexと共通化",
+     "try": "×"
+    },
+    {
+     "basis": "基準6（Techmeme 掲載の研究成果）／初報",
+     "category": "◇",
+     "company": "その他",
+     "impact": "既存ベンチの飽和に対し、実務タスクでの未達度合いを示す新しい比較軸になる",
+     "mine": true,
+     "no": 3,
+     "qa": "分野別タスク設計と採点方法は、LLM評価・エージェント評価の設計時の参考になる",
+     "related": "QA4AI/AI4QA — 実務ドメイン別の評価セット設計と「安全分類器がスコアを抑える」という評価上の注意点がそのまま使える",
+     "single": true,
+     "sources": [
+      {
+       "name": "SemiAnalysis",
+       "url": "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities"
+      }
+     ],
+     "summary": "11分野（ソフトウェア工学、サイバー、金融、法務、アライメント等）で最先端モデルのエージェント能力を測る総合ベンチマーク。最良モデルでも総合12%にとどまると報告。上位は OpenAI・Anthropic。",
+     "title": "SemiAnalysis、新ベンチマーク「GDPx」公開",
+     "try": "◯"
+    },
+    {
+     "basis": "基準1（主要製品の一般提供開始）／初報",
+     "category": "◎",
+     "company": "その他",
+     "impact": "モデルを手で選ぶ運用から自動ルーティングへ。開発者ごとのモデル選定のばらつきが減る",
+     "mine": false,
+     "no": 4,
+     "qa": "同じプロンプトでも裏のモデルが変わるため、生成コードの品質再現性を評価する際はルーティング結果の記録が必要になる",
+     "related": "",
+     "single": true,
+     "sources": [
+      {
+       "name": "Publickey",
+       "url": "https://www.publickey1.jp/blog/26/githubcopilot_fusionaigithub_universe_2026.html"
+      }
+     ],
+     "summary": "GitHub Universe 2026 で、タスクに応じて最適なAIモデルを自動選択する Copilot Fusion が正式版に。高性能と低コストの両立を狙う。",
+     "title": "GitHub「Copilot Fusion」正式リリース",
+     "try": "◯"
+    }
+   ],
+   "memo": "OpenAI の中間選挙後の政策・PR攻勢（Axios 報道）は出典リンクが開けず落とした。",
+   "period": "11/2 8:00 〜 11/3 8:00 JST",
+   "updated": "07:49",
+   "weekday": "火"
+  },
+  {
+   "date": "2026-11-04",
+   "failures": [
+    "ChatGPTリリースノート"
+   ],
+   "items": [
+    {
+     "basis": "基準2（API 仕様変更・開発者影響）／初報",
+     "category": "○",
+     "company": "Anthropic",
+     "impact": "API 経由の生成物が「Claude 由来」と判別可能になる。サンプリング設定次第で付かないケースがある点は仕様として把握が必要。",
+     "mine": true,
+     "no": 1,
+     "qa": "生成したテストケース・仕様書・レビュー文の出自検証（AI生成かどうか）に使える一方、透かしが評価・比較の結果に影響しないかの確認項目が増える。",
+     "related": "仕様書品質検査ツール／AIDD用スキル・フック集 — 生成物の由来判定を検査フローに組み込める。",
+     "single": false,
+     "sources": [
+      {
+       "name": "Claude API Release notes",
+       "url": "https://platform.claude.com/docs/en/release-notes/overview"
+      },
+      {
+       "name": "Text watermark ドキュメント",
+       "url": "https://platform.claude.com/docs/en/build-with-claude/text-watermark"
+      }
+     ],
+     "summary": "Claude Mythos 5 / Opus 4.7 / Sonnet 4.6 が生成するテキストに Anthropic のテキスト透かしが付くようになった（対象プラットフォームは公式ヘルプに記載）。Sonnet 4.6 では temperature / top_p / top_k を既定値以外にしたリクエストの出力には透かしが入らない場合がある。",
+     "title": "Claude API、主要モデルの生成テキストに透かし付与",
+     "try": "◯"
+    },
+    {
+     "basis": "基準3（大型資金調達・IPO）＋基準5（安全性に関する開示）／続報（S-1 修正）",
+     "category": "□",
+     "company": "Anthropic",
+     "impact": "Claude の供給（計算資源）とモデル投資の規模感が開示され、調達・ベンダー選定の前提情報が増えた。",
+     "mine": false,
+     "no": 2,
+     "qa": "直接の影響なし。ベンダーの継続性・ガバナンス評価（第三者検証の前提資料）として押さえる。",
+     "related": "",
+     "single": false,
+     "sources": [
+      {
+       "name": "ITmedia",
+       "url": "https://www.itmedia.co.jp/news/article/2611/03/2000002831/"
+      },
+      {
+       "name": "TechCrunch",
+       "url": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/"
+      }
+     ],
+     "summary": "7〜9月期の売上高は約170億ドル、インフラ関連の購入・リース契約コミットメントは約8954億ドルと開示。日本の投資家向けにも最大35億ドルの販売枠を設ける報道あり。修正版 S-1 には、自己改良（RSI）能力の閾値に「間もなく」到達する可能性があるとの記載も含まれると TechCrunch が報じた。",
+     "title": "Anthropic、IPO申請書（S-1）を修正し直近四半期の業績を開示",
+     "try": "×"
+    },
+    {
+     "basis": "基準3（1億ドル超の買収）／初報",
+     "category": "□",
+     "company": "その他",
+     "impact": "顧客対応エージェント領域の大手統合が進み、Salesforce 系プロダクトへの AI エージェント組み込みが加速する見込み。",
+     "mine": false,
+     "no": 3,
+     "qa": "顧客対応エージェントの検証需要（会話品質・エスカレーション判定）の増加要因として把握。",
+     "related": "",
+     "single": true,
+     "sources": [
+      {
+       "name": "The Information",
+       "url": "https://www.theinformation.com/briefings/exclusive-salesforce-acquires-startup-cresta-2-7-billion"
+      }
+     ],
+     "summary": "The Information が、Salesforce による AI コンタクトセンター企業 Cresta の買収（27億ドル）を独自報道。公式発表は未確認。",
+     "title": "Salesforce、AIコンタクトセンターのCrestaを27億ドルで買収と報道",
+     "try": "×"
+    }
+   ],
+   "memo": "「GPT-6 Astra が小型モデルの重みを直接編集して数学性能を改善」との個人ブログ（X で拡散）は、主要メディアの裏取りが無く見送り。",
+   "period": "11/3 8:00 〜 11/4 8:00 JST",
+   "updated": "07:50",
+   "weekday": "水"
+  },
+  {
+   "date": "2026-11-05",
+   "failures": [
+    "ChatGPTリリースノート"
+   ],
+   "items": [],
+   "memo": "Anthropic の検証可能推論研究「FlashProve」（zkSNARK で応答が指定モデル由来であることを証明、コードは Apache 2.0 で公開。国内では ITmedia が 11/4 に報道）は、発表が現地 11/2 で対象期間外のため見送り。QA4AI の出所検証に直結するため一読推奨。",
+   "period": "11/4 8:00 〜 11/5 8:00 JST",
+   "updated": "07:50",
+   "weekday": "木"
   }
  ],
  "pool_size": 846,
