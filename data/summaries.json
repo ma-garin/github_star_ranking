@@ -13,6 +13,7 @@
  "HunYiSage/dsh-purge": "DeepSeek ハーネス アーマー破壊: すべてのモデルがアーマーを破壊できるようになります。異なるモデルを異なるプロンプト単語に置き換えることができます。デフォルトのプロンプトワードは中国語モデル「Xiaomajiang」のものです。すべてのモデルの脱獄 — モデルごとにプロンプ​​トを交換します。スターコレクションを要求する ⭐ コピーを開きたい場合は、署名要件セクションを確認してください",
  "JetBrains/thinkrail": "作業方法に合わせてカスタマイズする軽量の本物の IDE で pi を使用した Vibe コード — The Vibe You Need",
  "JuliusBrussee/caveman": "🪨 少数のトークンが機能するのに、なぜ多くのトークンを使用するのでしょうか。穴居人のように話すことでトークンの 65% をカットする、バイラル スキル + コーディング エージェントの代理人。",
+ "JuneYaooo/rea-video": "あらゆるビデオをショットごとにリバース エンジニアリングします。各ショットが撮影されたのか、AI によって生成されたのか、コーディングされたのか、キャプション、カット、音声がどのように作成されたのか、リメイク方法がわかります。",
  "KKKKhazix/agent-autoloop": "コマンド ライン エージェントにバックグラウンドでの作業を引き継ぎ、それを最後まで単独で実行させます。通常は気にせず、不確実性が生じた場合にのみ承認を求めるカードを送信します。",
  "KnifeLemon/Filee": "263形式をオフラインで変換できる無料のファイル変換ツール。画像・PDF・Office・動画・音声などに対応",
  "Leonxlnx/taste-skill": "コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック",
@@ -33,6 +34,7 @@
  "anomalyco/hex": "macOS 向けのローカルファーストの音声ディクテーション。ショートカットを押したまま話し、任意のアプリに貼り付けます。ネイティブ Rust、オンデバイス音声認識、Linux ベータ版。",
  "anomalyco/opencode": "オープンソースのコーディング エージェント。",
  "anthropics/skills": "エージェント スキルのパブリック リポジトリ",
+ "awesome-dsh-plugin/awesome-dsh-plugin": "DeepSeek Harness (dsh) のプラグインの厳選されたリスト · DeepSeek Harness DeepSeek Harness のプラグインの厳選されたリスト",
  "bilawalsidhu/gods-eye-view": "ブラウザ上のスパイ衛星シミュレータですが、データは本物です。フォトリアリスティックな 3D 地球儀上にオープンソースの空間インテリジェンスをライブで表示します。",
  "blader/humanizer": "文章からAI生成らしさを取り除くエージェントスキル",
  "bregman-arie/devops-exercises": "Linux、Jenkins、AWS、SRE、Prometheus、Docker、Python、Ansible、Git、Kubernetes、Terraform、OpenStack、SQL、NoSQL、Azure、GCP、DNS、Elastic、ネットワーク、仮想化。 DevOps 面接の質問",
@@ -48,6 +50,7 @@
  "github/spec-kit": "仕様駆動開発（SDD）を始めるためのツールキット",
  "gitroomhq/postiz-app": "エージェント型のSNS投稿予約ツール。複数SNSへの投稿を一括で管理・自動化する",
  "google/elephant-goldfish-model": "AI エージェントを使用してソフトウェアを設計およびレビューするためのオープンソース スキル",
+ "google/skills": "Google の製品とテクノロジーに関するエージェント スキル",
  "harry0703/MoneyPrinterTurbo": "AI の大規模モデルと自動化されたワークフローを使用して、トピックやキーワードに基づいてワンクリックで高解像度の短いビデオを生成します。自動化された AI ワークフローを使用して、トピックまたはキーワードから HD ショート ビデオを生成します。",
  "heydamir/unslop": "バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル",
  "heygen-com/hyperframes": "HTMLを書きます。ビデオをレンダリングします。エージェント向けに構築されています。",
@@ -59,6 +62,7 @@
  "makecindy/cindy": "それは終わったと考えてください。すぐに使えるオープンソースの AI エージェント · 思い立ったら、すぐに実行できます。オープンソースの、すぐに使える AI エージェント。",
  "mattpocock/skills": "本物のエンジニアのためのスキル。私の .agents ディレクトリから直接。",
  "microsoft/TokenEconomizer": "コーディングエージェント向けのエクスペリエンス主導のブラックボックスコスト管理",
+ "microsoft/VibeVoice": "オープンソースのFrontier Voice AI",
  "milind-soni/OpenMausBot": "ボットが使用できる仮想マシンを備えたオープンソースの Grok Bot 代替ツール",
  "morluto/rea": "アプリの動作からネイティブ バイナリに至るまで、エージェントを使用してあらゆるものをリバース エンジニアリングします。",
  "msitarzewski/agency-agents": "すぐに使える完全な AI エージェンシー - フロントエンドのウィザードから Reddit コミュニティの忍者まで、奇抜なインジェクターからリアリティ チェッカーまで。各エージェントは、個性、プロセス、実績のある成果物を備えた専門の専門家です。",
@@ -73,6 +77,7 @@
  "pbakaus/impeccable": "コーディング エージェントの設計ボキャブラリー。より洗練され、より大胆に舵を取り、批評と監査でレビューし、出荷前に AI のスロップを把握します。",
  "pollen-robotics/microduck": "小さな二足歩行アヒル ロボット 🦆",
  "public-apis/public-apis": "無料で使えるAPIをまとめた一覧",
+ "sherlock-project/sherlock": "ソーシャル ネットワーク全体でユーザー名に基づいてソーシャル メディア アカウントを追跡する",
  "shiyu-coder/Kronos": "クロノス: 金融市場言語の基礎モデル",
  "stablyai/orca": "Orca は、エージェント群 (Grok Bot、Claude Code など) と連携するための場所です。独自のサブスクリプションでコーディング エージェントを実行します。デスクトップ、モバイル、リモート ランタイムで利用可能です。",
  "storytold/craft-anything": "あらゆるソフトウェアの仕組みを理解し、自分で作り直すためのツール",
@@ -84,5 +89,6 @@
  "vorssaint/vorssaint-utils": "無料のオープンソース macOS メニュー バー ツールキット。",
  "wangzan101/Mika": "ミカ – アプリを操作したり、インターネットをサーフィンしたり、あなたの代わりに作業を行ったりする、携帯電話上のパーソナル AI アシスタントです。アプリとウェブを操作して作業を完了する Android 用のオンデバイス AI エージェント。",
  "xerj-org/xerj": "AI 検索エンジンとボットおよびエージェント用の MCP サーバー。 1 つの Rust バイナリ インデックスは、BM25 フルテキスト、ベクターおよびハイブリッド検索、grep を使用しないコード検索、エージェント メモリ、RAG 用にコード、ドキュメント、ログ、JSONL/CSV、PDF にインデックスを付けます。 Elasticsearch 互換 API。 Corpus Hub は、数百もの参照記憶コーパスを提供します。",
- "yetone/magpie": "エージェントとモデルの組み合わせをメニューバーから切り替えるツール（DeepSeek上のCodexなど）"
+ "yetone/magpie": "エージェントとモデルの組み合わせをメニューバーから切り替えるツール（DeepSeek上のCodexなど）",
+ "zortos293/Lichii": "非常に実験的なNintendo Switch 2エミュレータ"
 }
