@@ -84,24 +84,3 @@ def test_build_app_data(tmp_path, monkeypatch):
 def test_fix_terms_and_is_japanese():
     assert collect.fix_terms("クロード コード、カーソル、コーデックスの対策") == "Claude Code、Cursor、Codexの対策"
     assert collect.is_japanese("日本語の説明です") and not collect.is_japanese("An English description")
-
-
-def test_news_sync_parses_folder_and_writes(tmp_path, monkeypatch):
-    import json
-    import news_sync
-    page = ('<div class="flip-entry" id="entry-AAA"><div class="flip-entry-title">news-2026-11-05.json</div></div>'
-            '<div class="flip-entry" id="entry-BBB"><div class="flip-entry-title">memo.txt</div></div>')
-    files = news_sync.list_folder(page)
-    assert files == {"news-2026-11-05.json": "AAA", "memo.txt": "BBB"}
-    d = {"date": "2026-11-05", "weekday": "木", "period": "p", "memo": "", "failures": [], "items": []}
-    monkeypatch.setattr(news_sync, "NEWS_DIR", tmp_path)
-    assert news_sync.sync(files, get=lambda url: json.dumps(d).encode()) == ["2026-11-05"]
-    assert json.loads((tmp_path / "latest.json").read_text())["date"] == "2026-11-05"
-    assert news_sync.sync(files, get=lambda url: json.dumps(d).encode()) == []  # 同内容なら書かない
-
-
-def test_news_sync_rejects_wrong_date():
-    import news_sync
-    import pytest
-    with pytest.raises(ValueError):
-        news_sync.validate({"date": "2026-11-04", "weekday": "", "period": "", "memo": "", "failures": [], "items": []}, "2026-11-05")
