@@ -248,6 +248,11 @@ nav button:active,nav button:hover{box-shadow:none!important}nav button:active .
 .seg3 button:first-child,.seg2 button:first-child{border-left:0}
 .seg3 button[aria-pressed=true],.seg2 button[aria-pressed=true]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);font-weight:500;box-shadow:none}
 .seg3 button[aria-pressed=true]::before,.seg2 button[aria-pressed=true]::before{content:"";width:18px;height:18px;background:currentColor;-webkit-mask:var(--chk) center/18px no-repeat;mask:var(--chk) center/18px no-repeat}
+/* ニュースの絞り込み: 4ボタンを狭い画面でも1行に収める（文字の折り返しを禁止し、余白とチェック印を詰める） */
+.seg2 button{flex:1 1 0;min-width:0;padding:0 4px;gap:4px;white-space:nowrap}
+.seg2 button span{margin-left:0}
+.seg2 button[aria-pressed=true]::before{width:16px;height:16px;-webkit-mask-size:16px;mask-size:16px;flex:none}
+@media (max-width:400px){.seg2 button{font-size:13px}.seg2 button[aria-pressed=true]::before{display:none}}
 /* Switch */
 .sw{width:52px;height:32px}
 .sw span{background:var(--md-surface-container-highest);border:2px solid var(--md-outline);border-radius:16px;transition:background-color .2s var(--md-ease)}
