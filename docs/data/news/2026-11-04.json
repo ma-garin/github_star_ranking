@@ -1,0 +1,80 @@
+{
+ "date": "2026-11-04",
+ "weekday": "水",
+ "period": "11/3 8:00 〜 11/4 8:00 JST",
+ "updated": "07:50",
+ "memo": "「GPT-6 Astra が小型モデルの重みを直接編集して数学性能を改善」との個人ブログ（X で拡散）は、主要メディアの裏取りが無く見送り。",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
+ "items": [
+  {
+   "no": 1,
+   "category": "○",
+   "company": "Anthropic",
+   "title": "Claude API、主要モデルの生成テキストに透かし付与",
+   "summary": "Claude Mythos 5 / Opus 4.7 / Sonnet 4.6 が生成するテキストに Anthropic のテキスト透かしが付くようになった（対象プラットフォームは公式ヘルプに記載）。Sonnet 4.6 では temperature / top_p / top_k を既定値以外にしたリクエストの出力には透かしが入らない場合がある。",
+   "impact": "API 経由の生成物が「Claude 由来」と判別可能になる。サンプリング設定次第で付かないケースがある点は仕様として把握が必要。",
+   "qa": "生成したテストケース・仕様書・レビュー文の出自検証（AI生成かどうか）に使える一方、透かしが評価・比較の結果に影響しないかの確認項目が増える。",
+   "related": "仕様書品質検査ツール／AIDD用スキル・フック集 — 生成物の由来判定を検査フローに組み込める。",
+   "basis": "基準2（API 仕様変更・開発者影響）／初報",
+   "try": "◯",
+   "mine": true,
+   "single": false,
+   "sources": [
+    {
+     "name": "Claude API Release notes",
+     "url": "https://platform.claude.com/docs/en/release-notes/overview"
+    },
+    {
+     "name": "Text watermark ドキュメント",
+     "url": "https://platform.claude.com/docs/en/build-with-claude/text-watermark"
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "category": "□",
+   "company": "Anthropic",
+   "title": "Anthropic、IPO申請書（S-1）を修正し直近四半期の業績を開示",
+   "summary": "7〜9月期の売上高は約170億ドル、インフラ関連の購入・リース契約コミットメントは約8954億ドルと開示。日本の投資家向けにも最大35億ドルの販売枠を設ける報道あり。修正版 S-1 には、自己改良（RSI）能力の閾値に「間もなく」到達する可能性があるとの記載も含まれると TechCrunch が報じた。",
+   "impact": "Claude の供給（計算資源）とモデル投資の規模感が開示され、調達・ベンダー選定の前提情報が増えた。",
+   "qa": "直接の影響なし。ベンダーの継続性・ガバナンス評価（第三者検証の前提資料）として押さえる。",
+   "related": "",
+   "basis": "基準3（大型資金調達・IPO）＋基準5（安全性に関する開示）／続報（S-1 修正）",
+   "try": "×",
+   "mine": false,
+   "single": false,
+   "sources": [
+    {
+     "name": "ITmedia",
+     "url": "https://www.itmedia.co.jp/news/article/2611/03/2000002831/"
+    },
+    {
+     "name": "TechCrunch",
+     "url": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "category": "□",
+   "company": "その他",
+   "title": "Salesforce、AIコンタクトセンターのCrestaを27億ドルで買収と報道",
+   "summary": "The Information が、Salesforce による AI コンタクトセンター企業 Cresta の買収（27億ドル）を独自報道。公式発表は未確認。",
+   "impact": "顧客対応エージェント領域の大手統合が進み、Salesforce 系プロダクトへの AI エージェント組み込みが加速する見込み。",
+   "qa": "顧客対応エージェントの検証需要（会話品質・エスカレーション判定）の増加要因として把握。",
+   "related": "",
+   "basis": "基準3（1億ドル超の買収）／初報",
+   "try": "×",
+   "mine": false,
+   "single": true,
+   "sources": [
+    {
+     "name": "The Information",
+     "url": "https://www.theinformation.com/briefings/exclusive-salesforce-acquires-startup-cresta-2-7-billion"
+    }
+   ]
+  }
+ ]
+}

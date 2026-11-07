@@ -69,17 +69,70 @@ def test_ranking_lines_two_rows_per_repo():
 
 def test_build_app_data(tmp_path, monkeypatch):
     import json
-    data = tmp_path / "docs" / "data"; data.mkdir(parents=True); snap = tmp_path / "snap"; snap.mkdir()
+    data = tmp_path / "docs" / "data"; (data / "news").mkdir(parents=True); snap = tmp_path / "snap"; snap.mkdir()
     for d, st in (("2026-10-31", 100), ("2026-11-01", 130)):
         (data / f"{d}.json").write_text(json.dumps({"weekly": [{**repo("o/r", st), "rank": 1, "delta": 5}], "daily": []}))
         (snap / f"{d}.json").write_text(json.dumps({"o/r": st}))
+    (data / "news" / "2026-11-01.json").write_text(json.dumps({"date": "2026-11-01", "items": []}))
     (data / "latest.json").write_text(json.dumps({"pool_size": 3}))
     monkeypatch.setattr(collect, "DOCS_DATA", data); monkeypatch.setattr(collect, "SNAP_DIR", snap)
     collect.build_app_data()
     a = json.loads((data / "app.json").read_text())
-    assert a["dates"] == ["2026-10-31", "2026-11-01"] and a["series"]["o/r"] == [100, 130] and "news" not in a
+    assert a["dates"] == ["2026-10-31", "2026-11-01"] and a["series"]["o/r"] == [100, 130] and len(a["news"]) == 1
 
 
 def test_fix_terms_and_is_japanese():
     assert collect.fix_terms("クロード コード、カーソル、コーデックスの対策") == "Claude Code、Cursor、Codexの対策"
     assert collect.is_japanese("日本語の説明です") and not collect.is_japanese("An English description")
+
+
+def _news(date="2026-11-08"):
+    return {"date": date, "weekday": "日", "period": "11/7 8:00 〜 11/8 8:00 JST", "updated": "07:52", "memo": "A&B <x>",
+            "failures": [], "items": [{"no": 1, "category": "◎", "company": "Anthropic", "title": "t", "summary": "s",
+                                        "impact": "i", "qa": "q", "related": "", "basis": "b", "try": "◯", "mine": True,
+                                        "single": False, "sources": [{"name": "n", "url": "https://e/?a=1&b=2"}]}]}
+
+
+def _replies(date, s, size):
+    import html
+    chunks = [s[i:i + size] for i in range(0, len(s), size)]
+    return [{"text": f"APP-JSON news-{date} {k}/{len(chunks)}\n```json\n{html.escape(c, quote=False)}\n```"}
+            for k, c in enumerate(chunks, 1)]
+
+
+def test_news_slack_sync_reassembles_split_json(tmp_path, monkeypatch):
+    import json
+    import news_slack_sync as ns
+    monkeypatch.setattr(ns, "NEWS_DIR", tmp_path)
+    s = json.dumps(_news(), ensure_ascii=False, separators=(",", ":"))
+    replies = [{"text": "本文の返信"}] + list(reversed(_replies("2026-11-08", s, 40)))  # 順不同でも復元
+    changed, errors = ns.sync(replies)
+    assert changed == ["2026-11-08"] and errors == []
+    assert json.loads((tmp_path / "2026-11-08.json").read_text())["memo"] == "A&B <x>"
+    assert (tmp_path / "latest.json").read_text() == (tmp_path / "2026-11-08.json").read_text()
+    assert ns.sync(replies) == ([], [])  # 同内容なら書かない
+
+
+def test_news_slack_sync_skips_incomplete_and_rejects_invalid(tmp_path, monkeypatch):
+    import json
+    import news_slack_sync as ns
+    monkeypatch.setattr(ns, "NEWS_DIR", tmp_path)
+    s = json.dumps(_news(), ensure_ascii=False, separators=(",", ":"))
+    assert ns.sync(_replies("2026-11-08", s, 40)[:-1]) == ([], [])  # 投稿途中は飛ばす
+    bad = json.dumps(_news("2026-11-07"), ensure_ascii=False)
+    changed, errors = ns.sync(_replies("2026-11-08", bad, 5000))  # date 不一致
+    assert changed == [] and len(errors) == 1 and not list(tmp_path.iterdir())
+
+
+def test_news_slack_sync_collect_threads_tolerates_join_error():
+    import news_slack_sync as ns
+    calls = []
+    def api(method, token, **p):
+        calls.append(method)
+        if method == "conversations.join":
+            raise RuntimeError("conversations.join: method_not_supported_for_channel_type")
+        if method == "conversations.history":
+            return {"messages": [{"ts": "1", "reply_count": 2}, {"ts": "2"}]}
+        return {"messages": [{"text": "親"}, {"text": "r1"}, {"text": "r2"}]}
+    assert [m["text"] for m in ns.collect_threads("x", api=api)] == ["r1", "r2"]
+    assert calls == ["conversations.join", "conversations.history", "conversations.replies"]

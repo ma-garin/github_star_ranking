@@ -1,0 +1,116 @@
+{
+ "date": "2026-10-31",
+ "weekday": "土",
+ "period": "10/30 8:00 〜 10/31 8:00 JST",
+ "memo": "SB Intuitions「Sarashina」初の思考モデル（API 提供）は単独報道かつ主要各社外のため見送り。1件目は承認組織限定のため詳報ブロックは付けず",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
+ "items": [
+  {
+   "category": "◎",
+   "company": "OpenAI",
+   "title": "OpenAI、生命科学特化「GPT-6 Rosalind」を公開",
+   "summary": "API changelog に gpt-6-rosalind が追加。生命科学研究向けの特化モデルで、trusted-access プログラムで承認された組織のみ利用可（組織内の研究用途）。",
+   "impact": "一般提供ではなく限定提供。料金は公式未記載。",
+   "qa": "ドメイン特化・限定アクセスのモデルが増えると、検証対象モデルの利用資格・ポリシー確認が受け入れ条件に入る。",
+   "basis": "基準1（新モデル、ただし承認組織限定）／初報",
+   "sources": [
+    {
+     "name": "OpenAI API changelog",
+     "url": "https://developers.openai.com/api/docs/changelog"
+    }
+   ],
+   "mine": false,
+   "single": false,
+   "related": "",
+   "no": 1,
+   "try": "×"
+  },
+  {
+   "category": "○",
+   "company": "Anthropic",
+   "title": "Claude Opus 4.8 の fast mode が非推奨、11/30 に廃止",
+   "summary": "10/30 付リリースノートで Opus 4.8 の fast mode を非推奨化。11/30 以降は claude-opus-4-8 への speed: \"fast\" 指定がエラーになる。継続利用は Opus 5.5 へ移行。",
+   "impact": "fast mode を使う本番コードは1か月以内にモデル ID 切り替えが必要。",
+   "qa": "日付起点の破壊的変更。回帰テストで speed パラメータ付きリクエストの挙動を期限前後で確認したい。",
+   "basis": "基準2（非推奨化・移行）／初報",
+   "sources": [
+    {
+     "name": "Claude API リリースノート",
+     "url": "https://platform.claude.com/docs/en/release-notes/overview"
+    },
+    {
+     "name": "Fast mode ドキュメント",
+     "url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode"
+    }
+   ],
+   "mine": false,
+   "single": false,
+   "related": "",
+   "no": 2,
+   "try": "◯"
+  },
+  {
+   "category": "○",
+   "company": "OpenAI",
+   "title": "ChatGPT Pro 100／500 プランの利用上限が倍に",
+   "summary": "ITmedia 報道: Pro 100／500 プランの利用上限が倍増。先に告知された Pro 200 の上限半減は撤回され、一連の経緯がまとめられている。",
+   "impact": "Pro 契約者の実質的な利用枠が変わる。上限値は出典に記載のとおり確認を。",
+   "qa": "有料プランの上限変動は、ChatGPT 経由の検証作業の計画（1日あたりの試行回数）に直接響く。",
+   "basis": "基準2（料金・プラン変更）／初報",
+   "sources": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2610/30/2000002738/"
+    }
+   ],
+   "mine": false,
+   "single": true,
+   "related": "",
+   "no": 3,
+   "try": "×"
+  },
+  {
+   "category": "●",
+   "company": "Google",
+   "title": "Gemini API の Computer Use ツールが GA",
+   "summary": "Gemini API changelog（10/30）で Computer Use ツールが Interactions／GenerateContent API で一般提供に。",
+   "impact": "プレビュー扱いだった画面操作エージェントを本番用途で組み込める。",
+   "qa": "ブラウザ操作エージェントの安定供給元が増え、E2E 自動テストや UI 探索の比較対象として評価しやすくなる。",
+   "basis": "基準2（API 提供形態の変更）／初報",
+   "sources": [
+    {
+     "name": "Gemini API changelog",
+     "url": "https://ai.google.dev/gemini-api/docs/changelog"
+    }
+   ],
+   "mine": true,
+   "single": false,
+   "related": "AIエージェント基盤（E2Eエージェント）／UX自動レビュー — Claude の computer use と並べて E2E 実行の成功率・コスト比較ができる",
+   "no": 4,
+   "try": "◯"
+  },
+  {
+   "category": "◎",
+   "company": "その他",
+   "title": "Mistral、1兆パラメータ「Mistral Large 4」の重みを公開",
+   "summary": "ITmedia 報道: 1兆パラメータ級の Mistral Large 4（通称 Le Chonk）の重みがダウンロード可能に。",
+   "impact": "大規模オープンウェイトモデルの選択肢が増える。ライセンス条件は出典で要確認。",
+   "qa": "オープンウェイトはオンプレ検証環境でのモデル比較・再現性確認に使いやすい。",
+   "basis": "基準1（新モデルの公開）／初報",
+   "sources": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2610/30/2000002762/"
+    }
+   ],
+   "mine": false,
+   "single": true,
+   "related": "",
+   "no": 5,
+   "try": "×"
+  }
+ ],
+ "updated": "07:50"
+}

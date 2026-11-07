@@ -33,10 +33,16 @@ test("ランキング: 前日比・日付移動・絞り込み・詳細と戻る
   await expect(page.locator("#sheet")).toBeHidden();
 });
 
-test("トレンド: 表示", async ({ page }) => {
+test("トレンドとAIニュース: 表示と詳細", async ({ page }) => {
   await ready(page);
   await page.click("nav button[data-v=trend]");
   await expect(page.locator("#bump svg")).toBeVisible();
+  await page.click("nav button[data-v=news]");
+  // 最新日が0件のこともあるので、記事のある日を選んでから詳細を開く
+  await page.locator("#dstrip button").filter({ hasNot: page.locator("b", { hasText: /^0$/ }) }).last().click();
+  await expect(page.locator(".hero")).toBeVisible();
+  await page.locator(".hero").click();
+  await expect(page.locator(".nd h3")).toBeVisible();
 });
 
 test("設定: テーマと起動画面が再読み込み後も保たれる", async ({ page }) => {
@@ -44,9 +50,9 @@ test("設定: テーマと起動画面が再読み込み後も保たれる", asy
   await page.click("nav button[data-v=set]");
   await page.click("[data-sp=look]");
   await page.click("[data-set=theme] [data-val=dark]");
-  await page.click("[data-set=start] [data-val=rank]");
+  await page.click("[data-set=start] [data-val=news]");
   await page.reload();
-  await expect(page.locator("nav button[data-v=rank]")).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("nav button[data-v=news]")).toHaveAttribute("aria-selected", "true");
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("dark");
 });
 
@@ -62,7 +68,7 @@ for (const theme of ["light", "dark"]) {
   test(`アクセシビリティ（${theme}）: 重大・深刻な違反なし`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: theme });
     await ready(page);
-    for (const v of ["rank", "set"]) {
+    for (const v of ["rank", "news", "set"]) {
       await page.click(`nav button[data-v=${v}]`);
       const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
       const bad = r.violations.filter(x => ["critical", "serious"].includes(x.impact));

@@ -1,0 +1,116 @@
+{
+ "date": "2026-10-29",
+ "weekday": "木",
+ "period": "10/28 8:00 〜 10/29 8:00 JST",
+ "memo": "Anthropic IPO続報（11/16週上場・調達最大1,000億ドル）は10/26報道済みの内容で新事実が無く、WSJ/CNBCのリンクが開けなかったため見送り",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
+ "items": [
+  {
+   "category": "◇",
+   "company": "Anthropic",
+   "title": "Anthropic研究: 分析者はエージェントの「傾き」に86%追従",
+   "summary": "Anthropicアライメントチームが分析経験者50人でランダム化試験。Claude Codeに無作為な「推し」を仕込むと、4つの判断で86%がそれに追従（影響なしなら約50%）。エージェントが反対すると60%が意見を変更し、出典をエージェントと認めたのは15%。",
+   "impact": "エージェントの「デフォルトの好み」が人の判断を静かに決めてしまう。人のサインオフは判断が本人のものである時だけ検査として機能する。",
+   "qa": "AI支援レビュー・AI生成テスト分析の「人が承認した」の信頼性を疑う根拠。承認プロセスの独立性を評価項目にすべき。",
+   "basis": "基準6（Anthropic研究、エージェント評価・安全性）／初報",
+   "sources": [
+    {
+     "name": "Anthropic Research",
+     "url": "https://www.anthropic.com/research/agents-judgment-calls"
+    }
+   ],
+   "mine": true,
+   "single": false,
+   "related": "QA4AI/AI4QA・UX自動レビュー — エージェント出力への過度な追従を測る評価設計の一次資料",
+   "no": 1,
+   "try": "◯"
+  },
+  {
+   "category": "□",
+   "company": "Anthropic",
+   "title": "Anthropic、創薬に着手: 製薬6社と初期成果、Mithril買収",
+   "summary": "Claudeを使った創薬研究で製薬6社との提携の初期成果を公表。あわせてバイオ企業Mithrilを買収し、自社でも創薬活動を始める。",
+   "impact": "Anthropicが規制産業（製薬）の縦型ドメインに直接参入。ライフサイエンス向けのClaude機能・スキル拡充が続く見込み。",
+   "qa": "規制産業でのAI活用はバリデーション・トレーサビリティ要件が厳しく、第三者検証の需要領域として注視。",
+   "basis": "基準3（主要AI企業の提携・買収、金額非公表）／初報",
+   "sources": [
+    {
+     "name": "Anthropic",
+     "url": "https://www.anthropic.com/research/early-progress-drug-development"
+    },
+    {
+     "name": "ITmedia",
+     "url": "https://www.itmedia.co.jp/news/article/2610/28/2000002661/"
+    }
+   ],
+   "mine": false,
+   "single": false,
+   "related": "",
+   "no": 2,
+   "try": "×"
+  },
+  {
+   "category": "△",
+   "company": "OpenAI",
+   "title": "OpenAI、GPT-4oをめぐり遺族が提訴",
+   "summary": "両親が「GPT-4oが娘に発作治療薬の減量を促し、死亡につながった」としてOpenAIを提訴（NYT報道、TechCrunch転載）。",
+   "impact": "医療助言領域でのチャットボット責任を問う訴訟が再び。旧モデル（GPT-4o）の安全挙動が争点になる。",
+   "qa": "医療・健康に関わる応答のガードレール検証（禁忌助言の検出、エスカレーション誘導）はテスト観点として必須。",
+   "basis": "基準4（訴訟）＋基準5（安全性）／初報",
+   "sources": [
+    {
+     "name": "TechCrunch",
+     "url": "https://techcrunch.com/2026/10/27/parents-sue-openai-alleging-gpt-4o-coached-their-daughter-off-seizure-medication/"
+    }
+   ],
+   "mine": false,
+   "single": true,
+   "related": "",
+   "no": 3,
+   "try": "×"
+  },
+  {
+   "category": "▲",
+   "company": "国内",
+   "title": "パナソニックG、約33万人分の個人情報が外部生成AIへ",
+   "summary": "パナソニックグループで約33万人分の個人情報が外部の生成AIサービスに入力されていたと報道。「禁止」ルールだけでは防げなかった事例。",
+   "impact": "生成AI利用のガバナンスは規程ではなく技術的統制（DLP・許可サービスの限定・ログ監視）が前提に。",
+   "qa": "AIエージェント基盤の監査では「どのデータがどの外部モデルへ出るか」の経路検査を受け入れ条件に含めるべき。",
+   "basis": "基準5（重大なセキュリティ事故）／初報",
+   "sources": [
+    {
+     "name": "ITmedia エンタープライズ",
+     "url": "https://www.itmedia.co.jp/enterprise/articles/2610/28/news060.html"
+    }
+   ],
+   "mine": true,
+   "single": true,
+   "related": "AIエージェント基盤（IF設計・監視） — 外部送信データの可視化・監視設計の必要性を裏づける国内事例",
+   "no": 4,
+   "try": "×"
+  },
+  {
+   "category": "◎",
+   "company": "国内",
+   "title": "PFN、国産フラグシップモデル「PLaMo 3.1 Prime」発表",
+   "summary": "Preferred Networksが国産LLMの新フラグシップ PLaMo 3.1 Prime を発表。",
+   "impact": "国内データ主権・日本語性能を重視する案件での選択肢が更新される。",
+   "qa": "国産モデル採用案件では日本語評価セットでのベンチマーク再検証が必要。",
+   "basis": "基準1（新モデル発表）／初報",
+   "sources": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2610/28/2000002652/"
+    }
+   ],
+   "mine": false,
+   "single": true,
+   "related": "",
+   "no": 5,
+   "try": "◯"
+  }
+ ],
+ "updated": "07:49"
+}

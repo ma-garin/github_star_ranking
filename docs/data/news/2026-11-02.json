@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-02",
+ "weekday": "月",
+ "period": "11/1 8:00 〜 11/2 8:00 JST",
+ "updated": "07:50",
+ "memo": "「AI学習オプトアウトを robots.txt で、OpenAI・Google が支持」（ITmedia）は標準化の動きで基準2・4に届かず見送り。",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
+ "items": [
+  {
+   "no": 1,
+   "category": "◎",
+   "company": "その他",
+   "title": "DeepSeek、コーディングエージェント「Super-Agent」試作を公開",
+   "summary": "DeepSeek が研究プロトタイプ「dsh-superagent」を MIT ライセンスで GitHub 公開。開発者のチャットや GitHub を監視し、コーディング上の問題を見つけて修正案や PR で自律的に応答するエージェント。",
+   "impact": "Claude Code／Codex 型の「指示待ち」ではなく「常駐・能動型」のコーディングエージェントが OSS で手に入る。設計の参照実装として読める。",
+   "qa": "能動型エージェントは「いつ動くか」「何をトリガーに PR を出すか」が検証対象になる。監視条件と介入ポリシーのテスト設計が新たに必要。",
+   "related": "AIエージェント基盤（IF設計・監視・E2Eエージェント） — 常駐エージェントのイベント駆動 IF と監視設計の実例として分解できる。",
+   "basis": "基準1（主要ラボの新製品公開）／初報",
+   "try": "◯",
+   "mine": true,
+   "single": false,
+   "sources": [
+    {
+     "name": "GitHub: deepseek-ai/dsh-superagent-prototype",
+     "url": "https://github.com/deepseek-ai/dsh-superagent-prototype/"
+    }
+   ]
+  }
+ ]
+}
