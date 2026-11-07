@@ -1,0 +1,25 @@
+name: app-data
+# AIニュースの JSON が追加されたら、アプリ用の data/app.json だけを作り直す（集計は走らせない）
+on:
+  push:
+    branches: [main]
+    paths: ["docs/data/news/**"]
+permissions:
+  contents: write
+concurrency:
+  group: daily-star-ranking
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python -c "import sys; sys.path.insert(0, 'scripts'); import collect; collect.build_app_data()"
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/app.json
+          git diff --cached --quiet || git commit -m "app: rebuild app.json for news"
+          git pull --rebase origin main && git push

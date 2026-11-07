@@ -69,15 +69,16 @@ def test_ranking_lines_two_rows_per_repo():
 
 def test_build_app_data(tmp_path, monkeypatch):
     import json
-    data = tmp_path / "docs" / "data"; data.mkdir(parents=True); snap = tmp_path / "snap"; snap.mkdir()
+    data = tmp_path / "docs" / "data"; (data / "news").mkdir(parents=True); snap = tmp_path / "snap"; snap.mkdir()
     for d, st in (("2026-10-31", 100), ("2026-11-01", 130)):
         (data / f"{d}.json").write_text(json.dumps({"weekly": [{**repo("o/r", st), "rank": 1, "delta": 5}], "daily": []}))
         (snap / f"{d}.json").write_text(json.dumps({"o/r": st}))
+    (data / "news" / "2026-11-01.json").write_text(json.dumps({"date": "2026-11-01", "items": []}))
     (data / "latest.json").write_text(json.dumps({"pool_size": 3}))
     monkeypatch.setattr(collect, "DOCS_DATA", data); monkeypatch.setattr(collect, "SNAP_DIR", snap)
     collect.build_app_data()
     a = json.loads((data / "app.json").read_text())
-    assert a["dates"] == ["2026-10-31", "2026-11-01"] and a["series"]["o/r"] == [100, 130] and "news" not in a
+    assert a["dates"] == ["2026-10-31", "2026-11-01"] and a["series"]["o/r"] == [100, 130] and len(a["news"]) == 1
 
 
 def test_fix_terms_and_is_japanese():

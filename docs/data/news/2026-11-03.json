@@ -1,0 +1,96 @@
+{
+ "date": "2026-11-03",
+ "weekday": "火",
+ "period": "11/2 8:00 〜 11/3 8:00 JST",
+ "updated": "07:49",
+ "memo": "OpenAI の中間選挙後の政策・PR攻勢（Axios 報道）は出典リンクが開けず落とした。",
+ "failures": [
+  "ChatGPTリリースノート"
+ ],
+ "items": [
+  {
+   "no": 1,
+   "category": "●",
+   "company": "Anthropic",
+   "title": "Claude API「Message threads」ベータ公開",
+   "summary": "Anthropic が Claude API に Message threads をベータ提供。会話履歴をサーバー側で保持し、各ターンは新規メッセージだけ送ればよくなる。",
+   "impact": "長時間稼働エージェントで毎回全履歴を再送する必要がなくなり、転送量・レイテンシを削減できる",
+   "qa": "会話状態がクライアント外に移るため、スレッドの再現・リプレイ手順とテストデータの持ち方を見直す必要がある",
+   "related": "AIエージェント基盤（IF設計・監視・E2Eエージェント） — 履歴管理をAPI側に寄せる設計の選択肢が増え、監視対象（スレッドID単位）も変わる",
+   "basis": "基準7（Claude API の仕様変更）／初報",
+   "try": "◯",
+   "mine": true,
+   "single": false,
+   "sources": [
+    {
+     "name": "claude.com 記事",
+     "url": "https://claude.com/resources/articles/message-threads"
+    },
+    {
+     "name": "Claude API リリースノート",
+     "url": "https://platform.claude.com/docs/en/release-notes/overview"
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "category": "●",
+   "company": "OpenAI",
+   "title": "ChatGPT、Work統合と利用制限をCodexと共通化",
+   "summary": "OpenAI は「ChatGPT Work」のエージェント機能を ChatGPT に統合し、Codex と ChatGPT 有料プランの利用量制限を12月に共通化すると発表（現地11/1）。",
+   "impact": "Codex を多用すると ChatGPT 側の枠も消費する形になり、有料プランの使い方・コスト管理が変わる",
+   "qa": "Codex をテスト生成・レビューに組み込んでいるチームは、利用枠の上限超過がパイプライン停止要因になり得るため監視を追加したい",
+   "related": "",
+   "basis": "基準2（利用制限の変更）／初報",
+   "try": "×",
+   "mine": false,
+   "single": true,
+   "sources": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2611/02/2000002781/"
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "category": "◇",
+   "company": "その他",
+   "title": "SemiAnalysis、新ベンチマーク「GDPx」公開",
+   "summary": "11分野（ソフトウェア工学、サイバー、金融、法務、アライメント等）で最先端モデルのエージェント能力を測る総合ベンチマーク。最良モデルでも総合12%にとどまると報告。上位は OpenAI・Anthropic。",
+   "impact": "既存ベンチの飽和に対し、実務タスクでの未達度合いを示す新しい比較軸になる",
+   "qa": "分野別タスク設計と採点方法は、LLM評価・エージェント評価の設計時の参考になる",
+   "related": "QA4AI/AI4QA — 実務ドメイン別の評価セット設計と「安全分類器がスコアを抑える」という評価上の注意点がそのまま使える",
+   "basis": "基準6（Techmeme 掲載の研究成果）／初報",
+   "try": "◯",
+   "mine": true,
+   "single": true,
+   "sources": [
+    {
+     "name": "SemiAnalysis",
+     "url": "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities"
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "category": "◎",
+   "company": "その他",
+   "title": "GitHub「Copilot Fusion」正式リリース",
+   "summary": "GitHub Universe 2026 で、タスクに応じて最適なAIモデルを自動選択する Copilot Fusion が正式版に。高性能と低コストの両立を狙う。",
+   "impact": "モデルを手で選ぶ運用から自動ルーティングへ。開発者ごとのモデル選定のばらつきが減る",
+   "qa": "同じプロンプトでも裏のモデルが変わるため、生成コードの品質再現性を評価する際はルーティング結果の記録が必要になる",
+   "related": "",
+   "basis": "基準1（主要製品の一般提供開始）／初報",
+   "try": "◯",
+   "mine": false,
+   "single": true,
+   "sources": [
+    {
+     "name": "Publickey",
+     "url": "https://www.publickey1.jp/blog/26/githubcopilot_fusionaigithub_universe_2026.html"
+    }
+   ]
+  }
+ ]
+}
