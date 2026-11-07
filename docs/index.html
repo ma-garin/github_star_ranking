@@ -109,61 +109,10 @@ article dt{color:var(--mut);white-space:nowrap}article dd{margin:0}
 .src a{color:var(--acc);font-size:12px}
 .foot{font-size:12px;color:var(--mut);border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
 /* ニュース v3: 日付ストリップ → 今日の要点（トップ記事）→ 見出しリスト → 詳細シート */
-.dstrip{display:flex;gap:6px;overflow-x:auto;margin:0 0 14px;padding-bottom:2px;scrollbar-width:none}
-.dstrip button{flex:none;min-width:56px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 8px;color:var(--mut);font:inherit;font-size:11px;cursor:pointer;text-align:center}
-.dstrip button b{display:block;font-size:17px;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1.2}
-.dstrip button[aria-selected=true]{background:var(--chip);border-color:var(--chip);color:var(--chipfg)}
-.dstrip button[aria-selected=true] b{color:var(--chipfg)}
-.dstrip i{display:block;font-style:normal;font-size:10px;margin-top:1px}
-.lead{font-size:12px;color:var(--mut);margin:0 0 6px;letter-spacing:.08em}
-.hero{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px;cursor:pointer;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--cc)}
-.hero .kick{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mut);margin-bottom:8px}
-.hero h2{font-size:19px;line-height:1.45;margin:0 0 8px;text-wrap:balance}
-.hero p{margin:0;color:var(--mut);font-size:14px;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.hero .imp{margin-top:10px;font-size:13px;line-height:1.6;border-top:1px solid var(--line);padding-top:10px}
-.hero .imp b{color:var(--acc);margin-right:6px}
-.seg2{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:6px}
-.seg2 button{flex:1;background:none;border:0;border-radius:8px;padding:6px 0;font:inherit;font-size:12px;color:var(--mut);cursor:pointer}
-.seg2 button[aria-pressed=true]{background:var(--bg);color:var(--fg);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.15)}
-.seg2 button span{font-variant-numeric:tabular-nums;margin-left:3px;opacity:.7}
-.nlist{list-style:none;margin:0;padding:0}
-.nrow{display:grid;grid-template-columns:4px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.nrow:last-child{border-bottom:0}
-.nrow .bar{border-radius:2px;background:var(--cc)}
-.nrow .meta2{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--mut);margin-bottom:3px}
-.nrow h3{font-size:15px;line-height:1.5;margin:0 0 4px;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.nrow.read h3{font-weight:500;color:var(--mut)}
-.nrow .one{font-size:12px;color:var(--mut);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.nrow .side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:20px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--acc)}
-.tag{font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 6px;white-space:nowrap}
-.tag.mine{color:var(--pink);background:color-mix(in srgb,var(--pink) 14%,transparent)}
-.tag.try{color:var(--up);background:color-mix(in srgb,var(--up) 14%,transparent)}
-.tag.sg{color:var(--mut);background:color-mix(in srgb,var(--mut) 14%,transparent)}
-.co2{font-weight:700;color:var(--fg)}
-.catl{color:var(--cc);font-weight:700}
-.nfoot{font-size:12px;color:var(--mut);line-height:1.6;background:var(--card);border-radius:12px;padding:10px 12px;margin-top:14px}
-.nfoot b{color:var(--fg);font-weight:600}
 .empty2{text-align:center;color:var(--mut);padding:32px 0}
-.stale{margin:0 0 12px;padding:10px 14px;border-radius:12px;background:#b3261e;color:#fff;font:500 14px/20px var(--ff)}
-/* 詳細シート（ニュース） */
-.nd .kick{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mut);margin:4px 0 8px;flex-wrap:wrap}
-.nd h3{font-size:20px;line-height:1.45;margin:0 0 12px;text-wrap:balance}
-.nd .body{font-size:15px;line-height:1.8;margin:0 0 14px}
-.nd section{border-top:1px solid var(--line);padding:12px 0}
-.nd h4{font-size:11px;letter-spacing:.12em;color:var(--mut);margin:0 0 6px;font-weight:700}
-.nd section p{margin:0;font-size:14px;line-height:1.75}
-.nd .relbox{background:color-mix(in srgb,var(--pink) 10%,transparent);border-radius:10px;padding:10px 12px;margin:4px 0 12px;font-size:14px;line-height:1.7}
-.nd .relbox h4{color:var(--pink)}
 .srcs{display:grid;gap:8px}
 .srcs a{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--fg);text-decoration:none;font-size:14px}
 .srcs a::after{content:"↗";color:var(--acc)}
-.ndnav{display:grid;grid-template-columns:1fr 48px 1fr;gap:8px;align-items:center;margin-top:16px;position:sticky;bottom:calc(-20px - env(safe-area-inset-bottom,0px));background:var(--bg);padding:10px 0 calc(20px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
-.ndnav button{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:10px;padding:10px;font:inherit;font-size:13px;cursor:pointer}
-.ndnav button:disabled{opacity:.35;cursor:default}
-.ndnav .sv{width:44px;font-size:18px}.ndnav .sv[aria-pressed=true]{color:var(--acc);border-color:var(--acc)}
-.ndnav span{text-align:center;color:var(--mut);font-size:12px;font-variant-numeric:tabular-nums}
 /* 下部タブ */
 nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:6}
 nav button{flex:1;background:none;border:0;color:var(--mut);font:inherit;font-size:11px;padding:7px 0 9px;cursor:pointer}
@@ -243,15 +192,11 @@ nav button:active,nav button:hover{box-shadow:none!important}nav button:active .
 .clog{padding:12px 16px;font:400 14px/20px var(--ff)}.clog b{font:500 12px/16px var(--ff)}
 /* Segmented buttons */
 .seg3,.seg2{display:inline-flex;height:40px;padding:0;background:none;border:1px solid var(--md-outline);border-radius:999px;overflow:hidden}
-.seg2{display:flex;margin-bottom:12px}
 .seg3 button,.seg2 button{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 12px;border:0;border-left:1px solid var(--md-outline);border-radius:0;background:none;color:var(--md-on-surface);font:500 14px/20px var(--ff);box-shadow:none}
 .seg3 button:first-child,.seg2 button:first-child{border-left:0}
 .seg3 button[aria-pressed=true],.seg2 button[aria-pressed=true]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);font-weight:500;box-shadow:none}
 .seg3 button[aria-pressed=true]::before,.seg2 button[aria-pressed=true]::before{content:"";width:18px;height:18px;background:currentColor;-webkit-mask:var(--chk) center/18px no-repeat;mask:var(--chk) center/18px no-repeat}
 /* ニュースの絞り込み: 4ボタンを狭い画面でも1行に収める（文字の折り返しを禁止し、余白とチェック印を詰める） */
-.seg2 button{flex:1 1 0;min-width:0;padding:0 4px;gap:4px;white-space:nowrap}
-.seg2 button span{margin-left:0}
-.seg2 button[aria-pressed=true]::before{width:16px;height:16px;-webkit-mask-size:16px;mask-size:16px;flex:none}
 @media (max-width:400px){.seg2 button{font-size:13px}.seg2 button[aria-pressed=true]::before{display:none}}
 /* Switch */
 .sw{width:52px;height:32px}
@@ -271,26 +216,9 @@ nav button:active,nav button:hover{box-shadow:none!important}nav button:active .
 .toast{background:var(--md-inverse-surface);color:var(--md-inverse-on-surface);border-radius:4px;padding:14px 16px;font:400 14px/20px var(--ff);bottom:calc(92px + env(safe-area-inset-bottom,0px));box-shadow:0 3px 6px rgba(0,0,0,.2)}
 .ptr{background:var(--md-inverse-surface);color:var(--md-inverse-on-surface)}
 /* ニュース */
-.dstrip{gap:8px}
-.dstrip button{min-width:56px;border:1px solid var(--md-outline-variant);border-radius:12px;background:none;color:var(--md-on-surface-variant);font:500 11px/16px var(--ff);padding:8px}
-.dstrip button b{font:500 16px/24px var(--ff)}
-.dstrip button[aria-selected=true]{background:var(--md-secondary-container);border-color:transparent;color:var(--md-on-secondary-container)}
-.dstrip button[aria-selected=true] b{color:var(--md-on-secondary-container)}
-.lead{font:500 12px/16px var(--ff);letter-spacing:.06em;color:var(--md-on-surface-variant);margin:0 0 8px}
-.hero h2{font:400 22px/30px var(--ff)}.hero p{font:400 14px/22px var(--ff)}
-.nrow{padding:12px 0;border-bottom-color:var(--md-outline-variant)}
-.nrow h3{font:500 16px/24px var(--ff)}.nrow .one{font:400 14px/20px var(--ff)}.nrow .meta2{font:400 12px/16px var(--ff)}
-.tag{font:500 11px/16px var(--ff);letter-spacing:.04em;border-radius:8px;padding:2px 8px}
-.nfoot{background:var(--md-surface-container);border-radius:12px;padding:12px 16px}
-.nd h3{font:400 24px/32px var(--ff)}.nd .body{font:400 16px/28px var(--ff)}
-.nd h4{font:500 12px/16px var(--ff);letter-spacing:.06em}
 .srcs a{background:var(--md-surface-container-lowest);border-color:var(--md-outline-variant);border-radius:12px;padding:12px 16px;min-height:48px}
 .srcs a::after{content:"";width:18px;height:18px;background:var(--md-primary);-webkit-mask:var(--ext) center/18px no-repeat;mask:var(--ext) center/18px no-repeat;flex:none}
 :root{--ext:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
-.ndnav{background:var(--md-surface-container-low);border-top-color:var(--md-outline-variant)}
-.ndnav button{height:40px;padding:0 16px;border:1px solid var(--md-outline);border-radius:999px;background:none;color:var(--md-primary);font:500 14px/20px var(--ff)}
-.ndnav .sv{width:40px;padding:0;display:grid;place-items:center;justify-self:center}
-.ndnav .sv[aria-pressed=true]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);border-color:transparent}
 .empty2{font:400 14px/20px var(--ff)}
 /* 動き */
 @media (prefers-reduced-motion:no-preference){
@@ -339,7 +267,6 @@ header h1{font:400 22px/28px var(--ff)}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-rank" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></symbol>
 <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
-<symbol id="i-news" viewBox="0 0 24 24"><path d="M4 5h13v14H6a2 2 0 0 1-2-2V5zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5M8 16h3"/></symbol>
 <symbol id="i-set" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
 <symbol id="i-reload" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></symbol>
 <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
@@ -348,8 +275,6 @@ header h1{font:400 22px/28px var(--ff)}
 <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2zM10 21h4"/></symbol>
 <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></symbol>
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
-<symbol id="i-mark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
-<symbol id="i-markf" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z" fill="currentColor"/></symbol>
 <symbol id="i-run" viewBox="0 0 24 24"><path d="M13 3L5 13h6l-1 8 8-10h-6l1-8z"/></symbol>
 <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 </defs></svg>
@@ -375,25 +300,17 @@ header h1{font:400 22px/28px var(--ff)}
       <div class="card"><h2>常連</h2><div class="sub">Top30に連続で入っている日数</div><ul class="list" id="streak"></ul></div>
     </div>
   </section>
-  <section id="v-news" hidden>
-    <div class="dstrip" id="dstrip" role="tablist" aria-label="日付"></div>
-    <div id="nhero"></div>
-    <div class="seg2" id="nseg"></div>
-    <ul class="nlist" id="nlist"></ul>
-    <div id="nfoot"></div>
-  </section>
   <section id="v-set" hidden>
-    <div class="slist sbox" id="slist"><button class="sitem" data-sp="look"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-look"/></svg></span><span class="st"><b>外観と表示</b><small>テーマ・起動画面・初期表示</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button><button class="sitem" data-sp="notify"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></span><span class="st"><b>通知</b><small>毎朝の通知と時刻</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button><button class="sitem" data-sp="data"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-data"/></svg></span><span class="st"><b>データ管理</b><small>更新・既読と保存のリセット</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button><button class="sitem" data-sp="about"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg></span><span class="st"><b>アプリ情報</b><small>バージョン・更新確認・変更履歴</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button></div>
+    <div class="slist sbox" id="slist"><button class="sitem" data-sp="look"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-look"/></svg></span><span class="st"><b>外観と表示</b><small>テーマ・起動画面・初期表示</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button><button class="sitem" data-sp="notify"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></span><span class="st"><b>通知</b><small>毎朝の通知と時刻</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button><button class="sitem" data-sp="data"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-data"/></svg></span><span class="st"><b>データ管理</b><small>更新</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button><button class="sitem" data-sp="about"><span class="si"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg></span><span class="st"><b>アプリ情報</b><small>バージョン・更新確認・変更履歴</small></span><span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></span></button></div>
     <div class="spage" data-page="look" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">外観と表示</h2><div class="sbox">
         <div class="srow"><div>テーマ</div><div class="seg3" data-set="theme"><button data-val="auto">自動</button><button data-val="light">ライト</button><button data-val="dark">ダーク</button></div></div>
-        <div class="srow"><div>起動時に開く画面</div><div class="seg3" data-set="start"><button data-val="last">前回</button><button data-val="rank">順位</button><button data-val="news">ニュース</button></div></div>
+        <div class="srow"><div>起動時に開く画面</div><div class="seg3" data-set="start"><button data-val="last">前回</button><button data-val="rank">順位</button></div></div>
         <div class="srow"><div>ランキングの初期表示</div><div class="seg3" data-set="mode"><button data-val="weekly">週間</button><button data-val="daily">前日比</button></div></div>
       </div></div><div class="spage" data-page="notify" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">通知</h2><div class="sbox">
         <div class="srow"><div>毎朝の通知<small id="ninfo">Androidアプリでのみ有効</small></div><label class="sw"><input type="checkbox" id="nOn" aria-label="毎朝の通知"><span></span></label></div>
         <div class="srow"><div>通知の時刻<small>ランキング06:47・ニュース07:45更新のあと</small></div><input type="time" id="nTime" aria-label="通知の時刻"></div>
       </div></div><div class="spage" data-page="data" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">データ管理</h2><div class="sbox">
         <div class="srow"><div>今すぐ集計<small>GitHub でランキングを集計し直します（2〜3分）。Slack には通知しません</small></div><button class="chip" id="runNow2">実行</button></div><div class="srow"><div>GitHub 連携<small id="tinfo">—</small></div><button class="chip" id="tokBtn">連携</button></div><div class="srow"><div>最終更新<small id="dinfo">—</small></div><button class="ib" id="reload2" aria-label="最新に更新"><svg class="ic" aria-hidden="true"><use href="#i-reload"/></svg></button></div>
-        <div class="srow"><div>既読と保存をリセット<small id="rinfo">—</small></div><button class="sbtn" id="resetRead">リセット</button></div>
       </div></div><div class="spage" data-page="about" hidden><button class="sback" data-sp=""><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg>設定</button><h2 class="sph">アプリ情報</h2><div class="sbox">
         <div class="srow"><div>AI Daily<small id="ver">—</small></div><a class="gh" href="https://github.com/ma-garin/github_star_ranking" target="_blank" rel="noopener" style="margin:0">GitHub</a></div>
         <div class="srow"><div>最新版の確認<small id="upd">アプリ版のみ。押したときだけ確認します</small></div><button class="chip" id="checkUpd" style="min-height:44px;white-space:nowrap">確認する</button></div>
@@ -404,7 +321,6 @@ header h1{font:400 22px/28px var(--ff)}
 <nav role="tablist">
   <button role="tab" data-v="rank" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-rank"/></svg>ランキング</button>
   <button role="tab" data-v="trend" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-trend"/></svg>トレンド</button>
-  <button role="tab" data-v="news" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-news"/></svg>AIニュース</button>
   <button role="tab" data-v="set" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-set"/></svg>設定</button>
 </nav>
 <div id="sheet" hidden><div class="in" role="dialog" aria-modal="true" id="sheetin"></div></div>
@@ -495,88 +411,29 @@ new MutationObserver(()=>{if(!$("#sheet").hidden)_openSheetEl()}).observe($("#sh
 // テーマ: 自動 → ライト → ダーク
 const THEMES=["auto","light","dark"];
 
-$("#reload").onclick=async()=>{$("#reload").classList.add("spin");try{const nd=await loadData();if(!nd)throw 0;D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render()}catch(e){}$("#reload").classList.remove("spin")};
+$("#reload").onclick=async()=>{$("#reload").classList.add("spin");try{const nd=await loadData();if(!nd)throw 0;D=nd;DAYS=D.dates;di=DAYS.length-1;render()}catch(e){}$("#reload").classList.remove("spin")};
 $("#q").oninput=()=>renderRank();
 $("#sheet").onclick=e=>{if(e.target.id==="sheet")closeSheet()};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
-document.addEventListener("click",e=>{if(e.target.closest("#v-news"))return;const t=e.target.closest("[data-n]");if(t&&!t.closest("#sheet"))openSheet(t.dataset.n)});
+document.addEventListener("click",e=>{const t=e.target.closest("[data-n]");if(t&&!t.closest("#sheet"))openSheet(t.dataset.n)});
 document.querySelectorAll("#v-rank .chip").forEach(b=>b.onclick=()=>{mode=b.dataset.k;document.querySelectorAll("#v-rank .chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderRank()});
-const CAT={"◎":"新モデル","○":"API・料金","□":"資金・買収","△":"規制・訴訟","▲":"安全・障害","◇":"研究","●":"機能追加"};
-const CATC={"◎":"#e8590c","○":"#1c7ed6","□":"#7048e8","△":"#868e96","▲":"#d6336c","◇":"#2b8a3e","●":"#0c8599"};
-let ND=[], ni=0, nf="all", cur=null;
 const st=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-let READ=st("read",{}), FAV=st("fav",{});
-const nid=(d,n)=>d.date+"#"+n.no;
 const md=s=>{const [,m,d]=s.split("-");return `${+m}/${+d}`};
-const firstSentence=s=>{const i=s.indexOf("。");return i>0?s.slice(0,i+1):s};
-// 一覧の並び: 自分ごと → 試す価値◯ → 元の順
-const order=its=>[...its].sort((a,b)=>(b.mine-a.mine)||((b.try==="◯")-(a.try==="◯"))||(a.no-b.no));
-function tags(n){return (n.mine?'<span class="tag mine">自分ごと</span>':"")+(n.try==="◯"?'<span class="tag try">試す価値あり</span>':"")+(n.single?'<span class="tag sg">単独報道</span>':"")}
-// 配信が止まったら画面で分かるようにする（毎朝7:45配信。JST 9:00 を過ぎても今日の分が無ければ警告）
-function staleNote(){
-  const last=ND.length?ND[ND.length-1].date:"", now=new Date(Date.now()+9*3600e3), today=now.toISOString().slice(0,10);
-  const late=last<today&&now.getUTCHours()>=9;
-  return late?`<div class="stale" role="status">ニュースの配信が止まっています（最終: ${last?md(last):"なし"}）</div>`:"";
-}
-function renderNews(){
-  const d=ND[ni];
-  $("#dstrip").innerHTML=ND.map((x,i)=>`<button role="tab" data-ni="${i}" aria-selected="${i===ni}"><span>${md(x.date)}（${x.weekday}）</span><b>${x.items.length}</b><i>件</i></button>`).join("");
-  const ord=order(d.items), top=ord[0];
-  $("#nhero").innerHTML=staleNote()+(top?`<div class="lead">今日の要点</div><div class="hero" data-open="${top.no}" style="--cc:${CATC[top.category]}">
-    <div class="kick"><span class="co2">${esc(top.company)}</span><span class="catl" style="--cc:${CATC[top.category]}">${esc(CAT[top.category])}</span>${tags(top)}</div>
-    <h2>${esc(top.title)}</h2><p>${esc(top.summary)}</p>
-    <div class="imp"><b>影響</b>${esc(top.impact)}</div></div>`:`<div class="empty2">この日は大きなニュースはありません</div>`);
-  const rest=ord.slice(1), cnt={all:rest.length,mine:rest.filter(n=>n.mine).length,try:rest.filter(n=>n.try==="◯").length,fav:rest.filter(n=>FAV[nid(d,n)]).length};
-  $("#nseg").hidden=!rest.length;
-  $("#nseg").innerHTML=[["all","すべて"],["mine","自分ごと"],["try","試す価値"],["fav","保存"]].map(([k,l])=>`<button data-f="${k}" aria-pressed="${k===nf}">${l}<span>${cnt[k]}</span></button>`).join("");
-  const pass=n=>nf==="all"||(nf==="mine"&&n.mine)||(nf==="try"&&n.try==="◯")||(nf==="fav"&&FAV[nid(d,n)]);
-  const list=rest.filter(pass);
-  $("#nlist").innerHTML=rest.length?(list.map(n=>{const r=READ[nid(d,n)];return `<li class="nrow${r?" read":""}" data-open="${n.no}" style="--cc:${CATC[n.category]}">
-    <span class="bar"></span>
-    <div><div class="meta2"><span class="co2">${esc(n.company)}</span><span class="catl">${esc(CAT[n.category])}</span></div>
-      <h3>${esc(n.title)}</h3><div class="one">${esc(firstSentence(n.impact))}</div></div>
-    <div class="side">${r?"":'<span class="dot" aria-label="未読"></span>'}${n.mine?'<span class="tag mine">自分ごと</span>':""}${n.try==="◯"&&!n.mine?'<span class="tag try">試す</span>':""}</div></li>`}).join("")||`<li class="empty2">該当する記事はありません</li>`):"";
-  $("#nfoot").innerHTML=`<div class="nfoot"><b>見送った話題</b><br>${esc(d.memo)}${d.failures.length?`<br><b>取得できなかった情報源</b> ${esc(d.failures.join("、"))}`:""}</div>`;
-}
-function openNews(no){
-  const d=ND[ni], ord=order(d.items), i=ord.findIndex(n=>n.no===+no), n=ord[i]; if(!n)return; cur=i;
-  const id=nid(d,n); READ[id]=1; save("read",READ);
-  $("#sheetin").innerHTML=`<div class="nd"><div class="shead"><span style="color:var(--mut);font-size:12px">${md(d.date)}（${d.weekday}）のAIニュース ・ ${i+1} / ${ord.length}</span><button class="x" aria-label="閉じる" data-close>×</button></div>
-    <div class="kick"><span class="co2">${esc(n.company)}</span><span class="catl" style="--cc:${CATC[n.category]}">${esc(CAT[n.category])}</span>${tags(n)}</div>
-    <h3>${esc(n.title)}</h3><p class="body">${esc(n.summary)}</p>
-    ${n.related?`<div class="relbox"><h4>自分の取り組みとの関係</h4>${esc(n.related)}</div>`:""}
-    <section><h4>影響</h4><p>${esc(n.impact)}</p></section>
-    <section><h4>QAの観点</h4><p>${esc(n.qa)}</p></section>
-    <section><h4>掲載理由</h4><p>${esc(n.basis)}</p></section>
-    <section><h4>出典</h4><div class="srcs">${n.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join("")}</div></section>
-    <div class="ndnav"><button data-step="-1" ${i===0?"disabled":""}>‹ 前の記事</button><button class="sv" data-sv="${esc(id)}" aria-pressed="${!!FAV[id]}" aria-label="保存">${FAV[id]?'<svg class="ic" aria-hidden="true"><use href="#i-markf"/></svg>':'<svg class="ic" aria-hidden="true"><use href="#i-mark"/></svg>'}</button><button data-step="1" ${i===ord.length-1?"disabled":""}>次の記事 ›</button></div></div>`;
-  $("#sheet").hidden=false; $("#sheetin").scrollTop=0; renderNews();
-}
-document.addEventListener("click",e=>{
-  if(view!=="news"&&!e.target.closest("#sheet"))return;
-  const q=s=>e.target.closest(s);
-  if(q("[data-ni]")){ni=+q("[data-ni]").dataset.ni;nf="all";head();renderNews();return}
-  if(q("[data-f]")){nf=q("[data-f]").dataset.f;renderNews();return}
-  if(q("[data-open]")){openNews(q("[data-open]").dataset.open);return}
-  if(q("[data-step]")){const ord=order(ND[ni].items);openNews(ord[cur+ +q("[data-step]").dataset.step].no);return}
-  if(q("[data-sv]")){const id=q("[data-sv]").dataset.sv;FAV[id]?delete FAV[id]:FAV[id]=1;save("fav",FAV);openNews(order(ND[ni].items)[cur].no);return}
-  if(q("[data-close]"))closeSheet();
-});
+document.addEventListener("click",e=>{if(e.target.closest("#sheet [data-close]"))closeSheet()});
 const WD="日月火水木金土";
 function jdate(d,full){if(!d)return "";const [y,m,dd]=d.split("-").map(Number);const w=WD[new Date(y,m-1,dd).getDay()];return full?`${m}月${dd}日（${w}）`:`${m}/${dd}（${w}）`}
 function head(){
-  const T={rank:["毎朝6:47更新","スター獲得ランキング"],trend:["日ごとの変化","推移と傾向"],news:["毎朝7:45更新","AIニュース"],set:["","設定"]}[view];
+  const T={rank:["毎朝6:47更新","スター獲得ランキング"],trend:["日ごとの変化","推移と傾向"],set:["","設定"]}[view];
   $("#eyebrow").textContent=T[0];$("#title").innerHTML=T[1];
-  const N=view==="news"||view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";$("#reload").style.visibility=view==="set"?"hidden":"visible";$("#runNow").hidden=!(view==="rank"||view==="trend");
+  const N=view==="set";document.querySelector(".step").style.visibility=N?"hidden":"visible";$("#reload").style.visibility=view==="set"?"hidden":"visible";$("#runNow").hidden=!(view==="rank"||view==="trend");
   $("#day").textContent=jdate(DAYS[di]);
   $("#prev").disabled=di<=0;$("#next").disabled=di>=DAYS.length-1;
-  $("#meta").textContent=view==="set"?"":N?(ND[ni]?`${md(ND[ni].date)}（${ND[ni].weekday}）${ND[ni].updated||""} 更新 ・ 対象 ${ND[ni].period}`:"AIニュースはまだありません")
-    :`${jdate(DAYS[di],1)}の集計 ・ ${D.pool_size??"—"}件を追跡`+(navigator.onLine?"":" ・ オフライン（前回のデータ）");
+  $("#meta").textContent=N?"":`${jdate(DAYS[di],1)}の集計 ・ ${D.pool_size??"—"}件を追跡`+(navigator.onLine?"":" ・ オフライン（前回のデータ）");
 }
-function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="news")renderNews();if(view==="set")renderSet()}
+function render(){head();if(view==="rank")renderRank();if(view==="trend")renderTrend();if(view==="set")renderSet()}
 function setView(v){view=v;document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));
-  ["rank","trend","news","set"].forEach(x=>$("#v-"+x).hidden=x!==v);if(v!=="set")try{localStorage.setItem("view",v)}catch(e){}render();window.scrollTo(0,0)}
+  ["rank","trend","set"].forEach(x=>$("#v-"+x).hidden=x!==v);if(v!=="set")try{localStorage.setItem("view",v)}catch(e){}render();window.scrollTo(0,0)}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>setView(b.dataset.v));
 $("#prev").onclick=()=>{di--;render()};$("#next").onclick=()=>{di++;render()};
 window.addEventListener("resize",()=>{if(view==="trend")renderTrend()});
@@ -591,10 +448,11 @@ function showError(){$("#rows").innerHTML=`<li class="empty2">データを読み
 async function boot(){
   showLoading();D=await loadData();
   if(!D){showError();return}
-  DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;
+  DAYS=D.dates;di=DAYS.length-1;
   mode=SET.mode;document.querySelectorAll("#v-rank .chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===mode));
   let v0=SET.start==="last"?"rank":SET.start;if(SET.start==="last")try{v0=localStorage.getItem("view")||"rank"}catch(e){}
-  if(["rank","trend","news","set"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
+  if(["rank","trend","set"].includes(location.hash.slice(1)))v0=location.hash.slice(1);
+  if(!["rank","trend","set"].includes(v0))v0="rank";
   setView(v0);
 }
 boot();
@@ -603,7 +461,7 @@ window.addEventListener("online",()=>{if(D)render()});window.addEventListener("o
 (()=>{let y0=null,pulled=false;const ind=document.createElement("div");ind.className="ptr";ind.textContent="離すと更新";document.body.appendChild(ind);
   addEventListener("touchstart",e=>{if(scrollY<=0&&$("#sheet").hidden)y0=e.touches[0].clientY},{passive:true});
   addEventListener("touchmove",e=>{if(y0==null)return;const d=e.touches[0].clientY-y0;pulled=d>70;ind.style.opacity=Math.min(1,d/70);ind.textContent=pulled?"離すと更新":"下に引っ張って更新"},{passive:true});
-  addEventListener("touchend",async()=>{ind.style.opacity=0;if(pulled){ind.textContent="更新中…";ind.style.opacity=1;const nd=await loadData();if(nd){D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render()}setTimeout(()=>ind.style.opacity=0,400)}y0=null;pulled=false});
+  addEventListener("touchend",async()=>{ind.style.opacity=0;if(pulled){ind.textContent="更新中…";ind.style.opacity=1;const nd=await loadData();if(nd){D=nd;DAYS=D.dates;di=DAYS.length-1;render()}setTimeout(()=>ind.style.opacity=0,400)}y0=null;pulled=false});
 })();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&!window.Capacitor)navigator.serviceWorker.register("sw.js");
 // 設定（端末ごとに保存）
@@ -651,9 +509,7 @@ function renderSet(){
   $("#ninfo").textContent=isApp()?(SET.nOn?`毎朝 ${SET.nTime} に通知します`:"通知しません"):"Androidアプリでのみ有効（このブラウザでは通知されません）";
   $("#ver").textContent=IS_APP?(BUILD?`アプリ版 #${BUILD}`:"アプリ版"):"Web版（ブラウザ）";
   $("#checkUpd").disabled=!IS_APP;
-  $("#dinfo").textContent=D?`ランキング ${D.dates.at(-1)} ・ ニュース ${ND.length?ND.at(-1).date+" "+(ND.at(-1).updated||""):"なし"}`:"—";
-  let r=0,f=0;try{r=Object.keys(JSON.parse(localStorage.getItem("read")||"{}")).length;f=Object.keys(JSON.parse(localStorage.getItem("fav")||"{}")).length}catch(e){}
-  $("#rinfo").textContent=`既読 ${r}件・保存 ${f}件`;
+  $("#dinfo").textContent=D?`ランキング ${D.dates.at(-1)}`:"—";
 }
 document.addEventListener("click",async e=>{
   const b=e.target.closest("[data-set] button");if(!b)return;
@@ -698,7 +554,7 @@ async function watchRun(){
           if(x.conclusion!=="success"){RUN=null;saveRun(null);runbar("集計に失敗しました（GitHub の Actions 画面に詳細があります）","err");return}
           runbar(`集計が完了しました。アプリへの反映を待っています…（${mmss(el)}）`);
           const nd=await loadData(true);
-          if(nd&&nd.generated_at&&nd.generated_at!==RUN.gen){RUN=null;saveRun(null);D=nd;DAYS=D.dates;di=DAYS.length-1;ND=D.news||[];ni=ND.length-1;render();runbar("最新の集計を反映しました","ok");setTimeout(()=>{if($("#runbar").className==="ok")runbar("")},4000);return}
+          if(nd&&nd.generated_at&&nd.generated_at!==RUN.gen){RUN=null;saveRun(null);D=nd;DAYS=D.dates;di=DAYS.length-1;render();runbar("最新の集計を反映しました","ok");setTimeout(()=>{if($("#runbar").className==="ok")runbar("")},4000);return}
         }else runbar(`${x.status==="queued"?"順番待ち":"集計中"}…（${mmss(el)}・通常2〜3分）`);
       }else runbar(`集計を準備しています…（${mmss(el)}）`);
     }catch(e){runbar(`通信を再試行しています…（${mmss(el)}）`)}
@@ -751,7 +607,7 @@ async function ghLogin(){
 $("#runNow").onclick=runNow;$("#runNow2").onclick=runNow;$("#tokBtn").onclick=openToken;
 try{const p=JSON.parse(localStorage.getItem("run_pending")||"null");if(p&&Date.now()-p.start<20*60000){RUN=p;watchRun()}else saveRun(null)}catch(e){}
 $("#reload2").onclick=()=>{$("#reload").click();setTimeout(renderSet,800)};
-$("#resetRead").onclick=()=>{try{localStorage.removeItem("read");localStorage.removeItem("fav")}catch(e){}READ={};FAV={};renderSet();toast("既読と保存をリセットしました")};
+try{localStorage.removeItem("read");localStorage.removeItem("fav")}catch(e){}
 applyTheme(SET.theme);scheduleNotify();
 </script>
 </body>
