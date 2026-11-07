@@ -38,6 +38,8 @@ test("トレンドとAIニュース: 表示と詳細", async ({ page }) => {
   await page.click("nav button[data-v=trend]");
   await expect(page.locator("#bump svg")).toBeVisible();
   await page.click("nav button[data-v=news]");
+  // 最新日が0件のこともあるので、記事のある日を選んでから詳細を開く
+  await page.locator("#dstrip button").filter({ hasNot: page.locator("b", { hasText: /^0$/ }) }).last().click();
   await expect(page.locator(".hero")).toBeVisible();
   await page.locator(".hero").click();
   await expect(page.locator(".nd h3")).toBeVisible();
@@ -50,7 +52,7 @@ test("設定: テーマと起動画面が再読み込み後も保たれる", asy
   await page.click("[data-set=theme] [data-val=dark]");
   await page.click("[data-set=start] [data-val=news]");
   await page.reload();
-  await expect(page.locator(".hero")).toBeVisible();
+  await expect(page.locator("nav button[data-v=news]")).toHaveAttribute("aria-selected", "true");
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("dark");
 });
 
