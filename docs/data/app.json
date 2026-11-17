@@ -1,307 +1,5 @@
 {
  "daily_ranks": {
-  "2026-11-03": [
-   {
-    "basis": "snapshot",
-    "delta": 6340,
-    "full_name": "deepseek-ai/dsh-superagent-prototype",
-    "language": "TypeScript",
-    "rank": 1,
-    "stars": 13744,
-    "summary_ja": "より自律的なエージェント システムに向けて",
-    "url": "https://github.com/deepseek-ai/dsh-superagent-prototype"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 4575,
-    "full_name": "morluto/rea",
-    "language": "TypeScript",
-    "rank": 2,
-    "stars": 423366,
-    "summary_ja": "アプリの動作からネイティブ バイナリに至るまで、エージェントを使用してあらゆるものをリバース エンジニアリングします。",
-    "url": "https://github.com/morluto/rea"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 4176,
-    "full_name": "pingdotgg/t3code",
-    "language": "TypeScript",
-    "rank": 3,
-    "stars": 42196,
-    "summary_ja": "あらゆるコンピューターや携帯電話からClaude Code、Codexなどを制御する最良の方法",
-    "url": "https://github.com/pingdotgg/t3code"
-   },
-   {
-    "basis": "trending",
-    "delta": 2275,
-    "full_name": "vercel-labs/agent-desktop",
-    "language": "Rust",
-    "rank": 4,
-    "stars": 10148,
-    "summary_ja": "AIエージェント向けのコンピューター操作CLI",
-    "url": "https://github.com/vercel-labs/agent-desktop"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1742,
-    "full_name": "Ebony-Vinyl/dsh-our-free-model",
-    "language": "JavaScript",
-    "rank": 5,
-    "stars": 57527,
-    "summary_ja": "このプラグインを dsh にインストールするだけで、ログイン、登録、API キーの入力なしで、DeepSeek V4.1 Flash や Kim K3 などの最先端モデルを完全に無料かつ無制限に使用できます。このプラグインを dsh にインストールするだけです。ログイン、サインアップ、API キーは必要ありません。DeepSeek V4.1 Flash や Kim K3 など、フロンティア モデルがすぐそこにあります。完全に無料で、使用量の上限はありません。",
-    "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1702,
-    "full_name": "google/elephant-goldfish-model",
-    "language": "Python",
-    "rank": 6,
-    "stars": 10682,
-    "summary_ja": "AI エージェントを使用してソフトウェアを設計およびレビューするためのオープンソース スキル",
-    "url": "https://github.com/google/elephant-goldfish-model"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1612,
-    "full_name": "wangzan101/Mika",
-    "language": "Kotlin",
-    "rank": 7,
-    "stars": 5468,
-    "summary_ja": "ミカ – アプリを操作したり、インターネットをサーフィンしたり、あなたの代わりに作業を行ったりする、携帯電話上のパーソナル AI アシスタントです。アプリとウェブを操作して作業を完了する Android 用のオンデバイス AI エージェント。",
-    "url": "https://github.com/wangzan101/Mika"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1590,
-    "full_name": "l0ng-ai/openidea",
-    "language": "TypeScript",
-    "rank": 8,
-    "stars": 5095,
-    "summary_ja": "IntelliJ IDEA風の操作性をRustで作り直した高速IDE。60以上の言語に対応",
-    "url": "https://github.com/l0ng-ai/openidea"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1551,
-    "full_name": "thedotmack/claude-mem",
-    "language": "TypeScript",
-    "rank": 9,
-    "stars": 110848,
-    "summary_ja": "すべてのエージェントのセッション全体で永続的なコンテキスト – セッション中のエージェントの行動をすべてキャプチャし、AI で圧縮して、関連するコンテキストを将来のセッションに挿入します。 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode などで動作します",
-    "url": "https://github.com/thedotmack/claude-mem"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1509,
-    "full_name": "heydamir/unslop",
-    "language": "JavaScript",
-    "rank": 10,
-    "stars": 6387,
-    "summary_ja": "バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル",
-    "url": "https://github.com/heydamir/unslop"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1451,
-    "full_name": "deepseek-ai/deepseek-harness",
-    "language": "TypeScript",
-    "rank": 11,
-    "stars": 269813,
-    "summary_ja": "DeepSeek ハーネス: すべてはプラグインです。",
-    "url": "https://github.com/deepseek-ai/deepseek-harness"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1395,
-    "full_name": "Donchitos/Claude-Code-Game-Studios",
-    "language": "Shell",
-    "rank": 12,
-    "stars": 33683,
-    "summary_ja": "Claude Code を完全なゲーム開発スタジオに変えます。49 の AI エージェント、72 のワークフロー スキル、実際のスタジオ階層を反映した完全な調整システムです。",
-    "url": "https://github.com/Donchitos/Claude-Code-Game-Studios"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1384,
-    "full_name": "ccch1mneyyy/dsh-Go",
-    "language": "Dart",
-    "rank": 13,
-    "stars": 6044,
-    "summary_ja": "dsh-go — DeepSeek ハーネスはポケットに収まります。携帯電話上でネイティブに動作し、コンピュータをリモートで制御することもできます。",
-    "url": "https://github.com/ccch1mneyyy/dsh-Go"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1315,
-    "full_name": "Gathin23/cleanyourtv",
-    "language": "Python",
-    "rank": 14,
-    "stars": 50517,
-    "summary_ja": "Wi-Fi 経由で Android または Google TV を削除し、Apple TV スタイルの家を手に入れましょう。",
-    "url": "https://github.com/Gathin23/cleanyourtv"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1310,
-    "full_name": "D4Vinci/Scrapling",
-    "language": "Python",
-    "rank": 15,
-    "stars": 93072,
-    "summary_ja": "🕷️ 単一のリクエストから本格的なクロールまですべてを処理する最高の Web スクレイピング フレームワーク!恥ずかしがらずに、ここに参加してください: https://discord.gg/EMgGbDceNQ、毎日のヒントやコツについてはこちらをフォローしてください: https://x.com/Scrapling_dev",
-    "url": "https://github.com/D4Vinci/Scrapling"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1261,
-    "full_name": "debpalash/VoiceStudio",
-    "language": "Python",
-    "rank": 16,
-    "stars": 99183,
-    "summary_ja": "VoiceStudio は、オープンソースで完全にローカルな ElevenLabsの代替製品であり、646 言語で音声クローン、音声デザイン、ビデオ ダビング、ディクテーション、文字起こし、オーディオブックの作成を行うことができます。",
-    "url": "https://github.com/debpalash/VoiceStudio"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1255,
-    "full_name": "pbakaus/impeccable",
-    "language": "Rust",
-    "rank": 17,
-    "stars": 100595,
-    "summary_ja": "コーディング エージェントの設計ボキャブラリー。より洗練され、より大胆に舵を取り、批評と監査でレビューし、出荷前に AI のスロップを把握します。",
-    "url": "https://github.com/pbakaus/impeccable"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1218,
-    "full_name": "Nutlope/hallmark",
-    "language": "CSS",
-    "rank": 18,
-    "stars": 46105,
-    "summary_ja": "Claude Code、Cursor、Codexの AI スロップ対策設計スキル。",
-    "url": "https://github.com/Nutlope/hallmark"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1181,
-    "full_name": "stablyai/orca",
-    "language": "TypeScript",
-    "rank": 19,
-    "stars": 113709,
-    "summary_ja": "Orca は、エージェント群 (Grok Bot、Claude Code など) と連携するための場所です。独自のサブスクリプションでコーディング エージェントを実行します。デスクトップ、モバイル、リモート ランタイムで利用可能です。",
-    "url": "https://github.com/stablyai/orca"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1102,
-    "full_name": "cloudflare/security-audit-skill",
-    "language": "JavaScript",
-    "rank": 20,
-    "stars": 57487,
-    "summary_ja": "独立して検証され、機械可読な結果を伴う多段階セキュリティ監査のためのコーディング エージェント スキル",
-    "url": "https://github.com/cloudflare/security-audit-skill"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1092,
-    "full_name": "mattpocock/skills",
-    "language": "Shell",
-    "rank": 21,
-    "stars": 310343,
-    "summary_ja": "本物のエンジニアのためのスキル。私の .agents ディレクトリから直接。",
-    "url": "https://github.com/mattpocock/skills"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1047,
-    "full_name": "Leonxlnx/taste-skill",
-    "language": "JavaScript",
-    "rank": 22,
-    "stars": 108839,
-    "summary_ja": "コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック",
-    "url": "https://github.com/Leonxlnx/taste-skill"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 1010,
-    "full_name": "calesthio/OpenMontage",
-    "language": "Python",
-    "rank": 23,
-    "stars": 75382,
-    "summary_ja": "世界初のオープンソースのエージェント型ビデオ制作システム。 12 のプロダクション パイプライン、100 以上のツール、700 以上のエージェント スキルおよびプロダクション ナレッジ ファイル。 AI コーディング アシスタントを完全なビデオ制作スタジオに変えます。",
-    "url": "https://github.com/calesthio/OpenMontage"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 998,
-    "full_name": "Renhuai123/ziwei-doushu",
-    "language": "TypeScript",
-    "rank": 24,
-    "stars": 14125,
-    "summary_ja": "Ziwei Doushu オープンソース ランキング エンジン - Ni Haixia の「Tianji」システムに基づいており、完全なランキング アルゴリズム、4 つの近代化システム、パターン知識ベース、古書のオリジナル テキスト データが含まれています。",
-    "url": "https://github.com/Renhuai123/ziwei-doushu"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 988,
-    "full_name": "patch-gg/pixelfx",
-    "language": "JavaScript",
-    "rank": 25,
-    "stars": 3582,
-    "summary_ja": "ピクセルアートの効果244種をコードで実装した集。自作用のClaude Codeスキル付き",
-    "url": "https://github.com/patch-gg/pixelfx"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 973,
-    "full_name": "YuJunZhiXue/dsh-purge",
-    "language": "JavaScript",
-    "rank": 26,
-    "stars": 16323,
-    "summary_ja": "DeepSeek ハーネス アーマー破壊: すべてのモデルがアーマーを破壊できるようになります。異なるモデルを異なるプロンプト単語に置き換えることができます。デフォルトのプロンプトワードは国家モデル「Xiaomajiang」です。すべてのモデルの脱獄 — モデルごとにプロンプ​​トを交換します。スターコレクションを要求する ⭐ コピーを開きたい場合は、署名要件セクションを確認してください",
-    "url": "https://github.com/YuJunZhiXue/dsh-purge"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 948,
-    "full_name": "public-apis/public-apis",
-    "language": "Python",
-    "rank": 27,
-    "stars": 495562,
-    "summary_ja": "無料で使えるAPIをまとめた一覧",
-    "url": "https://github.com/public-apis/public-apis"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 937,
-    "full_name": "yetone/magpie",
-    "language": "Go",
-    "rank": 28,
-    "stars": 28530,
-    "summary_ja": "エージェントとモデルの組み合わせをメニューバーから切り替えるツール（DeepSeek上のCodexなど）",
-    "url": "https://github.com/yetone/magpie"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 924,
-    "full_name": "affaan-m/ECC",
-    "language": "JavaScript",
-    "rank": 29,
-    "stars": 295734,
-    "summary_ja": "エージェントハーネスパフォーマンス最適化システム。Claude Code、Codex、OpenCode、Cursorなどのスキル、本能、記憶力、セキュリティ、研究優先の開発。",
-    "url": "https://github.com/affaan-m/ECC"
-   },
-   {
-    "basis": "snapshot",
-    "delta": 862,
-    "full_name": "valentderah/totk-pc-recomp",
-    "language": "C",
-    "rank": 30,
-    "stars": 4073,
-    "summary_ja": "Vulkan レンダラーを使用した、ゼルダの伝説 王国の涙のネイティブ Windows x86-64 への静的再コンパイル。ゲームファイルは含まれておりません。",
-    "url": "https://github.com/valentderah/totk-pc-recomp"
-   }
-  ],
   "2026-11-04": [
    {
     "basis": "snapshot",
@@ -4230,10 +3928,318 @@
     "summary_ja": "コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック",
     "url": "https://github.com/Leonxlnx/taste-skill"
    }
+  ],
+  "2026-11-17": [
+   {
+    "basis": "snapshot",
+    "delta": 2655,
+    "full_name": "libracoder/kiri",
+    "language": "Rust",
+    "rank": 1,
+    "stars": 9138,
+    "summary_ja": "無料の Ngrok 代替機能を備えた、macOS、Windows、Linux 用の小型で高速なコンテナ ランタイム",
+    "url": "https://github.com/libracoder/kiri"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 2442,
+    "full_name": "morluto/rea",
+    "language": "TypeScript",
+    "rank": 2,
+    "stars": 464467,
+    "summary_ja": "アプリの動作からネイティブ バイナリに至るまで、エージェントを使用してあらゆるものをリバース エンジニアリングします。",
+    "url": "https://github.com/morluto/rea"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 2062,
+    "full_name": "dream-num/univer",
+    "language": "TypeScript",
+    "rank": 3,
+    "stars": 27922,
+    "summary_ja": "Univer Office SDK を使用して独自の AI オフィスを構築します。人々や AI エージェント向けに、編集、計算、コラボレーション、ファイル処理を製品に組み込みます。拡張可能なオープンソース コア上に構築されています。",
+    "url": "https://github.com/dream-num/univer"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1715,
+    "full_name": "Ebony-Vinyl/dsh-our-free-model",
+    "language": "JavaScript",
+    "rank": 4,
+    "stars": 77556,
+    "summary_ja": "このプラグインを dsh にインストールするだけで、ログイン、登録、API キーの入力なしで、DeepSeek V4.1 Flash や Kim K3 などの最先端モデルを完全に無料かつ無制限に使用できます。このプラグインを dsh にインストールするだけです。ログイン、サインアップ、API キーは必要ありません。DeepSeek V4.1 Flash や Kim K3 など、フロンティア モデルがすぐそこにあります。完全に無料で、使用量の上限はありません。",
+    "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1536,
+    "full_name": "RoutineMiku/apkstart",
+    "language": "JavaScript",
+    "rank": 5,
+    "stars": 6747,
+    "summary_ja": "Windows 上的安卓应用运行器：双击 APK 即装，应用以独立窗口与桌面图标运行，自持 QEMU 运行时",
+    "url": "https://github.com/RoutineMiku/apkstart"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1431,
+    "full_name": "pingdotgg/t3code",
+    "language": "TypeScript",
+    "rank": 6,
+    "stars": 63004,
+    "summary_ja": "あらゆるコンピューターや携帯電話からClaude Code、Codexなどを制御する最良の方法",
+    "url": "https://github.com/pingdotgg/t3code"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1369,
+    "description": "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+    "full_name": "ag-ui-protocol/ag-ui",
+    "language": "TypeScript",
+    "rank": 7,
+    "stars": 19260,
+    "summary_ja": "",
+    "url": "https://github.com/ag-ui-protocol/ag-ui"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1197,
+    "full_name": "ccch1mneyyy/dsh-Go",
+    "language": "Dart",
+    "rank": 8,
+    "stars": 24991,
+    "summary_ja": "dsh-go — DeepSeek ハーネスはポケットに収まります。携帯電話上でネイティブに動作し、コンピュータをリモートで制御することもできます。",
+    "url": "https://github.com/ccch1mneyyy/dsh-Go"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1158,
+    "description": "Multi-tier framework for evaluating AI agent skills and plugins with quality gates, semantic overlap detection, synthetic evaluation dataset generation, and live agent evaluation that measures how skills affect agent behavior.",
+    "full_name": "NVIDIA/SkillEvaluator",
+    "language": "Python",
+    "rank": 9,
+    "stars": 2864,
+    "summary_ja": "",
+    "url": "https://github.com/NVIDIA/SkillEvaluator"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1158,
+    "full_name": "storytold/craft-anything",
+    "language": "Rust",
+    "rank": 10,
+    "stars": 34940,
+    "summary_ja": "あらゆるソフトウェアの仕組みを理解し、自分で作り直すためのツール",
+    "url": "https://github.com/storytold/craft-anything"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1150,
+    "description": "Chat Demo",
+    "full_name": "deepseek-ai/chat-demo",
+    "language": "TypeScript",
+    "rank": 11,
+    "stars": 4189,
+    "summary_ja": "",
+    "url": "https://github.com/deepseek-ai/chat-demo"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1112,
+    "full_name": "stablyai/orca",
+    "language": "TypeScript",
+    "rank": 12,
+    "stars": 126914,
+    "summary_ja": "Orca は、エージェント群 (Grok Bot、Claude Code など) と連携するための場所です。独自のサブスクリプションでコーディング エージェントを実行します。デスクトップ、モバイル、リモート ランタイムで利用可能です。",
+    "url": "https://github.com/stablyai/orca"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1104,
+    "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+    "full_name": "elementalsouls/Claude-BugHunter",
+    "language": "Python",
+    "rank": 13,
+    "stars": 7579,
+    "summary_ja": "",
+    "url": "https://github.com/elementalsouls/Claude-BugHunter"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 1038,
+    "description": "Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MCP server, for Claude Code, Cursor and Codex. Cut, captions, reframe, loudness, platform exports. No cloud, no API keys.",
+    "full_name": "kajisho5/ffmpeg-skill",
+    "language": "Python",
+    "rank": 14,
+    "stars": 7015,
+    "summary_ja": "",
+    "url": "https://github.com/kajisho5/ffmpeg-skill"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 954,
+    "full_name": "alibaba/open-code-review",
+    "language": "Go",
+    "rank": 15,
+    "stars": 53074,
+    "summary_ja": "安全、高速、効率的で、アリババの規模で実証済みです。ハイブリッド アーキテクチャ コード レビュー ツール: 決定論的パイプライン + LLM エージェント、正確な行レベルのコメント、組み込みの多言語ルールセット (NPE、スレッド セーフティ、XSS、SQL インジェクション)、OpenAI および Anthropic との互換性。",
+    "url": "https://github.com/alibaba/open-code-review"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 915,
+    "description": "Self-hosted workflows for coding-agent delivery. Orchestrate CodeBuddy, Codex and Claude Code with scripts and human approval gates. Includes Local workflows for coding assistants.",
+    "full_name": "Tencent/LoopForge",
+    "language": "Go",
+    "rank": 16,
+    "stars": 2435,
+    "summary_ja": "",
+    "url": "https://github.com/Tencent/LoopForge"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 878,
+    "full_name": "GoogleChrome/modern-web-guidance-src",
+    "language": "TypeScript",
+    "rank": 17,
+    "stars": 8079,
+    "summary_ja": "最新の Web ベスト プラクティスを使用してコーディング エージェントを最新の状態に保ちます",
+    "url": "https://github.com/GoogleChrome/modern-web-guidance-src"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 865,
+    "full_name": "tradermonty/claude-trading-skills",
+    "language": "Python",
+    "rank": 18,
+    "stars": 6447,
+    "summary_ja": "株式投資家やトレーダー向けのClaude Code スキル — 市場分析、テクニカル チャート、経済カレンダー、スクリーナー、トレーディング戦略開発。",
+    "url": "https://github.com/tradermonty/claude-trading-skills"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 864,
+    "full_name": "affaan-m/ECC",
+    "language": "JavaScript",
+    "rank": 19,
+    "stars": 304737,
+    "summary_ja": "エージェントハーネスパフォーマンス最適化システム。Claude Code、Codex、OpenCode、Cursorなどのスキル、本能、記憶力、セキュリティ、研究優先の開発。",
+    "url": "https://github.com/affaan-m/ECC"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 860,
+    "full_name": "milind-soni/OpenMausBot",
+    "language": "TypeScript",
+    "rank": 20,
+    "stars": 24292,
+    "summary_ja": "ボットが使用できる仮想マシンを備えたオープンソースの Grok Bot 代替ツール",
+    "url": "https://github.com/milind-soni/OpenMausBot"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 847,
+    "full_name": "anefzaoui/misterdownloadmanager",
+    "language": "Rust",
+    "rank": 21,
+    "stars": 11253,
+    "summary_ja": "misterdownloadmanager: Windows、Mac、Linux 向けに純粋な Rust でゼロから書かれた、究極のオープンソース、クリーンルーム ダウンロード マネージャー",
+    "url": "https://github.com/anefzaoui/misterdownloadmanager"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 846,
+    "full_name": "mattpocock/skills",
+    "language": "Shell",
+    "rank": 22,
+    "stars": 326045,
+    "summary_ja": "本物のエンジニアのためのスキル。私の .agents ディレクトリから直接。",
+    "url": "https://github.com/mattpocock/skills"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 827,
+    "full_name": "deepseek-ai/deepseek-harness",
+    "language": "TypeScript",
+    "rank": 23,
+    "stars": 282464,
+    "summary_ja": "DeepSeek ハーネス: すべてはプラグインです。",
+    "url": "https://github.com/deepseek-ai/deepseek-harness"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 825,
+    "full_name": "backnotprop/plannotator",
+    "language": "TypeScript",
+    "rank": 24,
+    "stars": 12686,
+    "summary_ja": "エージェントの最新情報を常に把握できるワークスペース - ワンクリックで、コードの形成、決定、計画、注釈付け、コードのレビュー、チームとの共有、すべてのフィードバックのエージェントへの送信が可能です。",
+    "url": "https://github.com/backnotprop/plannotator"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 816,
+    "full_name": "meta/astryx",
+    "language": "TypeScript",
+    "rank": 25,
+    "stars": 29709,
+    "summary_ja": "完全にカスタマイズ可能でエージェント対応のオープンソース設計システム",
+    "url": "https://github.com/meta/astryx"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 815,
+    "full_name": "DietrichGebert/ponytail",
+    "language": "JavaScript",
+    "rank": 26,
+    "stars": 192286,
+    "summary_ja": "AI エージェントに、その部屋で最も怠惰な上級開発者のように考えさせます。最良のコードは、一度も書いたことのないコードです。",
+    "url": "https://github.com/DietrichGebert/ponytail"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 812,
+    "full_name": "cloudflare/security-audit-skill",
+    "language": "JavaScript",
+    "rank": 27,
+    "stars": 74063,
+    "summary_ja": "独立して検証され、機械可読な結果を伴う多段階セキュリティ監査のためのコーディング エージェント スキル",
+    "url": "https://github.com/cloudflare/security-audit-skill"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 807,
+    "full_name": "ChromeDevTools/chrome-devtools-mcp",
+    "language": "TypeScript",
+    "rank": 28,
+    "stars": 57771,
+    "summary_ja": "コーディング エージェント用の Chrome DevTools",
+    "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 798,
+    "description": "江山时序 · 中国历史交互地图时间轴 (403 BCE – Present) | Interactive Historical Atlas of China across 18 dynasties, 198 territory snapshots, ancient-to-modern place genealogy & classical poetry routes",
+    "full_name": "DeanChensj/jiangshan-map",
+    "language": "JavaScript",
+    "rank": 29,
+    "stars": 7088,
+    "summary_ja": "",
+    "url": "https://github.com/DeanChensj/jiangshan-map"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 772,
+    "full_name": "anthropics/skills",
+    "language": "Python",
+    "rank": 30,
+    "stars": 196150,
+    "summary_ja": "エージェント スキルのパブリック リポジトリ",
+    "url": "https://github.com/anthropics/skills"
+   }
   ]
  },
  "dates": [
-  "2026-11-03",
   "2026-11-04",
   "2026-11-05",
   "2026-11-06",
@@ -4246,313 +4252,12 @@
   "2026-11-13",
   "2026-11-14",
   "2026-11-15",
-  "2026-11-16"
+  "2026-11-16",
+  "2026-11-17"
  ],
- "generated_at": "2026-11-16T10:28:12+09:00",
- "pool_size": 1333,
+ "generated_at": "2026-11-17T13:15:05+09:00",
+ "pool_size": 1332,
  "ranks": {
-  "2026-11-03": [
-   {
-    "basis": "new",
-    "delta": 13744,
-    "full_name": "deepseek-ai/dsh-superagent-prototype",
-    "language": "TypeScript",
-    "rank": 1,
-    "stars": 13744,
-    "summary_ja": "より自律的なエージェント システムに向けて",
-    "url": "https://github.com/deepseek-ai/dsh-superagent-prototype"
-   },
-   {
-    "basis": "trending",
-    "delta": 11754,
-    "full_name": "pbakaus/impeccable",
-    "language": "Rust",
-    "rank": 2,
-    "stars": 100595,
-    "summary_ja": "コーディング エージェントの設計ボキャブラリー。より洗練され、より大胆に舵を取り、批評と監査でレビューし、出荷前に AI のスロップを把握します。",
-    "url": "https://github.com/pbakaus/impeccable"
-   },
-   {
-    "basis": "trending",
-    "delta": 10827,
-    "full_name": "HKUDS/DeepTutor",
-    "language": "Python",
-    "rank": 3,
-    "stars": 54370,
-    "summary_ja": "DeepTutor: 生涯にわたる個別指導。 https://deeptutor.info/。",
-    "url": "https://github.com/HKUDS/DeepTutor"
-   },
-   {
-    "basis": "trending",
-    "delta": 10517,
-    "full_name": "Nutlope/hallmark",
-    "language": "CSS",
-    "rank": 4,
-    "stars": 46105,
-    "summary_ja": "Claude Code、Cursor、Codexの AI スロップ対策設計スキル。",
-    "url": "https://github.com/Nutlope/hallmark"
-   },
-   {
-    "basis": "trending",
-    "delta": 9770,
-    "full_name": "pingdotgg/t3code",
-    "language": "TypeScript",
-    "rank": 5,
-    "stars": 42196,
-    "summary_ja": "あらゆるコンピューターや携帯電話からClaude Code、Codexなどを制御する最良の方法",
-    "url": "https://github.com/pingdotgg/t3code"
-   },
-   {
-    "basis": "trending",
-    "delta": 9155,
-    "full_name": "cloudflare/security-audit-skill",
-    "language": "JavaScript",
-    "rank": 6,
-    "stars": 57487,
-    "summary_ja": "独立して検証され、機械可読な結果を伴う多段階セキュリティ監査のためのコーディング エージェント スキル",
-    "url": "https://github.com/cloudflare/security-audit-skill"
-   },
-   {
-    "basis": "trending",
-    "delta": 8382,
-    "full_name": "hmjz100/LinkSwift",
-    "language": "JavaScript",
-    "rank": 7,
-    "stars": 37461,
-    "summary_ja": "ネットワーク ディスク ファイルのダウンロード アドレスを取得するための JavaScript ベースのツール。 [ネットワーク ディスク ダイレクト リンク ダウンロード アシスタント] の修正に基づいて、Baidu Cloud Disk / Alibaba Cloud Disk / China Mobile Cloud Disk / Tianyi Cloud Disk / Thunder Cloud Disk / Quark Cloud Disk / UC Cloud Disk / 123 Cloud Disk の 8 つの主要なクラウド ディスクをサポートします",
-    "url": "https://github.com/hmjz100/LinkSwift"
-   },
-   {
-    "basis": "trending",
-    "delta": 7255,
-    "full_name": "thedotmack/claude-mem",
-    "language": "TypeScript",
-    "rank": 8,
-    "stars": 110848,
-    "summary_ja": "すべてのエージェントのセッション全体で永続的なコンテキスト – セッション中のエージェントの行動をすべてキャプチャし、AI で圧縮して、関連するコンテキストを将来のセッションに挿入します。 Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode などで動作します",
-    "url": "https://github.com/thedotmack/claude-mem"
-   },
-   {
-    "basis": "trending",
-    "delta": 6560,
-    "full_name": "YuJunZhiXue/dsh-purge",
-    "language": "JavaScript",
-    "rank": 9,
-    "stars": 16323,
-    "summary_ja": "DeepSeek ハーネス アーマー破壊: すべてのモデルがアーマーを破壊できるようになります。異なるモデルを異なるプロンプト単語に置き換えることができます。デフォルトのプロンプトワードは国家モデル「Xiaomajiang」です。すべてのモデルの脱獄 — モデルごとにプロンプ​​トを交換します。スターコレクションを要求する ⭐ コピーを開きたい場合は、署名要件セクションを確認してください",
-    "url": "https://github.com/YuJunZhiXue/dsh-purge"
-   },
-   {
-    "basis": "new",
-    "delta": 6387,
-    "full_name": "heydamir/unslop",
-    "language": "JavaScript",
-    "rank": 10,
-    "stars": 6387,
-    "summary_ja": "バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル",
-    "url": "https://github.com/heydamir/unslop"
-   },
-   {
-    "basis": "trending",
-    "delta": 6201,
-    "full_name": "affaan-m/ECC",
-    "language": "JavaScript",
-    "rank": 11,
-    "stars": 295734,
-    "summary_ja": "エージェントハーネスパフォーマンス最適化システム。Claude Code、Codex、OpenCode、Cursorなどのスキル、本能、記憶力、セキュリティ、研究優先の開発。",
-    "url": "https://github.com/affaan-m/ECC"
-   },
-   {
-    "basis": "trending",
-    "delta": 5956,
-    "full_name": "obra/superpowers",
-    "language": "Shell",
-    "rank": 12,
-    "stars": 311299,
-    "summary_ja": "効果的なエージェント スキル フレームワークとソフトウェア開発方法論。",
-    "url": "https://github.com/obra/superpowers"
-   },
-   {
-    "basis": "trending",
-    "delta": 5919,
-    "full_name": "Donchitos/Claude-Code-Game-Studios",
-    "language": "Shell",
-    "rank": 13,
-    "stars": 33683,
-    "summary_ja": "Claude Code を完全なゲーム開発スタジオに変えます。49 の AI エージェント、72 のワークフロー スキル、実際のスタジオ階層を反映した完全な調整システムです。",
-    "url": "https://github.com/Donchitos/Claude-Code-Game-Studios"
-   },
-   {
-    "basis": "trending",
-    "delta": 5729,
-    "full_name": "Leonxlnx/taste-skill",
-    "language": "JavaScript",
-    "rank": 14,
-    "stars": 108839,
-    "summary_ja": "コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック",
-    "url": "https://github.com/Leonxlnx/taste-skill"
-   },
-   {
-    "basis": "trending",
-    "delta": 5487,
-    "full_name": "milind-soni/OpenMausBot",
-    "language": "TypeScript",
-    "rank": 15,
-    "stars": 11317,
-    "summary_ja": "ボットが使用できる仮想マシンを備えたオープンソースの Grok Bot 代替ツール",
-    "url": "https://github.com/milind-soni/OpenMausBot"
-   },
-   {
-    "basis": "new",
-    "delta": 5468,
-    "full_name": "wangzan101/Mika",
-    "language": "Kotlin",
-    "rank": 16,
-    "stars": 5468,
-    "summary_ja": "ミカ – アプリを操作したり、インターネットをサーフィンしたり、あなたの代わりに作業を行ったりする、携帯電話上のパーソナル AI アシスタントです。アプリとウェブを操作して作業を完了する Android 用のオンデバイス AI エージェント。",
-    "url": "https://github.com/wangzan101/Mika"
-   },
-   {
-    "basis": "trending",
-    "delta": 5224,
-    "full_name": "Graphify-Labs/graphify",
-    "language": "Python",
-    "rank": 17,
-    "stars": 141268,
-    "summary_ja": "ドキュメント、SQL スキーマ、構成、PDF を含むあらゆるコードベースを、クエリ可能なナレッジ グラフに変換します。 Claude Code、Cursor、Codex、および Gemini CLI の /graphify スキル: ローカル決定論的 AST 解析、すべてのエッジの説明、ベクトル ストアなし。",
-    "url": "https://github.com/Graphify-Labs/graphify"
-   },
-   {
-    "basis": "trending",
-    "delta": 4924,
-    "full_name": "heygen-com/hyperframes",
-    "language": "TypeScript",
-    "rank": 18,
-    "stars": 77798,
-    "summary_ja": "HTMLを書きます。ビデオをレンダリングします。エージェント向けに構築されています。",
-    "url": "https://github.com/heygen-com/hyperframes"
-   },
-   {
-    "basis": "trending",
-    "delta": 4812,
-    "full_name": "JetBrains/thinkrail",
-    "language": "TypeScript",
-    "rank": 19,
-    "stars": 7199,
-    "summary_ja": "作業方法に合わせてカスタマイズする軽量の本物の IDE で pi を使用した Vibe コード — The Vibe You Need",
-    "url": "https://github.com/JetBrains/thinkrail"
-   },
-   {
-    "basis": "new",
-    "delta": 4689,
-    "full_name": "storytold/craft-anything",
-    "language": "Rust",
-    "rank": 20,
-    "stars": 4689,
-    "summary_ja": "あらゆるソフトウェアの仕組みを理解し、自分で作り直すためのツール",
-    "url": "https://github.com/storytold/craft-anything"
-   },
-   {
-    "basis": "trending",
-    "delta": 4603,
-    "full_name": "TauricResearch/TradingAgents",
-    "language": "Python",
-    "rank": 21,
-    "stars": 120007,
-    "summary_ja": "TradingAgents: マルチエージェント LLM 金融取引フレームワーク",
-    "url": "https://github.com/TauricResearch/TradingAgents"
-   },
-   {
-    "basis": "trending",
-    "delta": 4397,
-    "full_name": "multica-ai/andrej-karpathy-skills",
-    "language": "",
-    "rank": 22,
-    "stars": 228589,
-    "summary_ja": "Claude Codeの動作を改善するための単一の CLAUDE.md ファイル。LLM コーディングの落とし穴に関する Andrej Karpathy の観察から派生しました。",
-    "url": "https://github.com/multica-ai/andrej-karpathy-skills"
-   },
-   {
-    "basis": "trending",
-    "delta": 4313,
-    "full_name": "tashfeenahmed/freellmapi",
-    "language": "TypeScript",
-    "rank": 23,
-    "stars": 46466,
-    "summary_ja": "月間 74 億トークン。 34 の無料 LLM プロバイダー。 635 の無料モデル エンドポイント。すべては 1 つの /v1 エンドポイントと、OpenAI 互換のカスタム エンドポイントの背後にあります。スマート ルーティング、自動フェイルオーバー、暗号化キー。個人的な実験のみ。",
-    "url": "https://github.com/tashfeenahmed/freellmapi"
-   },
-   {
-    "basis": "trending",
-    "delta": 4091,
-    "full_name": "AgriciDaniel/claude-seo",
-    "language": "Python",
-    "rank": 24,
-    "stars": 26029,
-    "summary_ja": "Claude Code のユニバーサル SEO スキル。テクニカル SEO、E-E-A-T、スキーマ、GEO/AEO、エージェントの準備状況 (Lighthouse Agentic Browsing、WebMCP、llms.txt)、バックリンク、ローカル SEO、電子商取引、国際 SEO、Google API、PDF/Excel レポートをカバーする 26 のサブスキル + 19 のサブエージェント。ライブ SEO データ用の 9 つのオプション拡張子。",
-    "url": "https://github.com/AgriciDaniel/claude-seo"
-   },
-   {
-    "basis": "new",
-    "delta": 4073,
-    "full_name": "valentderah/totk-pc-recomp",
-    "language": "C",
-    "rank": 25,
-    "stars": 4073,
-    "summary_ja": "Vulkan レンダラーを使用した、ゼルダの伝説 王国の涙のネイティブ Windows x86-64 への静的再コンパイル。ゲームファイルは含まれておりません。",
-    "url": "https://github.com/valentderah/totk-pc-recomp"
-   },
-   {
-    "basis": "new",
-    "delta": 3582,
-    "full_name": "patch-gg/pixelfx",
-    "language": "JavaScript",
-    "rank": 26,
-    "stars": 3582,
-    "summary_ja": "ピクセルアートの効果244種をコードで実装した集。自作用のClaude Codeスキル付き",
-    "url": "https://github.com/patch-gg/pixelfx"
-   },
-   {
-    "basis": "trending",
-    "delta": 3451,
-    "full_name": "nightly-labs/openbot",
-    "language": "TypeScript",
-    "rank": 27,
-    "stars": 4902,
-    "summary_ja": "永続的な AI チームメイトのためのローカルファーストのデスクトップ ワークスペース。専用のワークスペース、タスク キュー、ファイル共有、ブラウザ制御、エージェント間のコラボレーションを使用して、Codex、Claude、および Grok を実行します。",
-    "url": "https://github.com/nightly-labs/openbot"
-   },
-   {
-    "basis": "trending",
-    "delta": 3098,
-    "full_name": "makecindy/cindy",
-    "language": "TypeScript",
-    "rank": 28,
-    "stars": 9022,
-    "summary_ja": "それは終わったと考えてください。すぐに使えるオープンソースの AI エージェント · 思い立ったら、すぐに実行できます。オープンソースの、すぐに使える AI エージェント。",
-    "url": "https://github.com/makecindy/cindy"
-   },
-   {
-    "basis": "trending",
-    "delta": 3035,
-    "full_name": "blader/humanizer",
-    "language": "Python",
-    "rank": 29,
-    "stars": 64050,
-    "summary_ja": "文章からAI生成らしさを取り除くエージェントスキル",
-    "url": "https://github.com/blader/humanizer"
-   },
-   {
-    "basis": "trending",
-    "delta": 2828,
-    "full_name": "anthropics/skills",
-    "language": "Python",
-    "rank": 30,
-    "stars": 186809,
-    "summary_ja": "エージェント スキルのパブリック リポジトリ",
-    "url": "https://github.com/anthropics/skills"
-   }
-  ],
   "2026-11-04": [
    {
     "basis": "new",
@@ -8478,11 +8183,313 @@
     "summary_ja": "ドキュメント、SQL スキーマ、構成、PDF を含むあらゆるコードベースを、クエリ可能なナレッジ グラフに変換します。 Claude Code、Cursor、Codex、および Gemini CLI の /graphify スキル: ローカル決定論的 AST 解析、すべてのエッジの説明、ベクトル ストアなし。",
     "url": "https://github.com/Graphify-Labs/graphify"
    }
+  ],
+  "2026-11-17": [
+   {
+    "basis": "snapshot",
+    "delta": 17069,
+    "full_name": "morluto/rea",
+    "language": "TypeScript",
+    "rank": 1,
+    "stars": 464467,
+    "summary_ja": "アプリの動作からネイティブ バイナリに至るまで、エージェントを使用してあらゆるものをリバース エンジニアリングします。",
+    "url": "https://github.com/morluto/rea"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 10123,
+    "full_name": "storytold/craft-anything",
+    "language": "Rust",
+    "rank": 2,
+    "stars": 34940,
+    "summary_ja": "あらゆるソフトウェアの仕組みを理解し、自分で作り直すためのツール",
+    "url": "https://github.com/storytold/craft-anything"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 9990,
+    "full_name": "Ebony-Vinyl/dsh-our-free-model",
+    "language": "JavaScript",
+    "rank": 3,
+    "stars": 77556,
+    "summary_ja": "このプラグインを dsh にインストールするだけで、ログイン、登録、API キーの入力なしで、DeepSeek V4.1 Flash や Kim K3 などの最先端モデルを完全に無料かつ無制限に使用できます。このプラグインを dsh にインストールするだけです。ログイン、サインアップ、API キーは必要ありません。DeepSeek V4.1 Flash や Kim K3 など、フロンティア モデルがすぐそこにあります。完全に無料で、使用量の上限はありません。",
+    "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 9215,
+    "full_name": "meta/astryx",
+    "language": "TypeScript",
+    "rank": 4,
+    "stars": 29709,
+    "summary_ja": "完全にカスタマイズ可能でエージェント対応のオープンソース設計システム",
+    "url": "https://github.com/meta/astryx"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 8637,
+    "full_name": "pingdotgg/t3code",
+    "language": "TypeScript",
+    "rank": 5,
+    "stars": 63004,
+    "summary_ja": "あらゆるコンピューターや携帯電話からClaude Code、Codexなどを制御する最良の方法",
+    "url": "https://github.com/pingdotgg/t3code"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 7316,
+    "full_name": "janestreet/agent_skills",
+    "language": "",
+    "rank": 6,
+    "stars": 9633,
+    "summary_ja": "エージェントのスキル",
+    "url": "https://github.com/janestreet/agent_skills"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 7228,
+    "full_name": "ccch1mneyyy/dsh-Go",
+    "language": "Dart",
+    "rank": 7,
+    "stars": 24991,
+    "summary_ja": "dsh-go — DeepSeek ハーネスはポケットに収まります。携帯電話上でネイティブに動作し、コンピュータをリモートで制御することもできます。",
+    "url": "https://github.com/ccch1mneyyy/dsh-Go"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 6992,
+    "full_name": "anefzaoui/misterdownloadmanager",
+    "language": "Rust",
+    "rank": 8,
+    "stars": 11253,
+    "summary_ja": "misterdownloadmanager: Windows、Mac、Linux 向けに純粋な Rust でゼロから書かれた、究極のオープンソース、クリーンルーム ダウンロード マネージャー",
+    "url": "https://github.com/anefzaoui/misterdownloadmanager"
+   },
+   {
+    "basis": "trending",
+    "delta": 6542,
+    "full_name": "GoogleChrome/modern-web-guidance-src",
+    "language": "TypeScript",
+    "rank": 9,
+    "stars": 8079,
+    "summary_ja": "最新の Web ベスト プラクティスを使用してコーディング エージェントを最新の状態に保ちます",
+    "url": "https://github.com/GoogleChrome/modern-web-guidance-src"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 6350,
+    "full_name": "stablyai/orca",
+    "language": "TypeScript",
+    "rank": 10,
+    "stars": 126914,
+    "summary_ja": "Orca は、エージェント群 (Grok Bot、Claude Code など) と連携するための場所です。独自のサブスクリプションでコーディング エージェントを実行します。デスクトップ、モバイル、リモート ランタイムで利用可能です。",
+    "url": "https://github.com/stablyai/orca"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 6149,
+    "full_name": "mattpocock/skills",
+    "language": "Shell",
+    "rank": 11,
+    "stars": 326045,
+    "summary_ja": "本物のエンジニアのためのスキル。私の .agents ディレクトリから直接。",
+    "url": "https://github.com/mattpocock/skills"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 5851,
+    "full_name": "cloudflare/security-audit-skill",
+    "language": "JavaScript",
+    "rank": 12,
+    "stars": 74063,
+    "summary_ja": "独立して検証され、機械可読な結果を伴う多段階セキュリティ監査のためのコーディング エージェント スキル",
+    "url": "https://github.com/cloudflare/security-audit-skill"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 5837,
+    "full_name": "sherlock-project/sherlock",
+    "language": "Python",
+    "rank": 13,
+    "stars": 113269,
+    "summary_ja": "ソーシャル ネットワーク全体でユーザー名に基づいてソーシャル メディア アカウントを追跡する",
+    "url": "https://github.com/sherlock-project/sherlock"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 5739,
+    "full_name": "debpalash/VoiceStudio",
+    "language": "Python",
+    "rank": 14,
+    "stars": 112045,
+    "summary_ja": "VoiceStudio は、オープンソースで完全にローカルな ElevenLabsの代替製品であり、646 言語で音声クローン、音声デザイン、ビデオ ダビング、ディクテーション、文字起こし、オーディオブックの作成を行うことができます。",
+    "url": "https://github.com/debpalash/VoiceStudio"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 5578,
+    "full_name": "huamidev/GestaltX",
+    "language": "Swift",
+    "rank": 15,
+    "stars": 7914,
+    "summary_ja": "iOS 27.x 用の MobileGestalt エディター。地域コードの調整、デバイスのプリセット、バックアップが特徴です。",
+    "url": "https://github.com/huamidev/GestaltX"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4945,
+    "full_name": "deepseek-ai/deepseek-harness",
+    "language": "TypeScript",
+    "rank": 16,
+    "stars": 282464,
+    "summary_ja": "DeepSeek ハーネス: すべてはプラグインです。",
+    "url": "https://github.com/deepseek-ai/deepseek-harness"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4944,
+    "full_name": "anthropics/skills",
+    "language": "Python",
+    "rank": 17,
+    "stars": 196150,
+    "summary_ja": "エージェント スキルのパブリック リポジトリ",
+    "url": "https://github.com/anthropics/skills"
+   },
+   {
+    "basis": "trending",
+    "delta": 4765,
+    "full_name": "dream-num/univer",
+    "language": "TypeScript",
+    "rank": 18,
+    "stars": 27922,
+    "summary_ja": "Univer Office SDK を使用して独自の AI オフィスを構築します。人々や AI エージェント向けに、編集、計算、コラボレーション、ファイル処理を製品に組み込みます。拡張可能なオープンソース コア上に構築されています。",
+    "url": "https://github.com/dream-num/univer"
+   },
+   {
+    "basis": "trending",
+    "delta": 4679,
+    "full_name": "we-promise/sure",
+    "language": "Ruby",
+    "rank": 19,
+    "stars": 16048,
+    "summary_ja": "みんなのための（みんなによる）パーソナルファイナンスアプリ",
+    "url": "https://github.com/we-promise/sure"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4498,
+    "full_name": "heydamir/unslop",
+    "language": "JavaScript",
+    "rank": 20,
+    "stars": 17328,
+    "summary_ja": "バイブコード化された AI 風の UI をデザインされたインターフェイスに変える Claude スキル",
+    "url": "https://github.com/heydamir/unslop"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4486,
+    "full_name": "pbakaus/impeccable",
+    "language": "Rust",
+    "rank": 21,
+    "stars": 111475,
+    "summary_ja": "コーディング エージェントの設計ボキャブラリー。より洗練され、より大胆に舵を取り、批評と監査でレビューし、出荷前に AI のスロップを把握します。",
+    "url": "https://github.com/pbakaus/impeccable"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4476,
+    "full_name": "DietrichGebert/ponytail",
+    "language": "JavaScript",
+    "rank": 22,
+    "stars": 192286,
+    "summary_ja": "AI エージェントに、その部屋で最も怠惰な上級開発者のように考えさせます。最良のコードは、一度も書いたことのないコードです。",
+    "url": "https://github.com/DietrichGebert/ponytail"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4440,
+    "full_name": "affaan-m/ECC",
+    "language": "JavaScript",
+    "rank": 23,
+    "stars": 304737,
+    "summary_ja": "エージェントハーネスパフォーマンス最適化システム。Claude Code、Codex、OpenCode、Cursorなどのスキル、本能、記憶力、セキュリティ、研究優先の開発。",
+    "url": "https://github.com/affaan-m/ECC"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4425,
+    "full_name": "yetone/magpie",
+    "language": "Go",
+    "rank": 24,
+    "stars": 37687,
+    "summary_ja": "エージェントとモデルの組み合わせをメニューバーから切り替えるツール（DeepSeek上のCodexなど）",
+    "url": "https://github.com/yetone/magpie"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4418,
+    "full_name": "Leonxlnx/taste-skill",
+    "language": "JavaScript",
+    "rank": 25,
+    "stars": 117009,
+    "summary_ja": "コーディングエージェントにセンスを与えるエージェントスキル: アートディレクション、参照画像、一般的な AI ページの代わりのブラウザチェック",
+    "url": "https://github.com/Leonxlnx/taste-skill"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4392,
+    "full_name": "milind-soni/OpenMausBot",
+    "language": "TypeScript",
+    "rank": 26,
+    "stars": 24292,
+    "summary_ja": "ボットが使用できる仮想マシンを備えたオープンソースの Grok Bot 代替ツール",
+    "url": "https://github.com/milind-soni/OpenMausBot"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4340,
+    "full_name": "Nutlope/hallmark",
+    "language": "CSS",
+    "rank": 27,
+    "stars": 56225,
+    "summary_ja": "Claude Code、Cursor、Codexの AI スロップ対策設計スキル。",
+    "url": "https://github.com/Nutlope/hallmark"
+   },
+   {
+    "basis": "new",
+    "delta": 4189,
+    "description": "Chat Demo",
+    "full_name": "deepseek-ai/chat-demo",
+    "language": "TypeScript",
+    "rank": 28,
+    "stars": 4189,
+    "summary_ja": "",
+    "url": "https://github.com/deepseek-ai/chat-demo"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4100,
+    "full_name": "JuneYaooo/rea-video",
+    "language": "Python",
+    "rank": 29,
+    "stars": 9771,
+    "summary_ja": "あらゆるビデオをショットごとにリバース エンジニアリングします。各ショットが撮影されたのか、AI によって生成されたのか、コーディングされたのか、キャプション、カット、音声がどのように作成されたのか、リメイク方法がわかります。",
+    "url": "https://github.com/JuneYaooo/rea-video"
+   },
+   {
+    "basis": "snapshot",
+    "delta": 4041,
+    "full_name": "vercel-labs/agent-desktop",
+    "language": "Rust",
+    "rank": 30,
+    "stars": 24675,
+    "summary_ja": "AIエージェント向けのコンピューター操作CLI",
+    "url": "https://github.com/vercel-labs/agent-desktop"
+   }
   ]
  },
  "series": {
   "AgriciDaniel/claude-seo": [
-   26029,
    26350,
    26678,
    26933,
@@ -8495,10 +8502,10 @@
    28710,
    29079,
    29388,
-   29726
+   29726,
+   30109
   ],
   "Alishahryar1/free-claude-code": [
-   null,
    null,
    null,
    null,
@@ -8511,10 +8518,10 @@
    69341,
    69894,
    70248,
-   70574
+   70574,
+   70886
   ],
   "ChromeDevTools/chrome-devtools-mcp": [
-   54682,
    54748,
    54804,
    54853,
@@ -8527,10 +8534,10 @@
    55179,
    55474,
    56320,
-   56964
+   56964,
+   57771
   ],
   "D4Vinci/Scrapling": [
-   93072,
    94912,
    96612,
    98029,
@@ -8543,10 +8550,26 @@
    102167,
    102512,
    102949,
-   103322
+   103322,
+   103694
+  ],
+  "DeanChensj/jiangshan-map": [
+   3848,
+   4160,
+   4375,
+   4496,
+   4558,
+   4688,
+   5081,
+   5260,
+   5429,
+   5512,
+   5578,
+   5913,
+   6290,
+   7088
   ],
   "DietrichGebert/ponytail": [
-   182963,
    183765,
    184577,
    185264,
@@ -8559,10 +8582,10 @@
    189814,
    190384,
    190946,
-   191471
+   191471,
+   192286
   ],
   "Djihads80/Eglantine": [
-   2563,
    3068,
    3722,
    4440,
@@ -8575,10 +8598,10 @@
    null,
    null,
    null,
+   null,
    null
   ],
   "Donchitos/Claude-Code-Game-Studios": [
-   33683,
    34697,
    35434,
    35762,
@@ -8591,10 +8614,10 @@
    38747,
    38986,
    39308,
-   39572
+   39572,
+   39801
   ],
   "Ebony-Vinyl/dsh-our-free-model": [
-   57527,
    59056,
    60798,
    62376,
@@ -8607,10 +8630,10 @@
    71404,
    72878,
    74371,
-   75841
+   75841,
+   77556
   ],
   "Gathin23/cleanyourtv": [
-   50517,
    51392,
    52043,
    52677,
@@ -8623,10 +8646,10 @@
    57042,
    57449,
    57886,
-   58291
+   58291,
+   58728
   ],
   "GoogleChrome/modern-web-guidance-src": [
-   null,
    null,
    null,
    null,
@@ -8639,10 +8662,10 @@
    3117,
    4898,
    6071,
-   7201
+   7201,
+   8079
   ],
   "Graphify-Labs/graphify": [
-   141268,
    141881,
    142470,
    143011,
@@ -8655,10 +8678,10 @@
    146790,
    147307,
    147798,
-   148442
+   148442,
+   149124
   ],
   "HKUDS/DeepTutor": [
-   54370,
    54742,
    55071,
    55478,
@@ -8671,14 +8694,15 @@
    58672,
    58959,
    59234,
-   59494
+   59494,
+   59829
   ],
   "HunYiSage/dsh-purge": [
-   null,
    17124,
    18152,
    19193,
    20085,
+   null,
    null,
    null,
    null,
@@ -8695,7 +8719,6 @@
    null,
    null,
    null,
-   null,
    1864,
    1951,
    2008,
@@ -8703,10 +8726,10 @@
    2091,
    2654,
    3138,
-   3266
+   3266,
+   3377
   ],
   "JetBrains/thinkrail": [
-   7199,
    7427,
    7605,
    7759,
@@ -8719,10 +8742,10 @@
    8202,
    8236,
    8246,
-   8276
+   8276,
+   8310
   ],
   "JiaFeiMiao-K-Cat/DiscImageStudio": [
-   null,
    null,
    6640,
    7302,
@@ -8735,10 +8758,10 @@
    9772,
    9913,
    10013,
-   10099
+   10099,
+   10178
   ],
   "JuneYaooo/rea-video": [
-   null,
    null,
    null,
    2121,
@@ -8751,10 +8774,10 @@
    7540,
    7999,
    8601,
-   9197
+   9197,
+   9771
   ],
   "KKKKhazix/agent-autoloop": [
-   null,
    null,
    2578,
    3266,
@@ -8767,10 +8790,10 @@
    4806,
    5132,
    5341,
-   5509
+   5509,
+   5714
   ],
   "KnifeLemon/Filee": [
-   20800,
    21375,
    22021,
    22618,
@@ -8783,10 +8806,10 @@
    26380,
    26787,
    27187,
-   27608
+   27608,
+   28157
   ],
   "LNPANDY/NX2Apple": [
-   3032,
    3261,
    3492,
    3743,
@@ -8799,10 +8822,10 @@
    6491,
    6826,
    7034,
-   7241
+   7241,
+   7474
   ],
   "Lee-xeo/Claude-Cage": [
-   null,
    null,
    null,
    null,
@@ -8815,10 +8838,10 @@
    4835,
    5238,
    5481,
-   5727
+   5727,
+   6128
   ],
   "Leonxlnx/taste-skill": [
-   108839,
    109517,
    110100,
    110685,
@@ -8831,7 +8854,8 @@
    114355,
    115070,
    115660,
-   116251
+   116251,
+   117009
   ],
   "Likely7/Veyra-NRVideo": [
    null,
@@ -8844,13 +8868,12 @@
    null,
    null,
    null,
-   null,
    1636,
    2282,
-   2809
+   2809,
+   3084
   ],
   "Minireel/HGhub": [
-   null,
    null,
    null,
    null,
@@ -8863,10 +8886,26 @@
    8675,
    8822,
    8851,
-   9007
+   9007,
+   9567
+  ],
+  "NVIDIA/SkillEvaluator": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   884,
+   1127,
+   1257,
+   1706,
+   2864
   ],
   "NVIDIA/auto-ontology": [
-   null,
    null,
    5135,
    7428,
@@ -8879,10 +8918,10 @@
    12268,
    12569,
    12852,
-   13030
+   13030,
+   13373
   ],
   "Niko1221/Strata": [
-   38557,
    39333,
    39986,
    40597,
@@ -8895,10 +8934,10 @@
    43577,
    43923,
    44201,
-   44548
+   44548,
+   44981
   ],
   "NotRexed/Hookshot": [
-   null,
    null,
    null,
    null,
@@ -8911,10 +8950,10 @@
    8826,
    null,
    null,
+   null,
    null
   ],
   "Nutlope/hallmark": [
-   46105,
    47013,
    47974,
    48802,
@@ -8927,10 +8966,10 @@
    54041,
    54542,
    55053,
-   55514
+   55514,
+   56225
   ],
   "Orkas-AI/Orkas": [
-   7717,
    8986,
    9023,
    9040,
@@ -8943,10 +8982,10 @@
    9309,
    9337,
    9354,
-   9380
+   9380,
+   9414
   ],
   "Renhuai123/ziwei-doushu": [
-   14125,
    15023,
    15799,
    16231,
@@ -8959,7 +8998,8 @@
    17828,
    17990,
    18191,
-   18346
+   18346,
+   18501
   ],
   "RoutineMiku/apkstart": [
    null,
@@ -8973,12 +9013,11 @@
    null,
    null,
    null,
-   null,
    3680,
-   5211
+   5211,
+   6747
   ],
   "TauricResearch/TradingAgents": [
-   120007,
    120368,
    120647,
    120838,
@@ -8991,10 +9030,10 @@
    122323,
    122471,
    122599,
-   122726
+   122726,
+   122872
   ],
   "Tencent/LoopForge": [
-   null,
    null,
    null,
    null,
@@ -9007,10 +9046,10 @@
    569,
    671,
    918,
-   1520
+   1520,
+   2435
   ],
   "Usagi-org/ai-goofish-monitor": [
-   null,
    16449,
    17160,
    17598,
@@ -9023,10 +9062,10 @@
    19792,
    19865,
    19923,
-   20009
+   20009,
+   20063
   ],
   "Vincentwei1021/video-shotcraft": [
-   16216,
    16556,
    17006,
    17276,
@@ -9039,26 +9078,10 @@
    19002,
    19206,
    19627,
-   20075
-  ],
-  "YuJunZhiXue/dsh-purge": [
-   16323,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
+   20075,
+   20689
   ],
   "Zagitta/gpu-unlock": [
-   14700,
    15695,
    16648,
    17271,
@@ -9071,10 +9094,10 @@
    18971,
    19251,
    19537,
-   19723
+   19723,
+   20046
   ],
   "ZhuLinsen/daily_stock_analysis": [
-   67466,
    67508,
    67567,
    67617,
@@ -9087,10 +9110,10 @@
    71096,
    71645,
    72266,
-   72516
+   72516,
+   72867
   ],
   "addyosmani/agent-skills": [
-   112846,
    113057,
    113293,
    113525,
@@ -9103,10 +9126,10 @@
    116710,
    117163,
    117587,
-   117956
+   117956,
+   118383
   ],
   "affaan-m/ECC": [
-   295734,
    296581,
    297276,
    297894,
@@ -9119,10 +9142,26 @@
    302049,
    302481,
    303094,
-   303873
+   303873,
+   304737
+  ],
+  "ag-ui-protocol/ag-ui": [
+   16994,
+   17022,
+   17038,
+   17051,
+   17059,
+   17065,
+   17080,
+   17096,
+   17126,
+   17155,
+   17170,
+   17375,
+   17891,
+   19260
   ],
   "alibaba/open-code-review": [
-   49303,
    49366,
    49434,
    49510,
@@ -9135,10 +9174,10 @@
    50057,
    50653,
    51453,
-   52120
+   52120,
+   53074
   ],
   "amosblomqvist/learnharness": [
-   4993,
    5207,
    5395,
    5560,
@@ -9151,10 +9190,10 @@
    9043,
    9281,
    9438,
-   9609
+   9609,
+   9769
   ],
   "anefzaoui/misterdownloadmanager": [
-   null,
    null,
    null,
    null,
@@ -9167,10 +9206,10 @@
    7978,
    8938,
    9589,
-   10406
+   10406,
+   11253
   ],
   "anomalyco/hex": [
-   4114,
    4610,
    5065,
    5316,
@@ -9183,10 +9222,10 @@
    6503,
    6615,
    6731,
-   6919
+   6919,
+   7153
   ],
   "anomalyco/rune": [
-   null,
    null,
    null,
    null,
@@ -9199,10 +9238,10 @@
    6918,
    7041,
    7148,
-   7245
+   7245,
+   7354
   ],
   "anthropics/skills": [
-   186809,
    187126,
    187432,
    187774,
@@ -9215,10 +9254,10 @@
    193721,
    194156,
    194637,
-   195378
+   195378,
+   196150
   ],
   "backnotprop/plannotator": [
-   9828,
    9838,
    9853,
    9866,
@@ -9231,10 +9270,10 @@
    10213,
    10475,
    11143,
-   11861
+   11861,
+   12686
   ],
   "blader/humanizer": [
-   64050,
    64426,
    64867,
    65282,
@@ -9247,10 +9286,10 @@
    68437,
    68834,
    69143,
-   69485
+   69485,
+   69973
   ],
   "calesthio/OpenMontage": [
-   75382,
    75997,
    76554,
    77184,
@@ -9263,10 +9302,10 @@
    null,
    null,
    null,
+   null,
    null
   ],
   "ccch1mneyyy/dsh-Go": [
-   6044,
    7601,
    9603,
    11536,
@@ -9279,10 +9318,10 @@
    20836,
    21834,
    22758,
-   23794
+   23794,
+   24991
   ],
   "cloudflare/security-audit-skill": [
-   57487,
    58229,
    59468,
    61594,
@@ -9295,10 +9334,10 @@
    71250,
    71952,
    72650,
-   73251
+   73251,
+   74063
   ],
   "debpalash/VoiceStudio": [
-   99183,
    100106,
    101044,
    101969,
@@ -9311,7 +9350,8 @@
    109241,
    109998,
    110715,
-   111376
+   111376,
+   112045
   ],
   "deepseek-ai/chat-demo": [
    null,
@@ -9325,12 +9365,11 @@
    null,
    null,
    null,
-   null,
    1762,
-   3039
+   3039,
+   4189
   ],
   "deepseek-ai/deepseek-harness": [
-   269813,
    271164,
    272621,
    273869,
@@ -9343,10 +9382,10 @@
    279853,
    280529,
    281103,
-   281637
+   281637,
+   282464
   ],
   "deepseek-ai/dsh-superagent-prototype": [
-   13744,
    16877,
    18619,
    19536,
@@ -9359,10 +9398,10 @@
    22757,
    23024,
    23146,
-   23298
+   23298,
+   23534
   ],
   "dream-num/univer": [
-   null,
    null,
    null,
    null,
@@ -9375,7 +9414,8 @@
    23428,
    23850,
    24509,
-   25860
+   25860,
+   27922
   ],
   "elementalsouls/Claude-BugHunter": [
    null,
@@ -9389,12 +9429,11 @@
    null,
    null,
    null,
-   null,
    5844,
-   6475
+   6475,
+   7579
   ],
   "experientiallabs/experiential": [
-   14550,
    14697,
    14842,
    14970,
@@ -9407,10 +9446,10 @@
    16758,
    16908,
    17048,
-   17159
+   17159,
+   17378
   ],
   "expo/exact": [
-   null,
    null,
    null,
    null,
@@ -9423,10 +9462,10 @@
    3378,
    4016,
    4189,
-   4325
+   4325,
+   4508
   ],
   "floci-io/floci": [
-   null,
    28828,
    29655,
    30439,
@@ -9439,10 +9478,10 @@
    31609,
    31694,
    31741,
-   31787
+   31787,
+   31854
   ],
   "github/spec-kit": [
-   145632,
    146684,
    147338,
    147889,
@@ -9455,10 +9494,10 @@
    149551,
    149697,
    149804,
-   149941
+   149941,
+   150133
   ],
   "google/elephant-goldfish-model": [
-   10682,
    11310,
    11827,
    12469,
@@ -9471,10 +9510,10 @@
    18202,
    18638,
    19207,
-   19793
+   19793,
+   20444
   ],
   "google/skills": [
-   null,
    null,
    null,
    null,
@@ -9487,10 +9526,10 @@
    24077,
    24139,
    24275,
-   24339
+   24339,
+   24371
   ],
   "harry0703/MoneyPrinterTurbo": [
-   137583,
    138344,
    139018,
    139806,
@@ -9503,10 +9542,10 @@
    142955,
    143313,
    143591,
-   143823
+   143823,
+   144059
   ],
   "heydamir/unslop": [
-   6387,
    7571,
    8702,
    9841,
@@ -9519,10 +9558,10 @@
    15165,
    15686,
    16026,
-   16769
+   16769,
+   17328
   ],
   "heygen-com/hyperframes": [
-   77798,
    78394,
    78975,
    79581,
@@ -9535,10 +9574,10 @@
    83457,
    83964,
    84354,
-   84757
+   84757,
+   85319
   ],
   "hmjz100/LinkSwift": [
-   37461,
    37654,
    37818,
    38020,
@@ -9551,10 +9590,10 @@
    39586,
    39733,
    39871,
-   40024
+   40024,
+   40192
   ],
   "homeassistant-ai/ha-mcp": [
-   null,
    null,
    null,
    null,
@@ -9567,10 +9606,10 @@
    7695,
    7757,
    7834,
-   7880
+   7880,
+   7910
   ],
   "huamidev/GestaltX": [
-   null,
    null,
    null,
    null,
@@ -9583,10 +9622,10 @@
    6964,
    7334,
    7571,
-   7745
+   7745,
+   7914
   ],
   "janestreet/agent_skills": [
-   null,
    null,
    null,
    null,
@@ -9599,10 +9638,26 @@
    7813,
    8291,
    8641,
-   8998
+   8998,
+   9633
+  ],
+  "kajisho5/ffmpeg-skill": [
+   4460,
+   4528,
+   4615,
+   4672,
+   4741,
+   4826,
+   4887,
+   5022,
+   5099,
+   5301,
+   5438,
+   5581,
+   5977,
+   7015
   ],
   "l0ng-ai/openidea": [
-   5095,
    5653,
    6159,
    6796,
@@ -9615,7 +9670,8 @@
    8773,
    8916,
    8996,
-   9054
+   9054,
+   9186
   ],
   "libracoder/kiri": [
    null,
@@ -9628,29 +9684,12 @@
    null,
    null,
    null,
-   null,
    2252,
    3793,
-   6483
-  ],
-  "makecindy/cindy": [
-   9022,
-   9168,
-   9274,
-   9344,
-   9412,
-   9462,
-   9531,
-   9658,
-   9743,
-   9854,
-   9961,
-   10069,
-   10125,
-   10174
+   6483,
+   9138
   ],
   "mattpocock/skills": [
-   310343,
    311509,
    313371,
    315305,
@@ -9663,10 +9702,10 @@
    323046,
    323854,
    324499,
-   325199
+   325199,
+   326045
   ],
   "meta/astryx": [
-   null,
    null,
    null,
    null,
@@ -9679,10 +9718,10 @@
    26616,
    27421,
    28170,
-   28893
+   28893,
+   29709
   ],
   "milind-soni/OpenMausBot": [
-   11317,
    11708,
    12047,
    13404,
@@ -9695,10 +9734,10 @@
    21746,
    22212,
    22782,
-   23432
+   23432,
+   24292
   ],
   "morluto/rea": [
-   423366,
    427220,
    431028,
    434533,
@@ -9711,10 +9750,10 @@
    455428,
    457749,
    459935,
-   462025
+   462025,
+   464467
   ],
   "multica-ai/andrej-karpathy-skills": [
-   228589,
    229111,
    229522,
    229895,
@@ -9727,26 +9766,10 @@
    232565,
    232892,
    233159,
-   233462
-  ],
-  "nightly-labs/openbot": [
-   4902,
-   5282,
-   5581,
-   5826,
-   6061,
-   6254,
-   6475,
-   6738,
-   6904,
-   7122,
-   7322,
-   7544,
-   7763,
-   7988
+   233462,
+   233785
   ],
   "obra/superpowers": [
-   311299,
    311884,
    312470,
    313040,
@@ -9759,10 +9782,10 @@
    316804,
    317254,
    317664,
-   318084
+   318084,
+   318754
   ],
   "openai/codex-security": [
-   11288,
    11298,
    11305,
    11308,
@@ -9775,10 +9798,10 @@
    12472,
    13154,
    13545,
-   13628
+   13628,
+   13801
   ],
   "openfilm/openfilm": [
-   4291,
    4448,
    4690,
    4899,
@@ -9791,10 +9814,10 @@
    5952,
    6615,
    7120,
-   7533
+   7533,
+   null
   ],
   "p-e-w/heretic": [
-   38157,
    38825,
    39360,
    39587,
@@ -9807,10 +9830,10 @@
    40437,
    40543,
    40607,
-   40692
+   40692,
+   40788
   ],
   "patch-gg/pixelfx": [
-   3582,
    4152,
    4736,
    5286,
@@ -9823,10 +9846,10 @@
    7186,
    7334,
    7466,
-   7588
+   7588,
+   7787
   ],
   "pbakaus/impeccable": [
-   100595,
    101573,
    102866,
    103981,
@@ -9839,10 +9862,10 @@
    109028,
    109642,
    110237,
-   110766
+   110766,
+   111475
   ],
   "pingdotgg/t3code": [
-   42196,
    44476,
    46686,
    48390,
@@ -9855,26 +9878,10 @@
    58461,
    59628,
    60616,
-   61573
-  ],
-  "public-apis/public-apis": [
-   495562,
-   495869,
-   496136,
-   496433,
-   496762,
-   497021,
-   497334,
-   497667,
-   497948,
-   498274,
-   498553,
-   498798,
-   499044,
-   499307
+   61573,
+   63004
   ],
   "qybaihe/bla": [
-   1995,
    2069,
    2297,
    2440,
@@ -9887,10 +9894,10 @@
    5468,
    5565,
    5686,
-   5802
+   5802,
+   5953
   ],
   "shadcn/improve": [
-   null,
    null,
    null,
    null,
@@ -9903,10 +9910,10 @@
    11568,
    11769,
    11885,
-   11960
+   11960,
+   12001
   ],
   "shanselman/gputaskman": [
-   null,
    null,
    null,
    null,
@@ -9919,10 +9926,10 @@
    2737,
    3084,
    3227,
-   3343
+   3343,
+   3433
   ],
   "sherlock-project/sherlock": [
-   null,
    null,
    null,
    null,
@@ -9935,10 +9942,10 @@
    110596,
    111176,
    111797,
-   112499
+   112499,
+   113269
   ],
   "shiyu-coder/Kronos": [
-   46045,
    46535,
    46816,
    46958,
@@ -9951,10 +9958,10 @@
    47693,
    47754,
    47808,
-   47871
+   47871,
+   47905
   ],
   "stablyai/orca": [
-   113709,
    114561,
    115519,
    116751,
@@ -9967,10 +9974,10 @@
    123545,
    124417,
    125084,
-   125802
+   125802,
+   126914
   ],
   "storytold/craft-anything": [
-   4689,
    8522,
    11970,
    15171,
@@ -9983,10 +9990,10 @@
    29988,
    31455,
    32776,
-   33782
+   33782,
+   34940
   ],
   "tashfeenahmed/freellmapi": [
-   46466,
    47070,
    47584,
    48021,
@@ -9999,10 +10006,10 @@
    51265,
    51804,
    52367,
-   52920
+   52920,
+   53578
   ],
   "thedotmack/claude-mem": [
-   110848,
    111948,
    112889,
    113571,
@@ -10015,7 +10022,8 @@
    116596,
    116862,
    117131,
-   117384
+   117384,
+   117752
   ],
   "tradermonty/claude-trading-skills": [
    null,
@@ -10028,13 +10036,12 @@
    null,
    null,
    null,
-   null,
    4192,
    4832,
-   5582
+   5582,
+   6447
   ],
   "valentderah/totk-pc-recomp": [
-   4073,
    4528,
    4872,
    5167,
@@ -10047,10 +10054,10 @@
    6937,
    7090,
    7237,
-   7386
+   7386,
+   7528
   ],
   "vercel-labs/agent-browser": [
-   45294,
    45410,
    45540,
    45925,
@@ -10063,10 +10070,10 @@
    50354,
    50752,
    51222,
-   51637
+   51637,
+   52079
   ],
   "vercel-labs/agent-desktop": [
-   10148,
    12854,
    15207,
    16926,
@@ -10079,7 +10086,8 @@
    22758,
    23315,
    23760,
-   24194
+   24194,
+   24675
   ],
   "vercel-labs/ui": [
    null,
@@ -10092,13 +10100,12 @@
    null,
    null,
    null,
-   null,
    3863,
    4568,
-   4964
+   4964,
+   5340
   ],
   "wangzan101/Mika": [
-   5468,
    6092,
    6668,
    7115,
@@ -10111,10 +10118,10 @@
    8408,
    8529,
    8619,
-   8723
+   8723,
+   8886
   ],
   "we-promise/sure": [
-   null,
    null,
    null,
    null,
@@ -10127,10 +10134,10 @@
    13964,
    14772,
    15322,
-   15721
+   15721,
+   16048
   ],
   "yetone/magpie": [
-   28530,
    29093,
    29781,
    30513,
@@ -10143,10 +10150,10 @@
    35462,
    36123,
    36551,
-   36964
+   36964,
+   37687
   ],
   "zed-industries/zed": [
-   null,
    92636,
    92709,
    92884,
@@ -10159,10 +10166,10 @@
    94859,
    94969,
    95047,
-   95089
+   95089,
+   95184
   ],
   "zortos293/Lichii": [
-   null,
    null,
    null,
    2346,
@@ -10175,7 +10182,8 @@
    8792,
    9000,
    9197,
-   9380
+   9380,
+   9524
   ]
  }
 }
