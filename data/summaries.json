@@ -1,4 +1,5 @@
 {
+ "4lwayz/portwatch-vi": "GTA VI はまだ PC 上で動作しますか?コミュニティの再コンパイルとエミュレーションの取り組みを示すライブ トラッカー。毎日更新されます。",
  "AFK-surf/xnulinux": "Linux 内のロード可能なカーネル モジュールとしての XNU (arm64 Linux の macOS パーソナリティ)",
  "AgriciDaniel/claude-seo": "Claude Code のユニバーサル SEO スキル。テクニカル SEO、E-E-A-T、スキーマ、GEO/AEO、エージェントの準備状況 (Lighthouse Agentic Browsing、WebMCP、llms.txt)、バックリンク、ローカル SEO、電子商取引、国際 SEO、Google API、PDF/Excel レポートをカバーする 26 のサブスキル + 19 のサブエージェント。ライブ SEO データ用の 9 つのオプション拡張子。",
  "Alishahryar1/free-claude-code": "Claude Code、Codex、Antigravity、VSCode、Pi、OpenCode (およびその他 6 つのハーネス) を、端末、アプリ、IDE、電話から無料 (13 億以上の無料トークン) で使用できます。さらに、OpenClaw (音声サポート + ToS フレンドリー) のようなネイティブ ブラウザ セッション (マルチハーネス + マルチモデル) を使用してブラウザからも使用できます。",
@@ -87,6 +88,7 @@
  "firecrawl/firecrawl": "エージェントをより賢くするためのナレッジ インフラストラクチャ。 1 つの API を通じて 550 以上のデータ プロバイダーを検索、収集します。",
  "floci-io/floci": "軽量で無料のAWSローカルエミュレーター（LocalStackの代替）",
  "fxceless/victory-fork": "VIctory の進行中のフォーク: Xbox シリーズ タイトルを Windows PC 上でレンダリングして実行できるようにする。ゲームファイルはありません。",
+ "gamedev-skills/awesome-gamedev-agent-skills": "AI コーディング エージェントを使用してゲームを作成します。79 のゲーム開発スキルと、Godot、Unity、Unreal、Roblox、three.js、Phaser およびその他 6 つのエンジン用のルーターです。実エンジンで確認しました。",
  "github/spec-kit": "仕様駆動開発（SDD）を始めるためのツールキット",
  "gitroomhq/postiz-app": "エージェント型のSNS投稿予約ツール。複数SNSへの投稿を一括で管理・自動化する",
  "google-gemini/gemini-api-cli": "Gemini API の (実験的な) CLI",
